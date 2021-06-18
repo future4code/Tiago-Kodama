@@ -124,22 +124,22 @@ function checaRenovacaoRG() {
   const idadePessoa = anoAtual - anoNascimento
   const idadeCarteira = anoAtual - anoCarteira
 
-  if( idadePessoa <= 20 )
-    console.log( idadeCarteira >= 5 )
-  else if ( idadePessoa > 50 )
-    console.log( idadeCarteira > 15 )
-  else
-    console.log( idadeCarteira >= 10 )
 
+  const devoRenovar = idadePessoa<=20 && idadeCarteira>=5 ||
+                      idadePessoa>20 && idadePessoa<50 && idadeCarteira>=10 ||
+                      idadePessoa>50 && idadeCarteira>15
+
+  console.log(devoRenovar)
 }
 
 // EXERCÍCIO 14
 function checaAnoBissexto(ano) {
-  // implemente sua lógica aqui
-  if(ano%400===0) return true
-  if(ano%4===0 && ano%100!==0) return true
-  
-  return false
+
+  const multiplo400 = ano%400===0
+  const multiplo4 = ano%4===0
+  const multiplo100 = ano%100===0 
+
+  return multiplo400 || multiplo4 && !multiplo100
 }
 
 // EXERCÍCIO 15
