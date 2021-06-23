@@ -68,63 +68,63 @@
 // }
 
 // // 2-
-// const arrayOriginal = [4,5,6,7,8]
+const arrayOriginal = [4,5,6,7,8]
 
-// // a)
-// const imprimirArray = (arrayNumeros) => {
-//     for( const numero of arrayNumeros){
-//         console.log(numero)
-//     }
-// }
-// imprimirArray(arrayOriginal)
+// a)
+const imprimirArray = (arrayNumeros) => {
+    for( const numero of arrayNumeros){
+        console.log(numero)
+    }
+}
+imprimirArray(arrayOriginal)
 
-// // b)
-// const imprimirArrayDividido10 = (arrayNumeros) => {
-//     for( const numero of arrayNumeros){
-//         console.log(numero/10)
-//     }
-// }
-// imprimirArrayDividido10(arrayOriginal)
+// b)
+const imprimirArrayDividido10 = (arrayNumeros) => {
+    for( const numero of arrayNumeros){
+        console.log(numero/10)
+    }
+}
+imprimirArrayDividido10(arrayOriginal)
 
-// // c)
-// const selecionarPares = (arrayOriginal) => {
-//     const pares = []
-//     for( const numero of arrayOriginal ){
+// c)
+const selecionarPares = (arrayOriginal) => {
+    const pares = []
+    for( const numero of arrayOriginal ){
         
-//         if( numero%2===0 )
-//             pares.push(numero)
-//     }
+        if( numero%2===0 )
+            pares.push(numero)
+    }
 
-//     console.log(pares)
-// }
-// selecionarPares(arrayOriginal)
+    console.log(pares)
+}
+selecionarPares(arrayOriginal)
 
-// // d)
-// const criarArrayStrings = (arrayOriginal) => {
-//     const transcrita = []
+// d)
+const criarArrayStrings = (arrayOriginal) => {
+    const transcrita = []
 
-//     for( const [index, elemento] of arrayOriginal.entries() ){
-//         transcrita.push(`O elemento do índex ${index} é: ${elemento}`)
-//     }
+    for( const [index, elemento] of arrayOriginal.entries() ){
+        transcrita.push(`O elemento do índex ${index} é: ${elemento}`)
+    }
 
-//     console.log(transcrita)
-// }
-// criarArrayStrings(arrayOriginal)
+    console.log(transcrita)
+}
+criarArrayStrings(arrayOriginal)
 
-// // e)
-// const extremosArray = (arrayOriginal) => {
-//     let min = Infinity
-//     let max = -Infinity
+// e)
+const extremosArray = (arrayOriginal) => {
+    let min = Infinity
+    let max = -Infinity
 
-//     for( const elemento of arrayOriginal ){
-//         if(elemento>max) max=elemento
-//         if(elemento<min) min=elemento
-//     }
+    for( const elemento of arrayOriginal ){
+        if(elemento>max) max=elemento
+        if(elemento<min) min=elemento
+    }
 
-//     console.log(`O menor valor é: ${min}`)
-//     console.log(`O maior valor é: ${max}`)
-// }
-// extremosArray(arrayOriginal)
+    console.log(`O menor valor é: ${min}`)
+    console.log(`O maior valor é: ${max}`)
+}
+extremosArray(arrayOriginal)
 
 /***
  * DESAFIOS
