@@ -152,29 +152,29 @@
 // console.log("Acertouuuuuu")
 // console.log(`O número de tentativas foi ${quantidadeChutes}`)
 
-// // 2-
-// const numeroEscolhido = (parseInt(Math.random()*10))**(parseInt(Math.random()*10))
+// 2-
+const numeroEscolhido = (parseInt(Math.random()*10))**(parseInt(Math.random()*10))
 
-// let numeroChutado = null
-// let quantidadeChutes = 0
+let numeroChutado = null
+let quantidadeChutes = 0
 
-// console.log('Vamos jogar!')
+console.log('Vamos jogar!')
 
-// while( numeroChutado!==numeroEscolhido ){
-//     numeroChutado = Number(prompt('Jogador 2,\n Escolha um número.'))
-//     quantidadeChutes ++
+while( numeroChutado!==numeroEscolhido ){
+    numeroChutado = Number(prompt('Jogador 2,\n Escolha um número.'))
+    quantidadeChutes ++
 
-//     console.log(`O número chutado foi ${numeroChutado}`)
+    console.log(`O número chutado foi ${numeroChutado}`)
 
-//     if( numeroChutado > numeroEscolhido )
-//         console.log("Errooou. O número escolhido é maior")
-//     else if( numeroChutado > numeroEscolhido )
-//         console.log("Errooou. O número escolhido é menor")
-// }
+    if( numeroChutado > numeroEscolhido )
+        console.log("Errooou. O número escolhido é maior")
+    else if( numeroChutado > numeroEscolhido )
+        console.log("Errooou. O número escolhido é menor")
+}
 
 
-// console.log("Acertouuuuuu")
-// console.log(`O número de tentativas foi ${quantidadeChutes}`)
+console.log("Acertouuuuuu")
+console.log(`O número de tentativas foi ${quantidadeChutes}`)
 
-// // Para facilitar poderia ter colocado em uma função que recebe algum número.
-// // Seja ele passado como prompt ou random
+// Para facilitar poderia ter colocado em uma função que recebe algum número.
+// Seja ele passado como prompt ou random
