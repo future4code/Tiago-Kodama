@@ -190,12 +190,26 @@ function anonimizaPessoa(pessoa) {
 
 // EXERCÍCIO 16A
 function maioresDe18(arrayDePessoas) {
+  const listadeMaiores = []
 
+  arrayDePessoas.forEach( pessoa => {
+    if(pessoa.idade >=18)
+      listadeMaiores.push(pessoa)
+  })
+
+  return listadeMaiores
 }
 
 // EXERCÍCIO 16B
 function menoresDe18(arrayDePessoas) {
+  const listadeMenores = []
 
+  arrayDePessoas.forEach( pessoa => {
+    if(pessoa.idade <18)
+      listadeMenores.push(pessoa)
+  })
+
+  return listadeMenores
 }
 
 // EXERCÍCIO 17A
