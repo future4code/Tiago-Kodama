@@ -214,17 +214,20 @@ function menoresDe18(arrayDePessoas) {
 
 // EXERCÍCIO 17A
 function multiplicaArrayPor2(array) {
-
+  return array.map( elemento => 2*elemento)
 }
 
 // EXERCÍCIO 17B
 function multiplicaArrayPor2S(array) {
-
+  return array.map( elemento => (2*elemento).toString() )
 }
 
 // EXERCÍCIO 17C
 function verificaParidade(array) {
-
+  return array.map( elemento => {
+    if( elemento%2 === 0 ) return `${elemento} é par`
+    else return `${elemento} é ímpar`
+  })
 }
 
 // EXERCÍCIO 18A
