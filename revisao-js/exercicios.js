@@ -172,8 +172,8 @@ function imprimeChamada() {
 function criaRetangulo(lado1, lado2) {
   const largura = lado1
   const altura = lado2
-  const perimetro = 2*(lado1+lado2)
-  const area = lado1*lado2
+  const perimetro = 2 * (lado1 + lado2)
+  const area = lado1 * lado2
 
   return {
     largura,
@@ -185,7 +185,7 @@ function criaRetangulo(lado1, lado2) {
 
 // EXERCÍCIO 15
 function anonimizaPessoa(pessoa) {
-
+  return { ...pessoa, nome: "ANÔNIMO" }
 }
 
 // EXERCÍCIO 16A
