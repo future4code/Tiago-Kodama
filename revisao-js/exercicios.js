@@ -245,12 +245,42 @@ function retornaPessoasAutorizadas(pessoas) {
 
 // EXERCÍCIO 18B
 function retornaPessoasNaoAutorizadas(pessoas) {
+  return pessoas.filter( pessoa => {
 
+    const { idade, altura } = pessoa
+
+    if( idade<60 && idade>14 && altura>=1.5 )
+      return false
+
+    return true
+  })
 }
 
 // EXERCÍCIO 19A
 function ordenaPorNome(consultasNome) {
 
+  const trocar = (array, index1, index2) => {
+    let swap = array[index1]
+    array[index1] = array[index2]
+    array[index2] = swap
+  }
+
+  const algoritimoDaBolha = (array) => {
+
+    const listaOrdenada = [...array]
+    let maxRodadas = listaOrdenada.length-1
+
+    for( let rodada =0; rodada<maxRodadas; rodada++){
+      for( let i=0; i<listaOrdenada.length-2; i++ ){
+        
+        if( listaOrdenada[i].nome > listaOrdenada[i+1].nome ) 
+          trocar(listaOrdenada, i,i+1)
+      }
+    }
+    return listaOrdenada
+  }
+
+  return algoritimoDaBolha(consultasNome)
 }
 
 // EXERCÍCIO 19B
