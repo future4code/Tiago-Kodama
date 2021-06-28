@@ -286,6 +286,36 @@ function ordenaPorNome(consultasNome) {
 // EXERCÍCIO 19B
 function ordenaPorData(consultasData) {
 
+  const trocar = (array, index1, index2) => {
+    let swap = array[index1]
+    array[index1] = array[index2]
+    array[index2] = swap
+  }
+
+  const algoritimoDaBolha = (array) => {
+
+    const listaOrdenada = [...array]
+    let maxRodadas = listaOrdenada.length-1
+
+    for( let rodada =0; rodada<maxRodadas; rodada++){
+      for( let i=0; i<listaOrdenada.length-2; i++ ){
+        
+        const dataArray1 = listaOrdenada[i].dataDaConsulta.split("/")
+        const dataArray2 = listaOrdenada[i+1].dataDaConsulta.split("/")
+
+        const data1 = new Date(`${dataArray1[1]}/${dataArray1[0]}/${dataArray1[2]}`)
+        const data2 = new Date(`${dataArray2[1]}/${dataArray2[0]}/${dataArray2[2]}`)
+
+
+        if( data1 > data2 ) 
+          trocar(listaOrdenada, i,i+1)
+      }
+    }
+    return listaOrdenada
+  }
+
+  return algoritimoDaBolha(consultasData)
+
 }
 
 // EXERCÍCIO 20
