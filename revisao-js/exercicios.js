@@ -2,7 +2,7 @@
 function inverteArray(array) {
   const swap = []
 
-  for(let i=array.length-1; i>=0; i--){
+  for (let i = array.length - 1; i >= 0; i--) {
     swap.push(array[i])
   }
 
@@ -14,8 +14,8 @@ function retornaNumerosParesElevadosADois(array) {
   const paresElevadoA2 = []
 
   array.forEach(elemento => {
-    if(elemento%2 == 0){
-      paresElevadoA2.push(elemento**2)
+    if (elemento % 2 == 0) {
+      paresElevadoA2.push(elemento ** 2)
     }
   })
 
@@ -27,7 +27,7 @@ function retornaNumerosPares(array) {
   const paresSelecionados = []
 
   array.forEach(elemento => {
-    if(elemento%2 == 0){
+    if (elemento % 2 == 0) {
       paresSelecionados.push(elemento)
     }
   })
@@ -39,8 +39,8 @@ function retornaNumerosPares(array) {
 function retornaMaiorNumero(array) {
   let maiorElemento = -Infinity
 
-  array.forEach( elemento => {
-    if( elemento > maiorElemento ){
+  array.forEach(elemento => {
+    if (elemento > maiorElemento) {
       maiorElemento = elemento
     }
   })
@@ -57,7 +57,7 @@ function retornaQuantidadeElementos(array) {
 function retornaExpressoesBooleanas() {
   const booleano1 = true
   const booleano2 = false
-  const booleano3 = !booleano2 
+  const booleano3 = !booleano2
   const booleano4 = !booleano3
 
   const elemento1 = booleano1 && booleano2 && !booleano4
@@ -73,8 +73,8 @@ function retornaExpressoesBooleanas() {
 function retornaNNumerosPares(n) {
   const nPrimeirosPares = []
 
-  for(let i=0; i<n; i++){
-    nPrimeirosPares.push(i*2)
+  for (let i = 0; i < n; i++) {
+    nPrimeirosPares.push(i * 2)
   }
 
   return nPrimeirosPares
@@ -83,18 +83,18 @@ function retornaNNumerosPares(n) {
 // EXERCÍCIO 08
 function checaTriangulo(a, b, c) {
 
-  const lados = [a,b,c]
+  const lados = [a, b, c]
   const ladosDiferentes = [...new Set(lados)]
 
   switch (ladosDiferentes.length) {
     case 3:
       return 'Escaleno'
       break;
-      
+
     case 2:
       return 'Isósceles'
-      break; 
-        
+      break;
+
     default:
       return 'Equilátero'
       break;
@@ -104,13 +104,13 @@ function checaTriangulo(a, b, c) {
 // EXERCÍCIO 09
 function comparaDoisNumeros(num1, num2) {
 
-  const maiorNumero = num1>num2? num1:num2
-  const menorNumero = num1>num2? num2:num1
+  const maiorNumero = num1 > num2 ? num1 : num2
+  const menorNumero = num1 > num2 ? num2 : num1
 
   return {
     maiorNumero,
-    maiorDivisivelPorMenor: maiorNumero%menorNumero===0,
-    diferenca: maiorNumero-menorNumero
+    maiorDivisivelPorMenor: maiorNumero % menorNumero === 0,
+    diferenca: maiorNumero - menorNumero
   }
 
 }
@@ -120,29 +120,29 @@ function segundoMaiorEMenor(array) {
 
   const listaOrdenada = ordenaArray(array)
 
-  return [listaOrdenada[listaOrdenada.length-2],listaOrdenada[1]]
+  return [listaOrdenada[listaOrdenada.length - 2], listaOrdenada[1]]
 }
 
 // EXERCÍCIO 11
 function ordenaArray(array) {
 
   const pegarMenorElemento = (array) => {
-    let menorElemento = Infinity    
+    let menorElemento = Infinity
     let indiceMenorElemento = null
-    
-    for( const [index, elemento] of array.entries()){
-      if(elemento < menorElemento){
+
+    for (const [index, elemento] of array.entries()) {
+      if (elemento < menorElemento) {
         menorElemento = elemento
         indiceMenorElemento = index
       }
     }
-    return array.splice(indiceMenorElemento,1)
+    return array.splice(indiceMenorElemento, 1)
   }
 
   const listaOrdenadaCrescente = []
   const listaDesordenada = [...array]
 
-  for( let i=0; i<array.length; i++ ){
+  for (let i = 0; i < array.length; i++) {
     const menorElemento = pegarMenorElemento(listaDesordenada)[0]
     listaOrdenadaCrescente.push(menorElemento)
   }
@@ -162,7 +162,10 @@ function filmeFavorito() {
 
 // EXERCÍCIO 13
 function imprimeChamada() {
-  // "Venha assistir ao filme NOME_DO_FILME, de ANO, dirigido por DIRECAO e estrelado por ELENCO."
+
+  const { nome, ano, diretor, atores } = filmeFavorito()
+
+  return `Venha assistir ao filme ${nome}, de ${ano}, dirigido por ${diretor} e estrelado por ${atores.join(", ")}.`
 }
 
 // EXERCÍCIO 14
