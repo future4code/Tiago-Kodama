@@ -320,5 +320,10 @@ function ordenaPorData(consultasData) {
 
 // EXERCÍCIO 20
 function calculaSaldo(contas) {
-
+  
+  contas.forEach( conta => {
+    const divida = conta.compras.reduce( (total, num) => total+num, 0 )
+    conta.saldoTotal -= divida
+  })
+  return contas
 }
