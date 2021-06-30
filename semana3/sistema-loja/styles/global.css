@@ -10,7 +10,7 @@ body {
 
 header{
     width: 100vw;
-    height: 10rem;
+    height: 18vh;
     background-color: aqua;
 
     display: flex;
@@ -45,10 +45,16 @@ header .menu a{
     font-weight: 500;
 }
 
+main {
+    width: 100vw;
+    min-height: 70vh;
+
+    background-color: violet;
+}
+
 footer{
     width: 100vw;
-    height: 5rem;
-    position: absolute;
+    height: 12vh;
     bottom: 0;
 
     display: flex;
@@ -56,6 +62,12 @@ footer{
     align-items: center;
 
     background-color: cadetblue;
+}
+
+footer div p{
+    margin-bottom: 1rem;
+    text-align: center;
+    
 }
 
 footer .social-media{
