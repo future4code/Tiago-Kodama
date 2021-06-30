@@ -47,14 +47,14 @@ header .menu a{
 
 main {
     width: 100vw;
-    min-height: 70vh;
+    min-height: 72vh;
 
     background-color: violet;
 }
 
 footer{
     width: 100vw;
-    height: 12vh;
+    height: 10vh;
     bottom: 0;
 
     display: flex;
@@ -67,7 +67,7 @@ footer{
 footer div p{
     margin-bottom: 1rem;
     text-align: center;
-    
+
 }
 
 footer .social-media{
@@ -77,6 +77,6 @@ footer .social-media{
 }
 
 footer .social-media img {
-    width: 3rem;
+    width: 2rem;
     margin-left: 2rem;
 }
