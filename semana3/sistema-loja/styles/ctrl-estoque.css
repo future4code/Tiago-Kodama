@@ -7,6 +7,7 @@ header .welcome-text p{
 main table{
     width: 80%;
     margin-bottom: 5rem;
+    margin-top: 2rem;
 
 }
 
@@ -25,9 +26,11 @@ main table tr:nth-child(1){
 main table tr th{
     width: 20%;
     height: 5%;
+    padding: 1rem;
     display: flex;
     justify-content: center;
-
+    color: honeydew;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 main table tr td{
@@ -36,9 +39,13 @@ main table tr td{
     justify-content: center;
     align-items: center;
 
+    font-family: Arial, Helvetica, sans-serif;
+
 }
 
 main table tr td img{
 
+    border: 3px solid rgba(0, 0, 0, 0.568);
+    margin: 10px 0;
     width: min(70%, 200px);
 }
