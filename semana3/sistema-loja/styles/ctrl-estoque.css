@@ -1,0 +1,44 @@
+header .welcome-text p{
+    font-style: italic;
+    font-size:x-large;
+    font-weight: 700;
+}
+
+main table{
+    width: 80%;
+    margin-bottom: 5rem;
+
+}
+
+main table tr{
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 3px solid gray;
+
+}
+
+main table tr:nth-child(1){
+    background-color: cornflowerblue;
+
+}
+
+main table tr th{
+    width: 20%;
+    height: 5%;
+    display: flex;
+    justify-content: center;
+
+}
+
+main table tr td{
+    width: 20%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+main table tr td img{
+
+    width: min(70%, 200px);
+}
