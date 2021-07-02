@@ -1,0 +1,11 @@
+.container {
+    display: flex;
+    justify-content: center;
+}
+
+main .container article{
+    width: 62vw;
+    min-width: 51rem;
+    background-color: var(--light-blue);
+    margin-bottom: 2rem;
+}

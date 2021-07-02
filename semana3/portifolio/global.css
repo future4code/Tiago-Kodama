@@ -1,3 +1,5 @@
+@import "./componets.css";
+
 *{
     padding: 0;
     margin: 0;
@@ -7,21 +9,23 @@
 }
 
 html{
-    --green:#59B76E;
-    --dark-green:#245E31;
-    --opacity-white:#FFFFFF;
-    --black:#494949;
-    --blue:#5AE9FD;
-    --gray:#F0F0F0;
-    --yellow:#FFD43E;
-
     font-family: 'Roboto', sans-serif;
     font-size: 62.5%;
 }
 
 body{
-    width: 100vw;
-    height: 100vh;
+    /* width: 100vw; */
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    --green: #009993;
+    --orange: #FF6A19;
+    --light-blue: #bee9e88e;
+    --brown: #ECC757;
+    --light-tomato: #FFEBE0;
+    --tomato-strong: #CD6234;
 
 }
 
@@ -37,34 +41,98 @@ body{
     border-width: 0;
 }
 
+/* Header */
 .content header {
-    height: 20vh;
-    background: var(--green);
+    height: 10vh;
+    padding: 3rem;
+    color: var(--green);
 
     display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.content header div{
-    display: flex;
-    flex-direction: column;
     justify-content: space-between;
     align-items: center;
 }
 
-.content header div h1 {
-    font-family: 700;
-    font-size: 4.8rem;
-    color: var(--opacity-white);
-}
-
-.content header div p{
-    font-family: 700;
+.content header h1{
     font-size: 2.4rem;
-    color: var(--opacity-white);
 }
 
-.container menu{
-    background: var(--black);
+.content header ul {
+    display: flex;
+    justify-content: space-around;
+    list-style: none;
+}
+
+.content header ul li {
+    font-size: 2rem;
+    padding: 1rem;
+    font-weight: 700;
+}
+
+/* Main */
+main h2{
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    font-size: 4rem;
+    text-align: center;
+}
+
+/* Footer */
+.content footer {
+    padding: 5rem;
+    height: 30vh;
+    min-height: 40rem;
+    background-color: black;
+    color: var(--light-tomato);
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.content footer .footer .about {
+    width: 40%;
+    min-width: 50rem;
+    height: 17.8rem;
+
+    display: flex;
+    justify-content: flex-start;
+}
+
+.content footer .footer .about img{
+    width: 15rem;
+    height: 15rem;
+    border: 1px solid var(--light-blue);
+}
+
+.content footer .footer .about p{
+    margin: 1rem;
+    font-size: 1.5rem;
+}
+.content footer .footer > p{
+    font-size: 1.8rem;
+}
+
+.content footer .links ul{
+    list-style: none;
+}
+
+.content footer .links ul li{
+    margin-top: 1rem;
+}
+
+.content footer .links ul li a{
+    color: white;
+}
+
+.content footer .links ul li a h3{
+    font-size: 1.8rem;
+}
+
+.content footer .links ul li a h3{
+    font-size: 1.8rem;
+}
+
+.content footer .links ul li a h4{
+    font-size: 1.2rem;
 }
