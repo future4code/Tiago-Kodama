@@ -12,6 +12,16 @@ html{
     font-family: 'Roboto', sans-serif;
 }
 
+a:active{
+    color: var(--green);
+}
+a:visited{
+    color: var(--green);
+}
+a:hover{
+    color: var(--orange);
+}
+
 body{
     width: 100vw;
     height: 100vh;
@@ -46,10 +56,15 @@ body{
     height: 10vh;
     padding: 3rem;
     color: var(--green);
+    background-color: white;
 
     display: flex;
     justify-content: space-between;
     align-items: center;
+
+    position: fixed;
+    top: 0;
+    width: 100%
 }
 
 
@@ -67,6 +82,7 @@ body{
 
 /* Main */
 main {
+    margin-top: 10vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
