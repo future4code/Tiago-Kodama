@@ -96,6 +96,10 @@ main h2{
     text-align: center;
 }
 
+main article{
+    min-width: 70%;
+}
+
 /* Footer */
 .content footer {
     margin-top: 10vh;

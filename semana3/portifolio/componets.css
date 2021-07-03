@@ -1,5 +1,6 @@
 .card{
-    max-width: 80%;
+    width: 80%;
+    min-width: 55rem;
     margin: 1.5rem;
 
     display: flex;
