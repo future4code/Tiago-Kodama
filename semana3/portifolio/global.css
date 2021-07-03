@@ -1,20 +1,20 @@
 @import "./componets.css";
 
 *{
-    padding: 0;
     margin: 0;
-    box-sizing: border-box;
+    padding: 0;
     border: none;
     text-decoration: none;
+    box-sizing: border-box;
 }
 
 html{
     font-family: 'Roboto', sans-serif;
-    font-size: 62.5%;
 }
 
 body{
-    /* width: 100vw; */
+    width: 100vw;
+    height: 100vh;
 
     display: flex;
     flex-direction: column;
@@ -22,7 +22,7 @@ body{
 
     --green: #009993;
     --orange: #FF6A19;
-    --light-blue: #bee9e88e;
+    --light-blue: #bee9e83d;
     --brown: #ECC757;
     --light-tomato: #FFEBE0;
     --tomato-strong: #CD6234;
@@ -52,9 +52,6 @@ body{
     align-items: center;
 }
 
-.content header h1{
-    font-size: 2.4rem;
-}
 
 .content header ul {
     display: flex;
@@ -63,24 +60,31 @@ body{
 }
 
 .content header ul li {
-    font-size: 2rem;
+    font-size: 1.5rem;
     padding: 1rem;
     font-weight: 700;
 }
 
 /* Main */
+main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
 main h2{
-    margin-top: 2rem;
-    margin-bottom: 2rem;
-    font-size: 4rem;
+    margin-top: 4rem;
+    margin-bottom: 6rem;
+    font-size: 3rem;
     text-align: center;
 }
 
 /* Footer */
 .content footer {
-    padding: 5rem;
-    height: 30vh;
-    min-height: 40rem;
+    margin-top: 10vh;
+    padding: 6rem;
+    height: min(50vh,60rem);
     background-color: black;
     color: var(--light-tomato);
 
@@ -93,24 +97,23 @@ main h2{
 .content footer .footer .about {
     width: 40%;
     min-width: 50rem;
-    height: 17.8rem;
-
     display: flex;
     justify-content: flex-start;
 }
 
 .content footer .footer .about img{
-    width: 15rem;
-    height: 15rem;
+    width: 8rem;
+    height: 8rem;
+    margin-bottom: 2rem;
     border: 1px solid var(--light-blue);
 }
 
 .content footer .footer .about p{
     margin: 1rem;
-    font-size: 1.5rem;
+    font-size: 1rem;
 }
 .content footer .footer > p{
-    font-size: 1.8rem;
+    font-size: 1.2rem;
 }
 
 .content footer .links ul{
@@ -123,16 +126,4 @@ main h2{
 
 .content footer .links ul li a{
     color: white;
-}
-
-.content footer .links ul li a h3{
-    font-size: 1.8rem;
-}
-
-.content footer .links ul li a h3{
-    font-size: 1.8rem;
-}
-
-.content footer .links ul li a h4{
-    font-size: 1.2rem;
 }
