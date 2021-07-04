@@ -1,0 +1,50 @@
+main h3{
+    font-size: 2rem;
+    font-family: 'Balthazar', serif;
+    margin-bottom: 6rem;
+}
+
+.card-home{
+    width: 80%;
+    min-width: 55rem;
+    margin: 1.5rem;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+
+    padding: 50px 0;
+    border: 1px solid #BFBFBF;
+    box-shadow: 5px 5px 2.5px #aaaaaa;
+}
+
+.card-home > img {
+    width: 22rem;
+    height: 20rem;
+}
+
+.card-home .depoimento {
+    background-color: whitesmoke;
+    padding: 2rem;
+    width: 40%;
+    min-height: 18rem;
+}
+
+.card-home .depoimento p {
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+    font-family: 'Balthazar', serif;
+}
+
+.primeiro{
+    background-color: var(--tomato-strong);
+}
+
+.segundo{
+    background-color: var(--brown);
+}
+
+.terceiro{
+    background-color: var(--green);
+
+}

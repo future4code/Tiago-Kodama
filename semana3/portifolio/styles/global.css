@@ -12,14 +12,11 @@ html{
     font-family: 'Roboto', sans-serif;
 }
 
-a:active{
-    color: var(--green);
-}
-a:visited{
+a{
     color: var(--green);
 }
 a:hover{
-    color: var(--orange);
+    color: var(--tomato-strong);
 }
 
 body{
@@ -54,7 +51,7 @@ body{
 /* Header */
 .content header {
     height: 10vh;
-    padding: 3rem;
+    padding: 2.5rem;
     color: var(--green);
     background-color: white;
 
@@ -64,6 +61,7 @@ body{
 
     position: fixed;
     top: 0;
+    right: 0;
     width: 100%
 }
 
@@ -97,7 +95,7 @@ main h2{
 }
 
 main article{
-    min-width: 70%;
+    min-width: 60rem;
 }
 
 /* Footer */
@@ -135,8 +133,12 @@ main article{
 .content footer .footer > p{
     font-size: 1.2rem;
 }
+.content footer .links{
+    width: 40%;
+}
 
 .content footer .links ul{
+    width: 100%;
     list-style: none;
 }
 
@@ -146,4 +148,8 @@ main article{
 
 .content footer .links ul li a{
     color: white;
+}
+
+.content footer .links ul li a h4{
+    font-size: .8rem;
 }
