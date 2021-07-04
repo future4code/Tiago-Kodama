@@ -1,0 +1,32 @@
+.card-portifolio{
+    width: 80%;
+    min-width: 55rem;
+    min-height: 68%;
+    margin: 1.5rem;
+
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    padding: 20px 10px 20px 10px;
+    border: 1px solid #BFBFBF;
+    background-color: white;
+    box-shadow: 5px 5px 2.5px #aaaaaa;
+}
+
+.card-portifolio > img {
+    width: 50%;
+    height: fit-content;
+    margin-right: 1rem;
+}
+
+.card-portifolio .descricao {
+    padding: 2rem;
+}
+
+.card-portifolio .descricao p {
+    margin-bottom: 2rem;
+    font-size: 1.2rem;
+    font-family: 'Balthazar', serif;
+}
