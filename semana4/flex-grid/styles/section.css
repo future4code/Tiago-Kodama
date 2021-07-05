@@ -1,0 +1,12 @@
+@import "card.css";
+
+section{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    grid-gap: 1rem;
+
+    justify-items: center;
+    align-items: center;
+}
+
