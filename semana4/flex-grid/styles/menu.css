@@ -1,0 +1,35 @@
+menu div {
+    height: 4vh;
+}
+
+menu div a:active{
+    text-decoration: none;
+}
+
+menu div a:visited{
+    text-decoration: none;
+}
+
+menu div a{
+    text-decoration: none;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    color: black;
+    padding: 1rem;
+}
+
+menu div a img{
+    height: 3.5vh;
+}
+
+menu div a div {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+
+menu div a div h3 {
+    margin-left: 1rem;
+}
