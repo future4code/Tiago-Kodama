@@ -1,0 +1,113 @@
+*{
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    width: 100vw;
+    height: 100vh;
+    font-size: 10px;
+    color: white;
+}
+
+.green-background {
+    background-color: green;
+}
+
+.yellow-background {
+    background-color: yellow;
+}
+
+.pink-background {
+    background-color: fuchsia;
+}
+
+.blue-background {
+    background-color: blue;
+}
+
+.red-background {
+    background-color: red;
+}
+
+.lightgreen-background {
+    background-color: lightgreen;
+}
+
+.purple-background {
+    background-color: purple;
+}
+
+#main-container{
+    width: 100vw;
+    height: 100vh;
+
+    display:flex;
+    flex-direction: column;
+}
+
+/* HEADER */
+#top-container{
+    display: flex;
+    height: 6.67vh;
+}
+#top-container .green-background{
+    width: 25%;
+}
+#top-container .yellow-background{
+    width: 75%;
+}
+
+/* MIDDLE 1 */
+.pink-background{
+    width: 100%;
+    height: 73.33vh;
+}
+
+/* MIDDLE 2 */
+#middle-container{
+    display: flex;
+    flex-direction: row;
+}
+#middle-container #content2{
+    width: 50%;
+}
+#middle-container #content2 .blue-background{
+    width: 100%;
+    height: 13.3vh;
+}
+
+
+#middle-container #blank{
+    width: 25%;
+    height: 13.3vh;
+}
+
+
+#vertical-middle-container{
+    width: 25%;
+    height: 13.33vh;
+}
+#vertical-middle-container #image,
+#vertical-middle-container #extra{
+    width: 100%;
+    height: 50%;
+}
+.red-background,
+.lightgreen-background{
+    width: 100%;
+    height: 100%;
+}
+
+/* Footer */
+.footer{
+    width: 100%;
+    height: 6.67vh;
+}
+.footer .purple-background{
+    width: 100%;
+    height: 6.67vh;
+}
+
