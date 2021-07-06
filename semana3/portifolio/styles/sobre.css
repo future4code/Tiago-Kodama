@@ -1,0 +1,17 @@
+
+.card .descricao {
+    padding: 0 2rem;
+    
+}
+
+.card .descricao p {
+    margin-bottom: 2rem;
+    font-size: 1.2rem;
+    font-family: 'Balthazar', serif;
+    text-align: justify;
+    text-justify: inter-word;
+}
+
+.card .descricao p::first-letter {
+    font-size: larger;
+}

@@ -1,0 +1,25 @@
+.card{
+    width: 80%;
+    min-width: 55rem;
+    margin: 1.5rem;
+
+    display: flex;
+    flex-direction: row;
+
+    padding: 10px 10px 20px 10px;
+    border: 1px solid #BFBFBF;
+    background-color: white;
+    box-shadow: 5px 5px 2.5px #aaaaaa;
+}
+
+.card > img {
+    width: 8rem;
+    height: 8rem;
+    margin-right: 1rem;
+}
+
+.card > p {
+    padding: .5rem;
+    font-size: 1.2rem;
+    font-family: 'Balthazar', serif;
+}

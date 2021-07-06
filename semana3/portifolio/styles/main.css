@@ -1,0 +1,13 @@
+
+main article{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+    max-width: 70%;
+    background-color: var(--light-blue);
+    margin-bottom: 2rem;
+}
