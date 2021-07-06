@@ -1,0 +1,30 @@
+.card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+
+    width: 30rem;
+    height: 40rem;
+
+    border: 1px solid black;
+}
+
+.card > img{
+    width: 100%;
+    height: 70%;
+}
+
+.card .description{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    width: 100%;
+    height: 30%;
+}
+
+.card .description p{
+    font-size: 2rem;
+}
