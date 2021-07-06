@@ -52,5 +52,13 @@ main{
 
 /* footer */
 footer{
-    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    height: 10vh;
+
+    font-size: 3rem;
+    color:white;
+    background-color: rgb(124, 29, 29);
 }
