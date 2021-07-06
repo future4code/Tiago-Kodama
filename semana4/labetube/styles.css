@@ -12,6 +12,7 @@
     min-height: 100vh;
 }
 
+/* header */
 header {
     display: flex;
     flex-direction: row;
@@ -42,4 +43,14 @@ header form button {
 
     font-size: 1rem;
     font-weight: 700;
+}
+
+/* main */
+main{
+    min-height: 80vh;
+}
+
+/* footer */
+footer{
+    
 }
