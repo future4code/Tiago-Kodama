@@ -28,6 +28,6 @@
     height: 30%;
 }
 
-.card .description p{
+.card .description a{
     font-size: 2rem;
 }
