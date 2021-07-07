@@ -29,6 +29,7 @@ header{
     display: flex;
     flex-direction: column;
     justify-content: center;
+    align-items: center;
 
 }
 .block1-int{
@@ -39,14 +40,17 @@ header{
     flex-wrap: wrap;
 }
 .block1-int > .item{
-    width: 10rem;
+    width: 31vw;
 }
 @media screen and (min-width:481px) and (max-width:700px){
-    .block1-int > .tres,
-    .block1-int > .seis{
-        /* width: 98vw; */
-        background-color: violet;
+    .block1-int > .item:last-child{
+        width: 98vw;
     }
+    .block1-int > .item:nth-child(1),
+    .block1-int > .item:nth-child(2){
+        width: 48vw;
+    }
+
 }
 @media screen and (max-width:480px) {
     .block1-int > .item{
