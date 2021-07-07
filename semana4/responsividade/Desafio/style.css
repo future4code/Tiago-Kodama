@@ -15,7 +15,7 @@ header{
 
 .item{
     height: 15vh;
-    margin: 1rem;
+    margin: 1vw;
 
     display: flex;
     flex-direction: row;
@@ -25,3 +25,31 @@ header{
     border: 1px solid black;
 }
 
+.block1-ext{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+}
+.block1-int{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+
+    flex-wrap: wrap;
+}
+.block1-int > .item{
+    width: 10rem;
+}
+@media screen and (min-width:481px) and (max-width:700px){
+    .block1-int > .tres,
+    .block1-int > .seis{
+        /* width: 98vw; */
+        background-color: violet;
+    }
+}
+@media screen and (max-width:480px) {
+    .block1-int > .item{
+        width: 98vw;
+    }
+}
