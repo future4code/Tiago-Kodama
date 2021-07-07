@@ -1,0 +1,16 @@
+.um, .quatro{
+    background-color: blue;
+}
+
+.dois, .cinco{
+    background-color: yellow;
+}
+
+.tres, .seis{
+    background-color: green;
+}
+
+.sete, .oito{
+    background-color:black;
+    color: white;
+}
