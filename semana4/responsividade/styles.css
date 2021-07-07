@@ -29,8 +29,8 @@ header {
     align-items: center;
 
     height: 10vh;
-    width: 100%;
-    padding: 2rem;
+    width: 100vw;
+    padding: 0 2%; 
     background-color: rgb(221, 107, 107);
 }
 header h1{
@@ -39,7 +39,7 @@ header h1{
 header form{
     display: flex;
 
-    width: 30rem;
+    width: 60%;
     height: 3rem;
     border: 1px solid black;
 }
@@ -81,4 +81,17 @@ footer{
     font-size: 3rem;
     color:white;
     background-color: rgb(124, 29, 29);
+}
+
+@media screen and (min-width: 320px) and (max-width:480px){
+    header {
+        height: fit-content;
+        flex-direction: column;
+
+    }
+
+    .main-home{
+        display: flex;
+        flex-direction: column;
+    }
 }
