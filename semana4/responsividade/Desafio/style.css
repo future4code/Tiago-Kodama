@@ -25,6 +25,7 @@ header{
     border: 1px solid black;
 }
 
+/* Block1 */
 .block1-ext{
     display: flex;
     flex-direction: column;
@@ -42,6 +43,21 @@ header{
 .block1-int > .item{
     width: 31vw;
 }
+
+
+/* Block2 */
+.block2{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+.block2 > .item{
+    width: 48vw;
+    height: 48vw;
+}
+
+
 @media screen and (min-width:481px) and (max-width:700px){
     .block1-int > .item:last-child{
         width: 98vw;
@@ -53,7 +69,32 @@ header{
 
 }
 @media screen and (max-width:480px) {
+    /* Block1 */
+    .block1-int{
+        flex-direction: column;
+        justify-content: center;
+        align-items: stretch;
+
+        width: 100%;
+    }
     .block1-int > .item{
         width: 98vw;
+    }
+
+    .item{
+        width: 98vw;
+        height: 15vh;
+    }
+
+    /* Block2 */
+    .block2{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: center;
+    }
+    .block2 > .item{
+        width: 98vw;
+        height: 15vh;
     }
 }
