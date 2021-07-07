@@ -57,6 +57,15 @@ header{
     height: 48vw;
 }
 
+.block3{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+.block3 > .item{
+    width: 31vw;
+}
 
 @media screen and (min-width:481px) and (max-width:700px){
     .block1-int > .item:last-child{
@@ -96,5 +105,16 @@ header{
     .block2 > .item{
         width: 98vw;
         height: 15vh;
+    }
+
+    /* Block3 */
+    .block3{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    .block3 > .item{
+        width: 98vw;
     }
 }
