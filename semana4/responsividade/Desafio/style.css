@@ -3,3 +3,15 @@
     padding: 0;
     box-sizing: border-box;
 }
+
+header{
+    width: 100vw;
+    height: 15vh;
+
+    background-color: red;
+}
+
+.item{
+    margin: 1rem;
+    border: 1px solid black;
+}
