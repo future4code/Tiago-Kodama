@@ -28,6 +28,13 @@ function App() {
           imagem={"https://w7.pngwing.com/pngs/298/243/png-transparent-email-address-computer-icons-mail-miscellaneous-angle-triangle-thumbnail.png"}
         />
       </div>
+      <div className="page-section-container">
+        <CardPequeno 
+          title={"Endereço"}
+          texto={"Rua minha rua"}
+          imagem={"https://i.pinimg.com/564x/4e/dc/b4/4edcb460a940ff726549077935f57168.jpg"}
+        />
+      </div>
 
       <div className="page-section-container">
         <h2>Experiências profissionais</h2>
