@@ -60,11 +60,13 @@ class Post extends React.Component {
     })
   }
 
-  aoEnviarComentario = () => {
+  aoEnviarComentario = comentario => {
     this.setState({
       comentando: false,
       numeroComentarios: this.state.numeroComentarios + 1
     })
+
+    console.log(`O comentário foi: ${comentario}`)
   }
 
   render() {

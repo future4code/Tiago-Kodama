@@ -32,7 +32,7 @@ export class SecaoComentario extends Component {
 				value={this.state.comentario}
 				onChange={this.onChangeComentario}
 			/>
-			<button onClick={this.props.aoEnviar}>Enviar</button>
+			<button onClick={() => this.props.aoEnviar(this.state.comentario) }>Enviar</button>
 		</CommentContainer>
 	}
 }
