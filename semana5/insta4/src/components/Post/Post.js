@@ -42,7 +42,7 @@ const PostPhoto = styled.img`
 
 class Post extends React.Component {
   state = {
-    curtido: false,
+    curtido: true,
     numeroCurtidas: 0,
     comentando: false,
     numeroComentarios: 0
