@@ -49,6 +49,7 @@ class Post extends React.Component {
   }
 
   onClickCurtida = () => {
+    this.setState({numeroCurtidas: this.state.curtido? this.state.numeroCurtidas-1 : this.state.numeroCurtidas+1})
     this.setState({curtido: !this.state.curtido})
     console.log('Curtiu!')
   }
