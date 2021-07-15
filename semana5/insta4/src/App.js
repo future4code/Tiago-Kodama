@@ -10,26 +10,42 @@ const MainContainer = styled.div`
 `
 
 class App extends React.Component {
+
+  state = {
+    posts: [
+      {
+        nomeUsuario: 'paulinha',
+        fotoUsuario: 'https://picsum.photos/50/50',
+        fotoPost: 'https://picsum.photos/200/149',
+      },
+      {
+        nomeUsuario: 'roberta',
+        fotoUsuario: 'https://picsum.photos/50/40',
+        fotoPost: 'https://picsum.photos/200/139',
+      },
+      {
+        nomeUsuario: 'carlota joaquina',
+        fotoUsuario: 'https://picsum.photos/50/30',
+        fotoPost: 'https://picsum.photos/200/120',
+      }
+    ]
+  }
+
   render() {
     return (
       <MainContainer>
-        <Post
-          nomeUsuario={'paulinha'}
-          fotoUsuario={'https://picsum.photos/50/50'}
-          fotoPost={'https://picsum.photos/200/149'}
-        />
-
-        <Post
-          nomeUsuario={'roberta'}
-          fotoUsuario={'https://picsum.photos/50/40'}
-          fotoPost={'https://picsum.photos/200/139'}
-        />
-
-        <Post
-          nomeUsuario={'carlota joaquina'}
-          fotoUsuario={'https://picsum.photos/50/30'}
-          fotoPost={'https://picsum.photos/200/120'}
-        />
+        {
+          this.state.posts.map( (post, index) => {
+            return (
+              <Post
+                nomeUsuario = {post.nomeUsuario}
+                fotoUsuario = {post.fotoUsuario}
+                fotoPost = {post.fotoPost}
+                key={index}
+              />
+            );
+          })
+        }
       </MainContainer>
     );
   }
