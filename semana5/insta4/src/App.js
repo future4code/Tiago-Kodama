@@ -75,17 +75,39 @@ class App extends React.Component {
       inputFotoPost: '',
   }
 
+  onChangeInputNomeUsuario = event => {
+    this.setState({ inputNomeUsuario: event.target.value })
+  }
+  onChangeInputFotoUsuario = event => {
+    this.setState({ inputFotoUsuario: event.target.value })
+  }
+  onChangeInputFotoPost = event => {
+    this.setState({ inputFotoPost: event.target.value })
+  }
+  onClickButtonForm = event => {
+    event.preventDefault()
+
+    const posts = this.state.posts
+    const post = {
+      nomeUsuario: this.state.inputNomeUsuario,
+      fotoUsuario: this.state.inputFotoUsuario,
+      fotoPost: this.state.inputFotoPost,
+    }
+
+    this.setState({posts: [post, ...posts]})
+  }
+
   render() {
     return (
       <MainContainer>
 
 
         <FormContainer>
-            <h2>Poste o que quiser...</h2>
-            <FormInput placeholder='Usuário' />
-            <FormInput placeholder='foto usuario' />
-            <FormInput placeholder='foto post' />
-            <FormButton>Postar</FormButton>
+            <h2>Poste o que quiser</h2>
+            <FormInput placeholder='Nome do usuário' onChange={this.onChangeInputNomeUsuario} />
+            <FormInput placeholder='url da foto do usuario' onChange={this.onChangeInputFotoUsuario} />
+            <FormInput placeholder='url da foto do post' onChange={this.onChangeInputFotoPost} />
+            <FormButton onClick={this.onClickButtonForm}>Postar</FormButton>
         </FormContainer>
 
 
