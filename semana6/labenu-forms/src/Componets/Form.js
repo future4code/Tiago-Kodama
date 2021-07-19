@@ -32,36 +32,33 @@ class Form extends React.Component{
     }
 
     render(){
+        let Etapa;
+
         switch (this.etapaFormulario[ this.state.etapaAtual ]) {
             case 'Etapa1':
-                return (
-                    <StyledForm>
-                        <Etapa1 handleButton={this.proximaEtapa}/>
-                    </StyledForm>
-                )
+                Etapa = <Etapa1 handleButton={this.proximaEtapa}/>
+                break
 
             case 'Etapa2':
-                return (
-                    <StyledForm>
-                        <Etapa2 handleButton={this.proximaEtapa}/>
-                    </StyledForm>
-                )
+                Etapa = <Etapa2 handleButton={this.proximaEtapa}/>
+                break
 
             case 'Etapa3':
-                return (
-                    <StyledForm>
-                        <Etapa3 handleButton={this.proximaEtapa}/>
-                    </StyledForm>
-                )
+                Etapa = <Etapa3 handleButton={this.proximaEtapa}/>
+                break
         
             default:
-                return (
-                    <StyledForm>
-                        <EtapaFinal/>
-                    </StyledForm>
-                );
+                Etapa = <EtapaFinal handleButton={this.proximaEtapa}/>
+                break
         }
 
+        return (
+            <StyledForm>
+                {
+                    Etapa || <p>Erro ao baixar formulário</p>
+                }
+            </StyledForm>
+        );
 
     }
 }
