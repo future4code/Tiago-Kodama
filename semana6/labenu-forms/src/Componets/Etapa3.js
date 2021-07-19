@@ -1,14 +1,9 @@
 import React from 'react';
 import PerguntaAberta from './PerguntaAberta';
+import PerguntaOpcoes from './PerguntaOpcoes';
 
 class Etapa3 extends React.Component {
     render() {
-
-        const listaCursos = [
-            'Curso técnico',
-            'Cursos de inglês',
-            'Não fiz curso complementar',
-        ]
 
         return (
             <>
@@ -19,13 +14,17 @@ class Etapa3 extends React.Component {
                     idPergunta='razaoGraduacaoIncompleta'
                 />
 
-                <label for='cursoComplementar'>2- Você fez algum curso complementar??</label>
-                <input list="listaCursos" name="cursoComplementar" id="cursoComplementar" onChange={this._onChange} />
-                <datalist id="listaCursos">
-                    {
-                        listaCursos.map(opcao => <option value={opcao} />)
+                <PerguntaOpcoes 
+                    pergunta='2- Você fez algum curso complementar?'
+                    idPergunta='cursoComplementar'
+                    opcoes={
+                        [
+                            'Curso técnico',
+                            'Cursos de inglês',
+                            'Não fiz curso complementar',
+                        ]
                     }
-                </datalist>
+                />
 
                 <button onClick={this.props.handleButton}>Próxima etapa</button>
             </>

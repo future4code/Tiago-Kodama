@@ -1,15 +1,9 @@
 import React from 'react';
 import PerguntaAberta from './PerguntaAberta';
+import PerguntaOpcoes from './PerguntaOpcoes';
 
 class Etapa1 extends React.Component {
     render() {
-
-        const escolaridadeOpcoes = [
-            'Ensino Médio Incompleto',
-            'Ensino Médio Completo',
-            'Ensino Superior Incompleto',
-            'Ensino Superior Completo',
-        ]
 
         return (
             <>
@@ -28,13 +22,18 @@ class Etapa1 extends React.Component {
                     idPergunta='email'
                     />
 
-                <label for='escolaridade'>4- Qual a sua escolaridade?</label>
-                <input list="escolaridadeOpcoes" name="escolaridade" id="escolaridade" onChange={this._onChange} />
-                <datalist id="escolaridadeOpcoes">
-                    {
-                        escolaridadeOpcoes.map(opcao => <option value={opcao} />)
+                <PerguntaOpcoes 
+                    pergunta='4- Qual a sua escolaridade?'
+                    idPergunta='escolaridade'
+                    opcoes={
+                        [
+                            'Ensino Médio Incompleto',
+                            'Ensino Médio Completo',
+                            'Ensino Superior Incompleto',
+                            'Ensino Superior Completo',
+                        ]
                     }
-                </datalist>
+                />
 
                 <button onClick={this.props.handleButton}>Próxima etapa</button>
             </>
