@@ -74,28 +74,28 @@ class Form extends React.Component{
         switch (this.etapaFormulario[ this.state.etapaAtual ]) {
             case 'Etapa-dadosGerais':
                 Etapa = <Etapa1 
-                    handleButton={this.proximaEtapa} 
-                    setDados={this.setDados} 
-                    />
+                        handleButton={this.proximaEtapa} 
+                        setDados={this.setDados} 
+                        />
                 break
 
             case 'Etapa-formacao':
                 if( this.state.jaIniciouFaculdade )
                     Etapa = <Etapa2 
-                        handleButton={this.proximaEtapa} 
-                        setDados={this.setDados} 
-                        />
+                            handleButton={this.proximaEtapa} 
+                            setDados={this.setDados} 
+                            />
                 else
                     Etapa = <Etapa3 
-                        handleButton={this.proximaEtapa} 
-                        setDados={this.setDados} 
-                        />
+                            handleButton={this.proximaEtapa} 
+                            setDados={this.setDados} 
+                            />
                 break
         
             default:
                 Etapa = <EtapaFinal 
-                    handleButton={this.proximaEtapa}
-                    />
+                        handleButton={this.proximaEtapa}
+                        />
                 break
         }
 
