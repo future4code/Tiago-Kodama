@@ -16,15 +16,14 @@ const StyledForm = Styled.form`
 class Form extends React.Component{
 
     etapaFormulario = [
-        'Etapa1',
-        'Etapa2',
-        'Etapa3',
-        'EtapaFinal'
+        'Etapa-dadosGerais',
+        'Etapa-formacao',
+        'Etapa-final'
     ]
     
     state = {
         etapaAtual: 0,
-        graduado: null,
+        temGraduacao: null,
     }
 
     proximaEtapa = event => {
@@ -32,24 +31,24 @@ class Form extends React.Component{
         this.setState({etapaAtual: this.state.etapaAtual+1})
     }
 
-    temGraduacao = valor => {
-        this.setState({graduado: valor})
+    setTemGraduacao = valor => {
+        this.setState({temGraduacao: valor})
     }
 
     render(){
         let Etapa;
 
         switch (this.etapaFormulario[ this.state.etapaAtual ]) {
-            case 'Etapa1':
-                Etapa = <Etapa1 handleButton={this.proximaEtapa}/>
+            case 'Etapa-dadosGerais':
+                Etapa = <Etapa1 handleButton={this.proximaEtapa} setTemGraduacao={this.setTemGraduacao} />
                 break
 
-            case 'Etapa2':
-                Etapa = <Etapa2 handleButton={this.proximaEtapa}/>
-                break
+            case 'Etapa-formacao':
+                if( this.state.temGraduacao )
+                    Etapa = <Etapa2 handleButton={this.proximaEtapa} />
+                else
+                    Etapa = <Etapa3 handleButton={this.proximaEtapa} />
 
-            case 'Etapa3':
-                Etapa = <Etapa3 handleButton={this.proximaEtapa}/>
                 break
         
             default:

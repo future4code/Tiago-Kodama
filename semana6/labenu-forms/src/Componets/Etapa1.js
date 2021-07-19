@@ -14,12 +14,21 @@ const Etapa = Styled.div`
 
 class Etapa1 extends React.Component {
 
-    state = {
-        temGraduacao: null
-    }
-
     handleInputEscolaridade = event => {
-        console.log(event.target.value)
+
+        const selectedOption = event.target.value
+
+        if( selectedOption === 'Ensino Médio Incompleto' ||
+            selectedOption === 'Ensino Médio Completo' ){
+
+                this.props.setTemGraduacao(false)
+            }
+
+        else if(selectedOption === 'Ensino Superior Incompleto' ||
+            selectedOption === 'Ensino Superior Completo'){
+
+                this.props.setTemGraduacao(true)
+            }
     }
 
     render() {
