@@ -12,6 +12,7 @@ const StyledButton = Styled.button`
     border-radius: 5px;
 
     font-weight: 700;
+    font-size: .8rem;
 `
 
 class Button extends React.Component{

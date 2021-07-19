@@ -16,7 +16,8 @@ class Etapa2 extends React.Component {
 
         return (
             <Etapa>
-                <h2>ETAPA 2 - INFORMAÇÕES DO ENSINO SUPERIOR</h2>
+                <h2>ETAPA 2</h2>
+                <p>INFORMAÇÕES DO ENSINO SUPERIOR</p>
 
                 <PerguntaAberta 
                     pergunta='1- Qual é o curso?'
