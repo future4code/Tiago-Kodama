@@ -10,7 +10,7 @@ class Etapa3 extends React.Component {
                 <h2>ETAPA 3: Informações sobre quem não se formou no ensino superior nem está cursando</h2>
 
                 <PerguntaAberta 
-                    pergunta='Por que você não terminou um curso de graduação?'
+                    pergunta='1- Por que você não terminou um curso de graduação?'
                     idPergunta='razaoGraduacaoIncompleta'
                 />
 

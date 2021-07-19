@@ -1,6 +1,7 @@
 import React from 'react';
 import PerguntaAberta from './PerguntaAberta';
 import PerguntaOpcoes from './PerguntaOpcoes';
+import Button from './Button';
 
 class Etapa1 extends React.Component {
     render() {
@@ -35,7 +36,7 @@ class Etapa1 extends React.Component {
                     }
                 />
 
-                <button onClick={this.props.handleButton}>Próxima etapa</button>
+                <Button onClick={this.props.handleButton} />
             </>
         );
     }
