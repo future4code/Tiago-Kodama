@@ -31,8 +31,8 @@ class PerguntaOpcoes extends React.Component{
 
         return (
             <ContainerInput>
-                <label for={idPergunta}>{pergunta}</label>
-                <Input list="opcoesInput" name={idPergunta} id={idPergunta} onChange={this._onChange} />
+                <label>{pergunta}</label>
+                <Input list="opcoesInput" name={idPergunta} id={idPergunta} onChange={this._onChange} onSelect={this.props.selecionado}/>
                 <Datalist id="opcoesInput">
                     {
                         opcoes.map((opcao, index) => <option value={opcao} key={index} />)

@@ -13,6 +13,15 @@ const Etapa = Styled.div`
 `
 
 class Etapa1 extends React.Component {
+
+    state = {
+        temGraduacao: null
+    }
+
+    handleInputEscolaridade = event => {
+        console.log(event.target.value)
+    }
+
     render() {
 
         return (
@@ -34,6 +43,7 @@ class Etapa1 extends React.Component {
                     />
 
                 <PerguntaOpcoes 
+                    selecionado={this.handleInputEscolaridade}
                     pergunta='4- Qual a sua escolaridade?'
                     idPergunta='escolaridade'
                     opcoes={
@@ -44,6 +54,7 @@ class Etapa1 extends React.Component {
                             'Ensino Superior Completo',
                         ]
                     }
+
                 />
 
                 <Button handleClick={this.props.handleButton} />

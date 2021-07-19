@@ -23,7 +23,7 @@ class PerguntaAberta extends React.Component{
 
         return (
             <ContainerInput>
-                <label for={idPergunta}>{pergunta}</label>
+                <label>{pergunta}</label>
                 <Input id={idPergunta} name={idPergunta} />
             </ContainerInput>
         );

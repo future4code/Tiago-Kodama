@@ -23,12 +23,17 @@ class Form extends React.Component{
     ]
     
     state = {
-        etapaAtual: 0 
+        etapaAtual: 0,
+        graduado: null,
     }
 
     proximaEtapa = event => {
         event.preventDefault()
         this.setState({etapaAtual: this.state.etapaAtual+1})
+    }
+
+    temGraduacao = valor => {
+        this.setState({graduado: valor})
     }
 
     render(){
