@@ -1,4 +1,5 @@
 import React from 'react';
+import PerguntaAberta from './PerguntaAberta';
 
 class Etapa3 extends React.Component {
     render() {
@@ -13,8 +14,10 @@ class Etapa3 extends React.Component {
             <>
                 <h2>ETAPA 3: Informações sobre quem não se formou no ensino superior nem está cursando</h2>
 
-                <label for='razaoGraduacaoIncompleta'>1- Por que você não terminou um curso de graduação?</label>
-                <input id='razaoGraduacaoIncompleta' name='razaoGraduacaoIncompleta' />
+                <PerguntaAberta 
+                    pergunta='Por que você não terminou um curso de graduação?'
+                    idPergunta='razaoGraduacaoIncompleta'
+                />
 
                 <label for='cursoComplementar'>2- Você fez algum curso complementar??</label>
                 <input list="listaCursos" name="cursoComplementar" id="cursoComplementar" onChange={this._onChange} />
