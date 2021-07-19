@@ -1,13 +1,22 @@
 import React from 'react';
+import Styled from 'styled-components'
 import PerguntaAberta from './PerguntaAberta';
 import PerguntaOpcoes from './PerguntaOpcoes';
 import Button from './Button';
+
+const Etapa = Styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    width: 40vw;
+`
 
 class Etapa1 extends React.Component {
     render() {
 
         return (
-            <>
+            <Etapa>
                 <h2>ETAPA 1 - DADOS GERAIS</h2>
 
                 <PerguntaAberta 
@@ -37,7 +46,7 @@ class Etapa1 extends React.Component {
                 />
 
                 <Button handleClick={this.props.handleButton} />
-            </>
+            </Etapa>
         );
     }
 }

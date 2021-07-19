@@ -6,12 +6,14 @@ const ContainerInput = Styles.div`
     flex-direction: column;
 
     margin-top: 2rem;
+
+    width: 70%
 `
 const Input = Styles.input`
     margin-top: .5rem;
     padding: .2rem;
 
-    width: 70%;
+    width: 100%;
 `
 
 class PerguntaAberta extends React.Component{

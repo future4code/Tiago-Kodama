@@ -1,12 +1,21 @@
 import React from 'react';
 import PerguntaAberta from './PerguntaAberta';
 import Button from './Button';
+import Styled from 'styled-components'
+
+const Etapa = Styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    width: 40vw;
+`
 
 class Etapa2 extends React.Component {
     render() {
 
         return (
-            <>
+            <Etapa>
                 <h2>ETAPA 2 - INFORMAÇÕES DO ENSINO SUPERIOR</h2>
 
                 <PerguntaAberta 
@@ -19,7 +28,7 @@ class Etapa2 extends React.Component {
                 />
 
                 <Button handleClick={this.props.handleButton} />
-            </>
+            </Etapa>
         );
     }
 }
