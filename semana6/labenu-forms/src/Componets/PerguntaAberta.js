@@ -4,8 +4,14 @@ import Styles from 'styled-components'
 const ContainerInput = Styles.div`
     display: flex;
     flex-direction: column;
-    
+
     margin-top: 2rem;
+`
+const Input = Styles.input`
+    margin-top: .5rem;
+    padding: .2rem;
+
+    width: 70%;
 `
 
 class PerguntaAberta extends React.Component{
@@ -16,7 +22,7 @@ class PerguntaAberta extends React.Component{
         return (
             <ContainerInput>
                 <label for={idPergunta}>{pergunta}</label>
-                <input id={idPergunta} name={idPergunta} />
+                <Input id={idPergunta} name={idPergunta} />
             </ContainerInput>
         );
     }

@@ -36,7 +36,7 @@ class Etapa1 extends React.Component {
                     }
                 />
 
-                <Button onClick={this.props.handleButton} />
+                <Button handleClick={this.props.handleButton} />
             </>
         );
     }

@@ -1,10 +1,10 @@
 import React from 'react'
 import Styled from 'styled-components'
-
 import Etapa1 from './Etapa1';
 import Etapa2 from './Etapa2';
 import Etapa3 from './Etapa3';
 import EtapaFinal from './EtapaFinal';
+
 
 const StyledForm = Styled.form`
     display: flex;

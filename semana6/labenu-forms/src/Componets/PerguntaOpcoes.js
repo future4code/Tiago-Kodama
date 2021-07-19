@@ -2,10 +2,23 @@ import React from 'react'
 import Styles from 'styled-components'
 
 const ContainerInput = Styles.div`
-display: flex;
-flex-direction: column;
+    display: flex;
+    flex-direction: column;
 
-margin-top: 2rem;
+    margin-top: 2rem;
+`
+const Input = Styles.input`
+    margin-top: .5rem;
+    padding: .2rem;
+
+    width: 70%;
+`
+
+const Datalist = Styles.datalist`
+    position: absolute;
+    border-radius: 0 0 5px 5px;
+    border-top: none;
+
 `
 
 class PerguntaOpcoes extends React.Component{
@@ -17,12 +30,12 @@ class PerguntaOpcoes extends React.Component{
         return (
             <ContainerInput>
                 <label for={idPergunta}>{pergunta}</label>
-                <input list="opcoesInput" name={idPergunta} id={idPergunta} onChange={this._onChange} />
-                <datalist id="opcoesInput">
+                <Input list="opcoesInput" name={idPergunta} id={idPergunta} onChange={this._onChange} />
+                <Datalist id="opcoesInput">
                     {
                         opcoes.map((opcao, index) => <option value={opcao} key={index} />)
                     }
-                </datalist>
+                </Datalist>
             </ContainerInput>
         );
     }

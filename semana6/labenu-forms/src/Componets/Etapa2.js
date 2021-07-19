@@ -18,7 +18,7 @@ class Etapa2 extends React.Component {
                     idPergunta='unidadeDeEnsino'
                 />
 
-                <Button onClick={this.props.handleButton} />
+                <Button handleClick={this.props.handleButton} />
             </>
         );
     }
