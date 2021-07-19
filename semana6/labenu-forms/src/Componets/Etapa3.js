@@ -8,10 +8,17 @@ const Etapa = Styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-
     width: 40vw;
 `
 class Etapa3 extends React.Component {
+
+    handleInputRazaoGraduacaoIncompleta = event => {
+        this.props.setDados({razaoGraduacaoIncompleta: event.target.value})
+    }
+    handleInputCursoComplementar = event => {
+        this.props.setDados({cursoComplementar: event.target.value})
+    }
+
     render() {
 
         return (
@@ -22,9 +29,11 @@ class Etapa3 extends React.Component {
                 <PerguntaAberta 
                     pergunta='1- Por que você não terminou um curso de graduação?'
                     idPergunta='razaoGraduacaoIncompleta'
+                    onChange={this.handleInputRazaoGraduacaoIncompleta}
                 />
 
                 <PerguntaOpcoes 
+                    selecionado={this.handleInputCursoComplementar}
                     pergunta='2- Você fez algum curso complementar?'
                     idPergunta='cursoComplementar'
                     opcoes={

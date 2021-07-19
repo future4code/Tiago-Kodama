@@ -1,11 +1,26 @@
 import React from 'react'
 import Styled from 'styled-components'
+import validador from '../Tools/Validador'
 import Etapa1 from './Etapa1';
 import Etapa2 from './Etapa2';
 import Etapa3 from './Etapa3';
 import EtapaFinal from './EtapaFinal';
 
-
+const dadosGerais = {
+    nome: '',
+    idade: '',
+    email: '',
+    escolaridade: '',
+    jaIniciouFaculdade: null,
+}
+const dadosFormacaoJaFezFaculdade = {
+    curso: '',
+    unidadeDeEnsino: '',
+}
+const dadosFormacaoNuncaFezFaculdade = {
+    razaoGraduacaoIncompleta: '',
+    cursoComplementar: ''
+}
 const StyledForm = Styled.form`
     display: flex;
     flex-direction: column;
@@ -23,24 +38,30 @@ class Form extends React.Component{
     
     state = {
         etapaAtual: 0,
-
-        // Dados Gerais
-        nome: '',
-        idade: '',
-        email: '',
-        escolaridade: '',
-        jaIniciouFaculdade: null,
-
-        // Dados Formação
-        curso: '',
-        unidadeDeEnsino: '',
-        razaoGraduacaoIncompleta: '',
-        cursoComplementar: ''
+        ...dadosGerais,
+        ...dadosFormacaoJaFezFaculdade,
+        ...dadosFormacaoNuncaFezFaculdade
     }
 
     proximaEtapa = event => {
         event.preventDefault()
-        this.setState({etapaAtual: this.state.etapaAtual+1})
+
+        if( this.state.etapaAtual===0 
+            && validador(dadosGerais, this.state) )
+            alert('Campo faltando')
+
+        else if( this.state.etapaAtual===1 
+            && this.state.jaIniciouFaculdade 
+            && validador(dadosFormacaoJaFezFaculdade, this.state) )
+            alert('Campo faltando')
+
+        else if( this.state.etapaAtual===1 
+            && !this.state.jaIniciouFaculdade 
+            && validador(dadosFormacaoNuncaFezFaculdade, this.state) )
+            alert('Campo faltando')
+
+        else
+            this.setState({etapaAtual: this.state.etapaAtual+1})
     }
 
     setDados = dadosDoInput => {
@@ -59,16 +80,15 @@ class Form extends React.Component{
                 break
 
             case 'Etapa-formacao':
-
-                console.log(this.state)
-
                 if( this.state.jaIniciouFaculdade )
                     Etapa = <Etapa2 
                         handleButton={this.proximaEtapa} 
+                        setDados={this.setDados} 
                         />
                 else
                     Etapa = <Etapa3 
                         handleButton={this.proximaEtapa} 
+                        setDados={this.setDados} 
                         />
                 break
         

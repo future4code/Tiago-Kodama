@@ -8,7 +8,6 @@ const Etapa = Styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-
     width: 40vw;
 `
 
@@ -17,7 +16,7 @@ class Etapa1 extends React.Component {
     handleInputEscolaridade = event => {
 
         const selectedOption = event.target.value
-        this.props.setDados({nome: event.target.value})
+        this.props.setDados({escolaridade: event.target.value})
 
 
         if( selectedOption === 'Ensino Médio Incompleto' ||
@@ -37,10 +36,10 @@ class Etapa1 extends React.Component {
         this.props.setDados({nome: event.target.value})
     }
     handleInputIdade = event => {
-        this.props.setDados({nome: event.target.value})
+        this.props.setDados({idade: event.target.value})
     }
     handleInputEmail = event => {
-        this.props.setDados({nome: event.target.value})
+        this.props.setDados({email: event.target.value})
     }
 
 

@@ -7,11 +7,17 @@ const Etapa = Styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-
     width: 40vw;
 `
-
 class Etapa2 extends React.Component {
+
+    handleInputCurso = event => {
+        this.props.setDados({curso: event.target.value})
+    }
+    handleInputUnidadeDeEnsino = event => {
+        this.props.setDados({unidadeDeEnsino: event.target.value})
+    }
+
     render() {
 
         return (
@@ -22,10 +28,12 @@ class Etapa2 extends React.Component {
                 <PerguntaAberta 
                     pergunta='1- Qual é o curso?'
                     idPergunta='curso'
+                    onChange={this.handleInputCurso}
                 />
                 <PerguntaAberta 
                     pergunta='2- Qual é a unidade de ensino?'
                     idPergunta='unidadeDeEnsino'
+                    onChange={this.handleInputUnidadeDeEnsino}
                 />
 
                 <Button handleClick={this.props.handleButton} />
