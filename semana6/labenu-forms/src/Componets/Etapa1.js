@@ -17,19 +17,32 @@ class Etapa1 extends React.Component {
     handleInputEscolaridade = event => {
 
         const selectedOption = event.target.value
+        this.props.setDados({nome: event.target.value})
+
 
         if( selectedOption === 'Ensino Médio Incompleto' ||
             selectedOption === 'Ensino Médio Completo' ){
 
-                this.props.setTemGraduacao(false)
+                this.props.setDados({jaIniciouFaculdade: false})
             }
 
         else if(selectedOption === 'Ensino Superior Incompleto' ||
             selectedOption === 'Ensino Superior Completo'){
 
-                this.props.setTemGraduacao(true)
+                this.props.setDados({jaIniciouFaculdade: true})
             }
+
     }
+    handleInputNome = event => {
+        this.props.setDados({nome: event.target.value})
+    }
+    handleInputIdade = event => {
+        this.props.setDados({nome: event.target.value})
+    }
+    handleInputEmail = event => {
+        this.props.setDados({nome: event.target.value})
+    }
+
 
     render() {
 
@@ -41,14 +54,17 @@ class Etapa1 extends React.Component {
                 <PerguntaAberta 
                     pergunta='1- Qual é o seu nome?' 
                     idPergunta='nome'
+                    onChange={this.handleInputNome}
                     />
                 <PerguntaAberta 
                     pergunta='2- Qual é a sua idade?'
                     idPergunta='idade'
+                    onChange={this.handleInputIdade}
                     />
                 <PerguntaAberta 
                     pergunta='3- Qual é o seu email?'
                     idPergunta='email'
+                    onChange={this.handleInputEmail}
                     />
 
                 <PerguntaOpcoes 

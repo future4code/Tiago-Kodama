@@ -24,7 +24,9 @@ class PerguntaAberta extends React.Component{
         return (
             <ContainerInput>
                 <label>{pergunta}</label>
-                <Input id={idPergunta} name={idPergunta} />
+                <Input id={idPergunta} name={idPergunta}
+                        onChange={this.props.onChange}
+                />
             </ContainerInput>
         );
     }

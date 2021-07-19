@@ -23,7 +23,19 @@ class Form extends React.Component{
     
     state = {
         etapaAtual: 0,
-        temGraduacao: null,
+
+        // Dados Gerais
+        nome: '',
+        idade: '',
+        email: '',
+        escolaridade: '',
+        jaIniciouFaculdade: null,
+
+        // Dados Formação
+        curso: '',
+        unidadeDeEnsino: '',
+        razaoGraduacaoIncompleta: '',
+        cursoComplementar: ''
     }
 
     proximaEtapa = event => {
@@ -31,8 +43,8 @@ class Form extends React.Component{
         this.setState({etapaAtual: this.state.etapaAtual+1})
     }
 
-    setTemGraduacao = valor => {
-        this.setState({temGraduacao: valor})
+    setDados = dadosDoInput => {
+        this.setState( dadosDoInput )
     }
 
     render(){
@@ -40,19 +52,30 @@ class Form extends React.Component{
 
         switch (this.etapaFormulario[ this.state.etapaAtual ]) {
             case 'Etapa-dadosGerais':
-                Etapa = <Etapa1 handleButton={this.proximaEtapa} setTemGraduacao={this.setTemGraduacao} />
+                Etapa = <Etapa1 
+                    handleButton={this.proximaEtapa} 
+                    setDados={this.setDados} 
+                    />
                 break
 
             case 'Etapa-formacao':
-                if( this.state.temGraduacao )
-                    Etapa = <Etapa2 handleButton={this.proximaEtapa} />
-                else
-                    Etapa = <Etapa3 handleButton={this.proximaEtapa} />
 
+                console.log(this.state)
+
+                if( this.state.jaIniciouFaculdade )
+                    Etapa = <Etapa2 
+                        handleButton={this.proximaEtapa} 
+                        />
+                else
+                    Etapa = <Etapa3 
+                        handleButton={this.proximaEtapa} 
+                        />
                 break
         
             default:
-                Etapa = <EtapaFinal handleButton={this.proximaEtapa}/>
+                Etapa = <EtapaFinal 
+                    handleButton={this.proximaEtapa}
+                    />
                 break
         }
 
