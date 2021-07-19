@@ -1,4 +1,5 @@
 import React from 'react';
+import PerguntaAberta from './PerguntaAberta';
 
 class Etapa1 extends React.Component {
     render() {
@@ -14,14 +15,18 @@ class Etapa1 extends React.Component {
             <>
                 <h2>ETAPA 1 - DADOS GERAIS</h2>
 
-                <label for='nome'>1- Qual é o seu nome?</label>
-                <input id='nome' name='nome' />
-
-                <label for='idade'>2- Qual é a sua idade?</label>
-                <input id='idade' name='idade' />
-
-                <label for='email'>3- Qual é o seu email?</label>
-                <input id='email' name='email' />
+                <PerguntaAberta 
+                    pergunta='1- Qual é o seu nome?' 
+                    idPergunta='nome'
+                    />
+                <PerguntaAberta 
+                    pergunta='2- Qual é a sua idade?'
+                    idPergunta='idade'
+                    />
+                <PerguntaAberta 
+                    pergunta='3- Qual é o seu email?'
+                    idPergunta='email'
+                    />
 
                 <label for='escolaridade'>4- Qual a sua escolaridade?</label>
                 <input list="escolaridadeOpcoes" name="escolaridade" id="escolaridade" onChange={this._onChange} />
