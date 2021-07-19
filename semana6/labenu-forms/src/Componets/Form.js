@@ -3,6 +3,7 @@ import Styled from 'styled-components'
 
 import Etapa1 from './Etapa1';
 import Etapa2 from './Etapa2';
+import Etapa3 from './Etapa3';
 import EtapaFinal from './EtapaFinal';
 
 const StyledForm = Styled.form`
@@ -17,6 +18,7 @@ class Form extends React.Component{
     etapaFormulario = [
         'Etapa1',
         'Etapa2',
+        'Etapa3',
         'EtapaFinal'
     ]
     
@@ -42,6 +44,13 @@ class Form extends React.Component{
                 return (
                     <StyledForm>
                         <Etapa2 handleButton={this.proximaEtapa}/>
+                    </StyledForm>
+                )
+
+            case 'Etapa3':
+                return (
+                    <StyledForm>
+                        <Etapa3 handleButton={this.proximaEtapa}/>
                     </StyledForm>
                 )
         
