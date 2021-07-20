@@ -9,7 +9,7 @@ const TarefaList = styled.ul`
 
 const Tarefa = styled.li`
   text-align: left;
-  text-decoration: ${({completa}) => (completa ? 'line-through' : 'none')};
+  text-decoration: ${({ completa }) => (completa ? 'line-through' : 'none')};
 `
 
 const InputsContainer = styled.div`
@@ -19,11 +19,11 @@ const InputsContainer = styled.div`
 `
 
 class App extends React.Component {
-    state = {
-      tarefas: [],
-      inputValue: '',
-      filtro: ''
-    }
+  state = {
+    tarefas: [],
+    inputValue: '',
+    filtro: ''
+  }
 
   componentDidUpdate() {
 
@@ -38,14 +38,16 @@ class App extends React.Component {
   }
 
   criaTarefa = () => {
-    const tarefas = this.state.tarefas
     const textoNovaTarefa = this.state.inputValue
+    const novaTarefa = {
+        id: Date.now(),
+        texto: textoNovaTarefa,
+        completa: false
+      }
 
-    tarefas.push({
-      id: tarefas.length,
-      texto: textoNovaTarefa,
-      completa: false
-    })
+
+    this.setState({ tarefas: [...this.state.tarefas, novaTarefa] })
+
   }
 
   selectTarefa = (id) => {
@@ -72,10 +74,10 @@ class App extends React.Component {
       <div className="App">
         <h1>Lista de tarefas</h1>
         <InputsContainer>
-          <input value={this.state.inputValue} onChange={this.onChangeInput}/>
+          <input value={this.state.inputValue} onChange={this.onChangeInput} />
           <button onClick={this.criaTarefa}>Adicionar</button>
         </InputsContainer>
-        <br/>
+        <br />
 
         <InputsContainer>
           <label>Filtro</label>
