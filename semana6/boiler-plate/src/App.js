@@ -62,7 +62,7 @@ class App extends React.Component {
   }
 
   onChangeFilter = (event) => {
-
+    this.setState({ filtro: event.target.value })
   }
 
   render() {
@@ -98,6 +98,7 @@ class App extends React.Component {
           {listaFiltrada.map(tarefa => {
             return (
               <Tarefa
+                key={tarefa.id}
                 completa={tarefa.completa}
                 onClick={() => this.selectTarefa(tarefa.id)}
               >
