@@ -96,6 +96,10 @@ class App extends React.Component {
     this.setState({ tarefas: novaLista })
   }
 
+  removerTodasTarefas = () => {
+    this.setState({ tarefas: [] })
+  }
+
   doChangeTarefa = id => {
     const novaLista = this.state.tarefas.map( tarefa => {
       if( tarefa.id === id ) 
@@ -158,7 +162,7 @@ class App extends React.Component {
             )
           })}
         </TarefaList>
-
+          <button onClick={this.removerTodasTarefas}>Remover todos fuhahahaha</button>
       </div>
     )
   }
