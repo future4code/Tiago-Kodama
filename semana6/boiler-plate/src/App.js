@@ -34,7 +34,7 @@ class App extends React.Component {
   };
 
   onChangeInput = (event) => {
-
+    this.setState({ inputValue: event.target.value })
   }
 
   criaTarefa = () => {
