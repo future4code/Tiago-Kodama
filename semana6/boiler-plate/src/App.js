@@ -18,11 +18,16 @@ const InputsContainer = styled.div`
   gap: 10px;
 `
 
+const Edit = styled.div`
+  display: ${({editMode}) => (editMode ? 'block' : 'none')};
+`
+
 class App extends React.Component {
   state = {
     tarefas: [],
     inputValue: '',
-    filtro: ''
+    inputEditMode: '',
+    filtro: '',
   }
 
   componentDidUpdate() {
@@ -39,12 +44,17 @@ class App extends React.Component {
     this.setState({ inputValue: event.target.value })
   }
 
+  onChangeInputEditMode = event => {
+    this.setState({ inputEditMode: event.target.value })
+  }
+
   criaTarefa = () => {
     const textoNovaTarefa = this.state.inputValue
     const novaTarefa = {
         id: Date.now(),
         texto: textoNovaTarefa,
-        completa: false
+        completa: false,
+        editMode: false
       }
 
 
@@ -63,6 +73,16 @@ class App extends React.Component {
     this.setState({ tarefas: novaLista })
   }
 
+  activeEditMode = id => {
+
+    const novaLista = this.state.tarefas.map( tarefa => {
+      if(tarefa.id === id) return { ...tarefa, editMode: true }
+      return tarefa
+    })
+
+    this.setState({ tarefas: novaLista, editMode: true })
+  }
+
   onChangeFilter = (event) => {
     this.setState({ filtro: event.target.value })
   }
@@ -74,6 +94,16 @@ class App extends React.Component {
     })
 
     this.setState({ tarefas: novaLista })
+  }
+
+  doChangeTarefa = id => {
+    const novaLista = this.state.tarefas.map( tarefa => {
+      if( tarefa.id === id ) 
+        return {...tarefa, texto: this.state.inputEditMode, editMode: false}
+      return tarefa
+    })
+
+    this.setState({ tarefas: novaLista, inputEditMode: ''})
   }
 
   render() {
@@ -117,10 +147,18 @@ class App extends React.Component {
                   {tarefa.texto}
                 </Tarefa>
                 <button onClick={() => this.removerTarefa(tarefa.id)}> Remover </button>
+
+                <button onClick={()=> this.activeEditMode(tarefa.id)} >Editar</button>
+                <Edit editMode={tarefa.editMode}>
+                  <input value={this.state.inputEditMode} onChange={this.onChangeInputEditMode}/>
+                  <button onClick={()=> this.doChangeTarefa(tarefa.id)} >Pronto</button>
+                </Edit>
+
               </div>
             )
           })}
         </TarefaList>
+
       </div>
     )
   }
