@@ -38,7 +38,14 @@ class App extends React.Component {
   }
 
   criaTarefa = () => {
+    const tarefas = this.state.tarefas
+    const textoNovaTarefa = this.state.inputValue
 
+    tarefas.push({
+      id: tarefas.length,
+      texto: textoNovaTarefa,
+      completa: false
+    })
   }
 
   selectTarefa = (id) => {
