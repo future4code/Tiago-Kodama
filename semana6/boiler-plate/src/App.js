@@ -67,6 +67,15 @@ class App extends React.Component {
     this.setState({ filtro: event.target.value })
   }
 
+  removerTarefa = id => {
+
+    const novaLista = this.state.tarefas.filter( tarefa => {
+      return tarefa.id!==id
+    })
+
+    this.setState({ tarefas: novaLista })
+  }
+
   render() {
     const listaFiltrada = this.state.tarefas.filter(tarefa => {
       switch (this.state.filtro) {
@@ -99,13 +108,16 @@ class App extends React.Component {
         <TarefaList>
           {listaFiltrada.map(tarefa => {
             return (
-              <Tarefa
-                key={tarefa.id}
-                completa={tarefa.completa}
-                onClick={() => this.selectTarefa(tarefa.id)}
+              <div key={tarefa.id}
               >
-                {tarefa.texto}
-              </Tarefa>
+                <Tarefa
+                  completa={tarefa.completa}
+                  onClick={() => this.selectTarefa(tarefa.id)}
+                >
+                  {tarefa.texto}
+                </Tarefa>
+                <button onClick={() => this.removerTarefa(tarefa.id)}> Remover </button>
+              </div>
             )
           })}
         </TarefaList>
