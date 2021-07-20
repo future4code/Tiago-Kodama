@@ -26,6 +26,7 @@ class App extends React.Component {
     inputEditMode: '',
     inputFiltrarNome: '',
     filtro: '',
+    sort: ''
   }
 
   componentDidUpdate() {
@@ -111,6 +112,12 @@ class App extends React.Component {
 
     this.setState({ tarefas: novaLista, inputEditMode: ''})
   }
+  activeSortCrescente = () => {
+    this.setState({ sort: 'crescente' })
+  }
+  activeSortDecrescente = () => {
+    this.setState({ sort: 'decrescente' })
+  }
 
   render() {
     const listaFiltrada = this.state.tarefas.filter(tarefa => {
@@ -120,8 +127,19 @@ class App extends React.Component {
       const filtroTexto = this.state.inputFiltrarNome
       const texto = tarefa.texto
 
-
       return texto.includes(filtroTexto) && filtroSelecao===tarefaCompleta
+    })
+
+    if( this.state.sort === 'crescente' )
+      listaFiltrada.sort((a,b) => {
+        if( a===b) return 0
+        return (a.texto < b.texto) ? -1 : 1
+      })
+
+    else if( this.state.sort === 'decrescente' )
+    listaFiltrada.sort((a,b) => {
+      if( a===b) return 0
+      return (a.texto > b.texto) ? -1 : 1
     })
 
     return (
@@ -141,6 +159,8 @@ class App extends React.Component {
             <option value="pendentes">Pendentes</option>
             <option value="completas">Completas</option>
           </select>
+          <button onClick={this.activeSortCrescente}>Crescente</button>
+          <button onClick={this.activeSortDecrescente}>Decrescente</button>
         </InputsContainer>
         <TarefaList>
           {listaFiltrada.map(tarefa => {
