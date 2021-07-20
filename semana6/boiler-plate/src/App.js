@@ -6,18 +6,15 @@ const TarefaList = styled.ul`
   padding: 0;
   width: 200px;
 `
-
 const Tarefa = styled.li`
   text-align: left;
   text-decoration: ${({ completa }) => (completa ? 'line-through' : 'none')};
 `
-
 const InputsContainer = styled.div`
   display: grid;
   grid-auto-flow: column;
   gap: 10px;
 `
-
 const Edit = styled.div`
   display: ${({editMode}) => (editMode ? 'block' : 'none')};
 `
@@ -27,6 +24,7 @@ class App extends React.Component {
     tarefas: [],
     inputValue: '',
     inputEditMode: '',
+    inputFiltrarNome: '',
     filtro: '',
   }
 
@@ -46,6 +44,10 @@ class App extends React.Component {
 
   onChangeInputEditMode = event => {
     this.setState({ inputEditMode: event.target.value })
+  }
+
+  onChangeInputFilter = event => {
+    this.setState({ inputFiltrarNome: event.target.value })
   }
 
   criaTarefa = () => {
@@ -112,14 +114,14 @@ class App extends React.Component {
 
   render() {
     const listaFiltrada = this.state.tarefas.filter(tarefa => {
-      switch (this.state.filtro) {
-        case 'pendentes':
-          return !tarefa.completa
-        case 'completas':
-          return tarefa.completa
-        default:
-          return true
-      }
+
+      const filtroSelecao = this.state.filtro 
+      const tarefaCompleta = filtroSelecao ? (tarefa.completa ? 'completas':'pendentes' ) : '' 
+      const filtroTexto = this.state.inputFiltrarNome
+      const texto = tarefa.texto
+
+
+      return texto.includes(filtroTexto) && filtroSelecao===tarefaCompleta
     })
 
     return (
@@ -133,6 +135,7 @@ class App extends React.Component {
 
         <InputsContainer>
           <label>Filtro</label>
+          <input onChange={this.onChangeInputFilter}/>
           <select value={this.state.filter} onChange={this.onChangeFilter}>
             <option value="">Nenhum</option>
             <option value="pendentes">Pendentes</option>
@@ -146,12 +149,11 @@ class App extends React.Component {
               >
                 <Tarefa
                   completa={tarefa.completa}
-                  onClick={() => this.selectTarefa(tarefa.id)}
                 >
                   {tarefa.texto}
                 </Tarefa>
+                <button onClick={() => this.selectTarefa(tarefa.id)}>Check</button>
                 <button onClick={() => this.removerTarefa(tarefa.id)}> Remover </button>
-
                 <button onClick={()=> this.activeEditMode(tarefa.id)} >Editar</button>
                 <Edit editMode={tarefa.editMode}>
                   <input value={this.state.inputEditMode} onChange={this.onChangeInputEditMode}/>
