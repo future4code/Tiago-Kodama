@@ -3,7 +3,6 @@ const axios = require('axios')
 class Database {
 
     registerUser = async user => {
-
         const url = 'https://us-central1-labenu-apis.cloudfunctions.net/labenusers/users'
         const headers = {
             Authorization: "tiago-kodama-lovelace"
@@ -15,10 +14,17 @@ class Database {
 
         try {
             await axios.post(url, body, { headers })
-            alert(`Registou`)
+            const usersFromDatabase = await this.getAllUsers()
+            const addedUser = usersFromDatabase.filter(userDatabase => user.name===userDatabase.name)
+
+            if(addedUser[0])
+                alert(`Registou  ${addedUser[0].id}`)
+            else
+                alert("Falha ao registar")
         }
         catch(err){
-            alert("Erro registerUser: ", err.response.data.message)
+            console.log(err)
+            alert("Erro registerUser")
         }
     }
 
@@ -33,9 +39,28 @@ class Database {
             return res.data
         }
         catch(err){
-            alert("Erro getAllUsers: ", err)
+            console.log(err)
+            alert("Erro getAllUsers ")
         }
 
+    }
+
+    getUser = async (userName, userEmail) => {
+        const url = `https://us-central1-labenu-apis.cloudfunctions.net/labenusers/users/search`
+        const headers = {
+            Authorization: "tiago-kodama-lovelace"
+        }
+        const params = {
+            name: userName,
+            email: userEmail
+        }
+        try {
+            const res = await axios.get(url, {headers, params})
+            console.log(res)
+
+        } catch (err) {
+            console.log(err)
+        }
     }
 }
 

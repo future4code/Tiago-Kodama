@@ -13,7 +13,7 @@ export default class Users extends React.Component{
                 this.setState({ allUsers: allUsersFromDatabase })
             })
             .catch(err => {
-                alert("Erro Users -> componentDidMount ", err)
+                alert("Erro Users -> componentDidMount ")
             })
     }
 
