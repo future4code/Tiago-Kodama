@@ -10,7 +10,7 @@ export default class Users extends React.Component{
                 email: 'email@email'
             },
             {
-                name: 'tiago',
+                name: 'Alessandra',
                 email: 'email@email'
             }
         ]
