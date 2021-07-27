@@ -1,8 +1,17 @@
 import React from 'react';
 import SignUp from './Componets/SignUp';
+import Users from './Componets/Users';
 import './App.css';
 
 class App extends React.Component {
+
+  state = {
+    page: 'SignUp'
+  }
+
+  onClickButtonChangePage = pageName => {
+    this.setState({ page: pageName })
+  }
 
   render(){
     return (
@@ -11,15 +20,18 @@ class App extends React.Component {
           <h1>Labenusers</h1>
           <nav>
             <div>
-              <button>Sign up</button>
-              <button>Users</button>
+              <button onClick={() => this.onClickButtonChangePage('SignUp')}>Sign up</button>
+              <button onClick={() => this.onClickButtonChangePage('Users')}>Users</button>
             </div>
           </nav>
         </header>
   
         <main>
-          <SignUp />
-          <p>Users </p>
+          {
+            this.state.page==='SignUp' ?
+              <SignUp /> :
+              <Users />
+          }
         </main>
   
       </div>
