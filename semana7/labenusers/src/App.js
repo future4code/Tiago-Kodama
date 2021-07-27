@@ -25,6 +25,10 @@ class App extends React.Component {
     await this.setState({ selectedUser: user, page: 'Details' })
   }
 
+  setPage = page => {
+    this.setState({page: page})
+  }
+
   showPage = () => {
     const page = this.state.page
 
@@ -43,7 +47,8 @@ class App extends React.Component {
       case 'Details':
         return <Details
                 database={this.database}
-                user={this.state.selectedUser}  
+                user={this.state.selectedUser}
+                setPage={this.setPage}
               />
 
       default:
