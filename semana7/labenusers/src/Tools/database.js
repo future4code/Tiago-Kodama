@@ -14,12 +14,26 @@ class Database {
         }
 
         try {
-            await axios.post(url, body, { headers })
-            
+            const res = await axios.post(url, body, { headers })
+            console.log(res)
         }
         catch(err){
-            const res = await err.response.data
-            console.log("Erro: ", res.message)
+            console.log("Erro registerUser: ", err.response.data.message)
+        }
+    }
+
+    getAllUsers = async () => {
+        const url = 'https://us-central1-labenu-apis.cloudfunctions.net/labenusers/users'
+        const headers = {
+            Authorization: "tiago-kodama-lovelace"
+        }
+
+        try {
+            const res = await axios.get(url, { headers })
+            return res.data
+        }
+        catch(err){
+            console.log("Erro getAllUsers: ", err)
         }
 
     }

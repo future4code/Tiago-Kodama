@@ -4,16 +4,17 @@ import User from './User';
 export default class Users extends React.Component{
 
     state = {
-        allUsers: [
-            {
-                name: 'tiago',
-                email: 'email@email'
-            },
-            {
-                name: 'Alessandra',
-                email: 'email@email'
-            }
-        ]
+        allUsers: []
+    }
+
+    componentDidMount(){
+        this.props.database.getAllUsers()
+            .then(allUsersFromDatabase => {
+                this.setState({ allUsers: allUsersFromDatabase })
+            })
+            .catch(err => {
+                console.log("Erro Users -> componentDidMount ", err)
+            })
     }
 
     render(){
@@ -21,9 +22,10 @@ export default class Users extends React.Component{
             <div className='Users'>
                 <h2>Users</h2>
                 {
+                    this.state.allUsers.map &&
                     this.state.allUsers.map(user => {
                         return (
-                            <User user={user} />
+                            <User user={user} key={user.id}/>
                         );
                     })
                 }

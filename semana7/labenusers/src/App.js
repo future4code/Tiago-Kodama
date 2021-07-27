@@ -36,7 +36,7 @@ class App extends React.Component {
           {
             this.state.page==='SignUp' ?
               <SignUp database={this.database}/> :
-              <Users />
+              <Users database={this.database}/>
           }
         </main>
   
