@@ -17,16 +17,10 @@
 
 - App
     - Navbar
-        - Users List
-        - Sign Up
 - Users List
     - User
-        - Info name
-        - Button Delete
 - Sign Up
-    - Input name
-    - Input email
-    - Button Submit
+
 
 ### Minimun state and props
 
