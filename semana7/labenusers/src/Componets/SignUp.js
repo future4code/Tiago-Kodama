@@ -1,6 +1,12 @@
 import React from 'react'
 
 export default class SignUp extends React.Component{
+
+    state = {
+        inputName: '',
+        inputEmail: ''
+    }
+
     render(){
         return (
             <div className='SignUp'>
