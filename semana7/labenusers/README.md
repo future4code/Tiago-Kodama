@@ -30,7 +30,11 @@
 - Users List
     - state
         - allUsers
+    - props
+        database
 - Sign up
     - state
         inputName
         inputEmail
+    - props
+        - database

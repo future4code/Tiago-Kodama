@@ -1,9 +1,11 @@
 import React from 'react';
 import SignUp from './Componets/SignUp';
 import Users from './Componets/Users';
-import Database from './Tools/database'
+import Database from './Tools/database';
+
 
 import './App.css';
+
 
 class App extends React.Component {
 
@@ -11,16 +13,13 @@ class App extends React.Component {
     page: 'SignUp'
   }
 
+  database = new Database()
+
   onClickButtonChangePage = pageName => {
     this.setState({ page: pageName })
   }
 
   render(){
-
-    const database = new Database()
-
-    database.registerUser()
-
     return (
       <div className="App">
         <header>
@@ -36,7 +35,7 @@ class App extends React.Component {
         <main>
           {
             this.state.page==='SignUp' ?
-              <SignUp /> :
+              <SignUp database={this.database}/> :
               <Users />
           }
         </main>
