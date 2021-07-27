@@ -14,11 +14,11 @@ class Database {
         }
 
         try {
-            const res = await axios.post(url, body, { headers })
-            console.log(res)
+            await axios.post(url, body, { headers })
+            alert(`Registou`)
         }
         catch(err){
-            console.log("Erro registerUser: ", err.response.data.message)
+            alert("Erro registerUser: ", err.response.data.message)
         }
     }
 
@@ -33,7 +33,7 @@ class Database {
             return res.data
         }
         catch(err){
-            console.log("Erro getAllUsers: ", err)
+            alert("Erro getAllUsers: ", err)
         }
 
     }
