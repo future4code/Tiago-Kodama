@@ -91,6 +91,22 @@ class Database {
             return err
         }
     }
+
+    updateUser = async ({name, email, id}) => {
+        const url = `https://us-central1-labenu-apis.cloudfunctions.net/labenusers/users/${id}`
+        const headers = { Authorization: "tiago-kodama-lovelace" }
+        const body = { name, email }
+
+        try {
+            const res = await axios.put(url, body, { headers })
+            return res
+        }
+        catch(err){
+            console.log(err)
+            throw err
+        }
+    }
+    
 }
 
 export default Database;

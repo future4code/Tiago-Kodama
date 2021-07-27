@@ -20,7 +20,8 @@
 - Users List
     - User
 - Sign Up
-
+- Details
+    - EditFilds
 
 ### Minimun state and props
 
@@ -52,3 +53,4 @@
         - email
         - name
         - id
+        - editMode
