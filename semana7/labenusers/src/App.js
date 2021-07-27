@@ -2,6 +2,7 @@ import React from 'react';
 import SignUp from './Componets/SignUp';
 import Users from './Componets/Users';
 import Database from './Tools/database';
+import Details from './Componets/Details';
 
 
 import './App.css';
@@ -10,13 +11,44 @@ import './App.css';
 class App extends React.Component {
 
   state = {
-    page: 'SignUp'
+    page: 'SignUp',
+    selectedUser: undefined 
   }
 
   database = new Database()
 
   onClickButtonChangePage = pageName => {
     this.setState({ page: pageName })
+  }
+
+  onClickShowDetails = async user => {
+    await this.setState({ selectedUser: user, page: 'Details' })
+  }
+
+  showPage = () => {
+    const page = this.state.page
+
+    switch (page) {
+      case 'SignUp':
+        return <SignUp 
+                database={this.database}
+                />
+      
+      case 'Users':
+        return <Users 
+                database={this.database}
+                onClickShowDetails={this.onClickShowDetails}
+                />
+
+      case 'Details':
+        return <Details
+                database={this.database}
+                user={this.state.selectedUser}  
+              />
+
+      default:
+        return <p>Não achei nadinha</p>
+    }
   }
 
   render(){
@@ -33,11 +65,7 @@ class App extends React.Component {
         </header>
   
         <main>
-          {
-            this.state.page==='SignUp' ?
-              <SignUp database={this.database}/> :
-              <Users database={this.database}/>
-          }
+          <this.showPage />
         </main>
   
       </div>

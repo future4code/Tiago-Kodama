@@ -10,6 +10,7 @@ export default class SignUp extends React.Component{
     signUp = async () => {
         const user = {name: this.state.inputName, email: this.state.inputEmail}
         await this.props.database.registerUser(user)
+        this.setState({ inputName: '', inputEmail: '' })
     }
 
     onChangeInputName = event => {

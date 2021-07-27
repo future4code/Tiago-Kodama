@@ -63,6 +63,21 @@ class Database {
         }
     }
 
+    getUserById = async id => {
+        const url = `https://us-central1-labenu-apis.cloudfunctions.net/labenusers/users/${id}`
+        const headers = {
+            Authorization: "tiago-kodama-lovelace"
+        }
+        try {
+            const res = await axios.get(url, { headers })
+            return res.data
+        }
+        catch(err){
+            console.log(err)
+            alert("Erro registerUser")
+        }
+    }
+
     deleteUser = async id => {
         const url = `https://us-central1-labenu-apis.cloudfunctions.net/labenusers/users/${id}`
         const headers = {

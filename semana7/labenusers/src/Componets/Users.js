@@ -4,7 +4,8 @@ import User from './User';
 export default class Users extends React.Component{
 
     state = {
-        allUsers: []
+        allUsers: [],
+        selectedUserId: undefined
     }
 
     componentDidMount(){
@@ -49,9 +50,10 @@ export default class Users extends React.Component{
                     this.state.allUsers.map(user => {
                         return (
                             <User 
-                            key={user.id}
-                            user={user}
-                            handleDeleteUser={this.handleDeleteUser} 
+                                key={user.id}
+                                user={user}
+                                handleDeleteUser={this.handleDeleteUser} 
+                                onClickShowDetails={this.props.onClickShowDetails}
                             />
                         );
                     })

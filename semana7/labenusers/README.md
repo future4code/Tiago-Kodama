@@ -31,10 +31,24 @@
     - state
         - allUsers
     - props
-        database
+        - database
+        - onClickShowDetails
+- User
+    - props
+        - user
+        - handleDeleteUser
+        - onClickShowDetails
 - Sign up
     - state
         inputName
         inputEmail
     - props
         - database
+- Details
+    - props
+        - user
+        - database
+    - state
+        - email
+        - name
+        - id
