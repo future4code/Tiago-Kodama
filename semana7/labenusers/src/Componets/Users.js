@@ -18,6 +18,10 @@ export default class Users extends React.Component{
     }
 
     handleDeleteUser = async id => {
+
+        if( !window.confirm(`Deseja deletar ${id}`) )
+            return
+
         try {
             const res = await this.props.database.deleteUser(id)
 
