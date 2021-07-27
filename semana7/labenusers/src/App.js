@@ -1,25 +1,30 @@
+import React from 'react';
+import SignUp from './Componets/SignUp';
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header>
-        <h1>Labenusers</h1>
-        <nav>
-          <div>
-            <button>Sign up</button>
-            <button>Users</button>
-          </div>
-        </nav>
-      </header>
+class App extends React.Component {
 
-      <main>
-        <p>Sign up</p>
-        <p>Users </p>
-      </main>
-
-    </div>
-  );
+  render(){
+    return (
+      <div className="App">
+        <header>
+          <h1>Labenusers</h1>
+          <nav>
+            <div>
+              <button>Sign up</button>
+              <button>Users</button>
+            </div>
+          </nav>
+        </header>
+  
+        <main>
+          <SignUp />
+          <p>Users </p>
+        </main>
+  
+      </div>
+    );
+  }
 }
 
 export default App;
