@@ -13,9 +13,15 @@ class Database {
             email: user.email
         }
 
-        const res = await axios.post(url, { body, headers })
+        try {
+            await axios.post(url, body, { headers })
+            
+        }
+        catch(err){
+            const res = await err.response.data
+            console.log("Erro: ", res.message)
+        }
 
-        console.log(res)
     }
 }
 
