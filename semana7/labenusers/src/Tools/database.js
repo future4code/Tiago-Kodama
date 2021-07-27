@@ -62,6 +62,23 @@ class Database {
             console.log(err)
         }
     }
+
+    deleteUser = async id => {
+        const url = `https://us-central1-labenu-apis.cloudfunctions.net/labenusers/users/`
+        const headers = {
+            Authorization: "tiago-kodama-lovelace"
+        }
+        const params = {
+            id: id
+        }
+        try {
+            const res = await axios.del(url, {headers, params})
+            return res
+
+        } catch (err) {
+            return err
+        }
+    }
 }
 
 export default Database;

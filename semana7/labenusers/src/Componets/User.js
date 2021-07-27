@@ -7,7 +7,7 @@ export default class User extends React.Component{
         return(
             <div>
                 <p>{user.name}</p>
-                <button>Del</button>
+                <button onClick={() => this.props.handleDeleteUser(this.props.user.id)}>Del</button>
             </div>
         )
     }
