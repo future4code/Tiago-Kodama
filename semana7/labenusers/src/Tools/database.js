@@ -64,15 +64,12 @@ class Database {
     }
 
     deleteUser = async id => {
-        const url = `https://us-central1-labenu-apis.cloudfunctions.net/labenusers/users/`
+        const url = `https://us-central1-labenu-apis.cloudfunctions.net/labenusers/users/${id}`
         const headers = {
             Authorization: "tiago-kodama-lovelace"
         }
-        const params = {
-            id: id
-        }
         try {
-            const res = await axios.del(url, {headers, params})
+            const res = await axios.delete(url, {headers})
             return res
 
         } catch (err) {
