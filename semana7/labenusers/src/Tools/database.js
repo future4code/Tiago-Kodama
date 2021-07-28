@@ -42,7 +42,6 @@ class Database {
             console.log(err)
             alert("Erro getAllUsers ")
         }
-
     }
 
     getUser = async (userName, userEmail) => {
@@ -100,6 +99,22 @@ class Database {
         try {
             const res = await axios.put(url, body, { headers })
             return res
+        }
+        catch(err){
+            console.log(err)
+            throw err
+        }
+    }
+
+    getUsersBy = async userName => {
+        const url = `https://us-central1-labenu-apis.cloudfunctions.net/labenusers/users/search?name=${userName}&email=`
+        const headers = {
+            Authorization: "tiago-kodama-lovelace"
+        }
+
+        try {
+            const res = await axios.get(url, { headers })
+            return res.data
         }
         catch(err){
             console.log(err)
