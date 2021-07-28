@@ -1,5 +1,60 @@
 import React from 'react'
 import User from './User';
+import Styled from 'styled-components'
+
+import ImageSearch from './Images/lupa-icon.svg'
+
+const Container = Styled.div`
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    width: 80%;
+`
+const ContainerUsers = Styled.div`
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+
+    div {
+        margin: .4rem 0;
+    }
+`
+const ContainerSearch = Styled.div`
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid black;
+    width: 80%;
+    height: 2rem;
+    margin-bottom: 2rem;
+
+    input,
+    button {
+        border: none;
+        height: 100%;
+        background: transparent;
+    }
+
+    input {
+        width: 80%;
+        padding-left: 2rem;
+    }
+    input:focus
+    {
+        border: none;
+        outline-offset: 0px;
+        outline: none;
+    }
+
+    button {
+        width: 8%;
+        text-align: center;
+    }
+`
 
 export default class Users extends React.Component{
 
@@ -58,17 +113,22 @@ export default class Users extends React.Component{
 
     render(){
         return (
-            <div className='Users'>
+            <Container className='Users'>
                 <h2>Users</h2>
-                <div>
+
+                <ContainerSearch>
                     <input 
                         value={this.state.inputSearch}
                         onChange={this.onChangeInputSearch}
                     />
                     <button
                         onClick={this.handleButtonSearch}
-                    >Search</button>
-                </div>
+                    >
+                        <img src={ImageSearch} alt='search-icon' />
+                    </button>
+                </ContainerSearch>
+
+                <ContainerUsers>
                 {
                     this.state.allUsers.map &&
                     this.state.allUsers.map(user => {
@@ -82,7 +142,9 @@ export default class Users extends React.Component{
                         );
                     })
                 }
-            </div>
+                </ContainerUsers>
+
+            </Container>
         );
     }
 }
