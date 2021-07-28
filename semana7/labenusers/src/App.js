@@ -4,10 +4,6 @@ import Users from './Componets/Users';
 import Database from './Tools/database';
 import Details from './Componets/Details';
 
-
-import './App.css';
-
-
 class App extends React.Component {
 
   state = {
