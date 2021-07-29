@@ -4,9 +4,7 @@ import Users from './Componets/Users';
 import Database from './Tools/database';
 import Details from './Componets/Details';
 
-
-import './App.css';
-
+import './index.css'
 
 class App extends React.Component {
 
@@ -61,14 +59,13 @@ class App extends React.Component {
       <div className="App">
         <header>
           <h1>Labenusers</h1>
-          <nav>
-            <div>
-              <button onClick={() => this.onClickButtonChangePage('SignUp')}>Sign up</button>
-              <button onClick={() => this.onClickButtonChangePage('Users')}>Users</button>
-            </div>
-          </nav>
         </header>
   
+        <menu>
+          <button onClick={() => this.onClickButtonChangePage('SignUp')}>Sign up</button>
+          <button onClick={() => this.onClickButtonChangePage('Users')}>Users</button>
+        </menu>
+
         <main>
           <this.showPage />
         </main>

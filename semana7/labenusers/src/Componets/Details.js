@@ -1,5 +1,46 @@
 import React from 'react'
 import EditFilds from './EditFilds'
+import Styled from 'styled-components'
+
+const Container = Styled.div`
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    width: 80%;
+`
+const ContainerInfo = Styled.div`
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding-left: 2rem;
+    margin-bottom: 2rem;
+    width: 50%;
+    background: #E3E3E3;
+
+    p {
+        margin: 1rem 0;
+        font-weight: 700;
+    }
+`
+const Buttons = Styled.div`
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 50%;
+`
+
+const Button = Styled.div`
+    background: #FB9C17;
+    padding: 1rem;
+    width: 30%;
+    text-align: center;
+    color: white;
+    font-weight: 700;
+`
+
 
 export default class Details extends React.Component{
 
@@ -67,26 +108,31 @@ export default class Details extends React.Component{
 
     render(){
         return (
-            <div className='Details'>
-                <p>Name {this.state.name}</p>
-                <p>Email {this.state.email}</p>
-                <p>ID {this.state.id}</p>
+            <Container className='Details'>
+                <h2>Details</h2>
+
+                <ContainerInfo>
+                    <p>Name: {this.state.name}</p>
+                    <p>Email: {this.state.email}</p>
+                    <p>ID: {this.state.id}</p>
+                </ContainerInfo>
+
                 {
                     this.state.editMode ?
                     <EditFilds 
                         saveChanges={this.saveChanges}
                         id={this.state.id}
-                        />:
-                    <div>
-                        <button 
+                    />:
+                    <Buttons>
+                        <Button 
                             onClick={() => this.handleDeleteUser(this.state.id)}
-                        >Delete</button>
-                        <button 
+                        >Delete</Button>
+                        <Button 
                             onClick={() => this.setState({ editMode: true })}
-                        >Edit</button>
-                    </div>
+                        >Edit</Button>
+                    </Buttons>
                 }
-            </div>
+            </Container >
         );
     }
 }
