@@ -1,6 +1,12 @@
 import React from 'react'
+import Styled from 'styled-components'
+import ScreenAllMusics from './ScreenAllMusics'
 import ScreenNewPlaylist from './ScreenNewPlaylist'
 import ScreenPlaylist from './ScreenPlaylist'
+
+const StyledPanel = Styled.div`
+    overflow: auto;
+`
 
 export default class Panel extends React.Component{
 
@@ -18,7 +24,12 @@ export default class Panel extends React.Component{
                             />
                 
                 case 'screenplaylist':
-                    return <ScreenPlaylist />
+                    return <ScreenPlaylist 
+                                playlist={this.props.playlist}
+                            />
+
+                case 'screenallmusics':
+                    return <ScreenAllMusics />
             
                 default:
                     return <p>Erro</p>
@@ -26,9 +37,9 @@ export default class Panel extends React.Component{
         }
 
         return(
-            <div className='Panel'>
+            <StyledPanel className='Panel'>
                 {currentScreen()}
-            </div>
+            </StyledPanel>
         );
     }
 }

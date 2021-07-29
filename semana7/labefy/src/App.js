@@ -8,13 +8,18 @@ import Player from './Componets/Player';
 class App extends React.Component {
 
   state = {
-    currentScreen: 'screenplaylist',
-    playlists: []
+    currentScreen: 'screenallmusics',
+    playlists: [],
+    currentPlaylist: {}
   }
 
   componentDidMount(){
     this.getPlaylistsDatabase()
   }
+  componentDidUpdate(prevProps, prevState, snapshot){
+    // TESTES
+  }
+
 
   changeScreen = screen => this.setState({currentScreen: screen})
 
@@ -41,17 +46,24 @@ class App extends React.Component {
     await this.setState({ playlists: newPlaylists })
   }
 
+  setPlaylist = playlist => {
+    const choosenPlaylist = {...playlist}
+    this.setState({currentPlaylist: choosenPlaylist})
+  }
+
   render(){
     return (
       <div className="App">
         <Menu 
           changeScreen={this.changeScreen}
           playlists={this.state.playlists}
+          setPlaylist={this.setPlaylist}
+          updatePlaylists={this.updatePlaylists}
         />
         <Panel 
           selectedScreen={this.state.currentScreen}
           updatePlaylists={this.updatePlaylists}
-          playlists={this.state.playlists}
+          playlist={this.state.currentPlaylist}
         />
         <Player />
       </div>

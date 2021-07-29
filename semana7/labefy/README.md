@@ -5,8 +5,13 @@
 ### playlists
     ``` 
     [ 
+        id: String
         name: String,
-        description: String,
+    ]
+    ```
+### musics
+
+    ```
         musics: [
             {
                 id: string
@@ -15,8 +20,8 @@
                 url: string
             }
         ] 
-    ]
     ```
+
 
 ## Mock de design
 
@@ -26,4 +31,7 @@
         -Player
         -Painel
             -Screen Playlist 
+                - Card Music
             -Screen NewPlaylist (inputNameNewPlaylist)
+            -Screen All Musics
+                - Card Music
