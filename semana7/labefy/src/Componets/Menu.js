@@ -15,9 +15,7 @@ export default class Menu extends React.Component{
         this.props.changeScreen('screennewplaylist')
     }
 
-
     render(){
-
         return(
             <div className='Menu'>
                 <button

@@ -36,8 +36,9 @@ class App extends React.Component {
     }
   }
 
-  updatePlaylists = async newplaylists => {
-    await this.setState({ playlists: newplaylists })
+  updatePlaylists = async newplaylist => {
+    const newPlaylists = [...newplaylist]
+    await this.setState({ playlists: newPlaylists })
   }
 
   render(){

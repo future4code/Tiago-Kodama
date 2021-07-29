@@ -5,8 +5,7 @@ import ScreenPlaylist from './ScreenPlaylist'
 export default class Panel extends React.Component{
 
     addPlaylist = playlist => {
-        const newPlaylist = [...this.props.playlists, playlist]
-        this.props.updatePlaylists(newPlaylist)
+        this.props.updatePlaylists(playlist)
     }
 
     render(){

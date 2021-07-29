@@ -12,17 +12,14 @@ export default class ScreenNewPlaylist extends React.Component{
     handleSaveButton = async e => {
         try {
             const url = 'https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists'
-            const headers = { 
-                Authorization: "tiago-kodama-lovelace" 
-            }
-            const body = { 
-                "name": this.state.inputNameNewPlaylist  
-            }
+            const headers = { Authorization: "tiago-kodama-lovelace" }
+            const body = { "name": this.state.inputNameNewPlaylist }
 
-            const res = await axios.post(url, body, { headers })
+            const resSend = await axios.post(url, body, { headers })
 
-            if(res.status===200){
-                this.props.addPlaylist(this.state.inputNameNewPlaylist)
+            if(resSend.status===200){
+                const resReq = await axios.get(url, { headers })
+                this.props.addPlaylist(resReq.data.result.list)
             }
 
             this.setState({ inputNameNewPlaylist: '' })
