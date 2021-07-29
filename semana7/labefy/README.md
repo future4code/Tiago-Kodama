@@ -21,8 +21,9 @@
 ## Mock de design
 
 ### Hierarchy
-    -App
+    -App (CurrentScreen)
         -Menu
         -Player
         -Painel
-            -Card Música
+            -Screen Playlist 
+            -Screen NewPlaylist (ControlledInputs)

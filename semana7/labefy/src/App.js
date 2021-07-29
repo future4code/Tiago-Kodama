@@ -1,12 +1,14 @@
 import './App.css';
+import Menu from './Componets/Menu';
+import Panel from './Componets/Panel';
+import Player from './Componets/Player';
 
 function App() {
   return (
     <div className="App">
-      <audio autoplay="autoplay" controls="controls">
-        <source src="http://spoti4.future4.com.br/1.mp3" type="audio/mp3" />
-        seu navegador não suporta HTML5
-      </audio>
+      <Menu />
+      <Panel />
+      <Player />
     </div>
   );
 }
