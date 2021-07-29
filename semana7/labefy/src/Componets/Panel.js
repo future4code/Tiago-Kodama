@@ -3,12 +3,20 @@ import ScreenNewPlaylist from './ScreenNewPlaylist'
 import ScreenPlaylist from './ScreenPlaylist'
 
 export default class Panel extends React.Component{
+
+    addPlaylist = playlist => {
+        const newPlaylist = [...this.props.playlists, playlist]
+        this.props.updatePlaylists(newPlaylist)
+    }
+
     render(){
 
         const currentScreen = () => {
             switch (this.props.selectedScreen) {
                 case 'screennewplaylist':
-                    return <ScreenNewPlaylist />
+                    return <ScreenNewPlaylist
+                                addPlaylist={this.addPlaylist}
+                            />
                 
                 case 'screenplaylist':
                     return <ScreenPlaylist />

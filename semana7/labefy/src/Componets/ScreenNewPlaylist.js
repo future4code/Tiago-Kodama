@@ -21,13 +21,14 @@ export default class ScreenNewPlaylist extends React.Component{
 
             const res = await axios.post(url, body, { headers })
 
-            if(res.status===200)
-                alert("Sucesso ao criar lista")
+            if(res.status===200){
+                this.props.addPlaylist(this.state.inputNameNewPlaylist)
+            }
 
             this.setState({ inputNameNewPlaylist: '' })
         }
         catch (err) {
-            alert(err.response.data)
+            alert(err)
         }
     }
 

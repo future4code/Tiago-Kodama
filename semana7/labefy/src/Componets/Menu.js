@@ -1,4 +1,10 @@
 import React from 'react'
+import Styled from 'styled-components'
+
+const StyledPlaylistsMenu = Styled.div`
+    display: flex;
+    flex-direction: column;
+`
 
 export default class Menu extends React.Component{
 
@@ -9,7 +15,9 @@ export default class Menu extends React.Component{
         this.props.changeScreen('screennewplaylist')
     }
 
+
     render(){
+
         return(
             <div className='Menu'>
                 <button
@@ -17,9 +25,19 @@ export default class Menu extends React.Component{
                 >Criar playlist</button>
                 <div>
                     <p>Lista de playlists</p>
-                    <button
-                        onClick={this.selectScreenPlaylist}
-                    >Ver essa playlist</button>
+                    <StyledPlaylistsMenu>
+                    {
+                        this.props.playlists &&
+                        this.props.playlists.map((playlist, index) => {
+                            return (
+                                <button
+                                key={index}
+                                onClick={this.selectScreenPlaylist}
+                                >{playlist.name}</button>
+                                );
+                            })
+                    }
+                    </StyledPlaylistsMenu>
                 </div>
             </div>
         );

@@ -21,9 +21,9 @@
 ## Mock de design
 
 ### Hierarchy
-    -App (CurrentScreen)
-        -Menu
+    -App (CurrentScreen, playlists)
+        -Menu ()
         -Player
         -Painel
             -Screen Playlist 
-            -Screen NewPlaylist (ControlledInputs)
+            -Screen NewPlaylist (inputNameNewPlaylist)
