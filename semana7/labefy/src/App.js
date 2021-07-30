@@ -10,7 +10,8 @@ class App extends React.Component {
   state = {
     currentScreen: 'screenallmusics',
     playlists: [],
-    currentPlaylist: {}
+    currentPlaylist: {},
+    musics: []
   }
 
   componentDidMount(){
@@ -40,15 +41,17 @@ class App extends React.Component {
       console.log(err.response.data)
     }
   }
-
   updatePlaylists = async newplaylist => {
     const newPlaylists = [...newplaylist]
     await this.setState({ playlists: newPlaylists })
   }
-
   setPlaylist = playlist => {
     const choosenPlaylist = {...playlist}
     this.setState({currentPlaylist: choosenPlaylist})
+  }
+  setMusics = musics => {
+    const newlist = [...musics]
+    this.setState({musics: newlist})
   }
 
   render(){
@@ -66,7 +69,10 @@ class App extends React.Component {
           playlists={this.state.playlists}
           playlist={this.state.currentPlaylist}
         />
-        <Player />
+        <Player 
+          playlist={this.state.currentPlaylist}
+          musics={this.state.musics}
+        />
       </div>
     );
   }
