@@ -63,6 +63,7 @@ class App extends React.Component {
         <Panel 
           selectedScreen={this.state.currentScreen}
           updatePlaylists={this.updatePlaylists}
+          playlists={this.state.playlists}
           playlist={this.state.currentPlaylist}
         />
         <Player />

@@ -29,7 +29,9 @@ export default class Panel extends React.Component{
                             />
 
                 case 'screenallmusics':
-                    return <ScreenAllMusics />
+                    return <ScreenAllMusics
+                                playlists={this.props.playlists}
+                            />
             
                 default:
                     return <p>Erro</p>
