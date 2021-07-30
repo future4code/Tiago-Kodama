@@ -12,6 +12,12 @@ export default class ScreenPlaylist extends React.Component{
         this.getMusics()
     }
 
+    componentDidUpdate(prevProps, prevState){
+        if(prevProps.playlist!==this.props.playlist){
+            this.getMusics()
+        }
+    }
+
     getMusics = async () => {
         try {
             const url = `https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists/${this.props.playlist.id}/tracks`
@@ -22,6 +28,8 @@ export default class ScreenPlaylist extends React.Component{
 
             if( res.status !== 200 )
                 throw new Error('Erro ao buscar músicas')
+
+            this.props.setMusics(res.data.result.tracks)
 
         } catch (error) {
             console.log(error)
@@ -39,7 +47,7 @@ export default class ScreenPlaylist extends React.Component{
                 throw new Error('Falha ao remover música')
 
             await this.getMusics()    
-            alert ("Música removida")   
+            alert("Música removida")   
             }
             catch(err){
                 console.log(err)
@@ -64,6 +72,7 @@ export default class ScreenPlaylist extends React.Component{
                                     handleButton={this.handleRemove}
                                     messageButton={'Remover'}
                                     music={music}
+                                    handleButtonPlay={this.props.setMusics}
                                 />
                             );
                         })

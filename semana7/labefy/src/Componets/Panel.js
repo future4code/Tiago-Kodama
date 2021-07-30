@@ -26,11 +26,13 @@ export default class Panel extends React.Component{
                 case 'screenplaylist':
                     return <ScreenPlaylist 
                                 playlist={this.props.playlist}
+                                setMusics={this.props.setMusics}
                             />
 
                 case 'screenallmusics':
                     return <ScreenAllMusics
                                 playlists={this.props.playlists}
+                                setMusics={this.props.setMusics}
                             />
             
                 default:

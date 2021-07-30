@@ -1,7 +1,6 @@
 import React from 'react'
 
 export default class CardMusic extends React.Component{
-
     render(){
         const handleButton  = this.props.handleButton
         const messageButton  = this.props.messageButton
@@ -9,7 +8,9 @@ export default class CardMusic extends React.Component{
 
         return(
             <div className='CardMusic'>
-                <button>Play</button>
+                <button
+                    onClick={() => this.props.handleButtonPlay([music])}
+                >Play</button>
                 <p>
                     {
                         music.name

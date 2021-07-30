@@ -1,20 +1,32 @@
 import React from 'react'
+import ReactAudioPlayer from 'react-audio-player';
 
 export default class Player extends React.Component{
 
     state = {
-        indexTrack: 0
+        indexTrack: 0,
+        musicOnPlayer: "http://spoti4.future4.com.br/1.mp3"
+    }
+
+    componentDidUpdate(prevProps, prevState, snapshot){
+        if(prevProps.musics !== this.props.musics){
+ 
+            if(this.props.musics.length)
+                this.setState({musicOnPlayer: this.props.musics[0].url})
+            else
+                this.setState({musicOnPlayer: "http://spoti4.future4.com.br/1.mp3"})
+        }
     }
 
     render(){
-        const urlMusic = this.props.musics[this.state.indexTrack] || "http://spoti4.future4.com.br/1.mp3"
-
         return(
             <div className='Player'>
-                <audio controls="controls">
-                    <source src={urlMusic} type="audio/mp3" />
-                    seu navegador não suporta HTML5
-                </audio>
+                <p>{this.state.musicOnPlayer}</p>
+                <ReactAudioPlayer
+                    src={this.state.musicOnPlayer}
+                    autoPlay
+                    controls
+                />
             </div>
         );
     }

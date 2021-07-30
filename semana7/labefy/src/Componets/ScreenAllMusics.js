@@ -77,6 +77,7 @@ export default class ScreenAllMusics extends React.Component{
                                     handleButton={this.handleAdd}
                                     messageButton={'Adicionar'}
                                     music={music}
+                                    handleButtonPlay={this.props.setMusics}
                                 />
                             );
                         })

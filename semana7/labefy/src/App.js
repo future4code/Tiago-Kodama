@@ -68,6 +68,7 @@ class App extends React.Component {
           updatePlaylists={this.updatePlaylists}
           playlists={this.state.playlists}
           playlist={this.state.currentPlaylist}
+          setMusics={this.setMusics}
         />
         <Player 
           playlist={this.state.currentPlaylist}
