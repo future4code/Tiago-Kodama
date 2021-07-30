@@ -1,0 +1,38 @@
+.App {
+    width: 100vw;
+    height: 100vh;
+
+    display: grid;
+    grid-template-columns: 1fr 5fr;
+    grid-template-rows: 7fr 1fr;
+}
+
+.App .Menu {
+    grid-column: 1/2;
+    grid-row: 1/2;
+    background-color: #FFB45C;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+
+    padding-top: 2rem;
+}
+
+.App .Panel {
+    grid-column: 2/3;
+    grid-row: 1/2;
+    background-color: rgb(216, 206, 206);
+}
+
+.App .Player {
+    grid-column: 1/3;
+    grid-row: 2/3;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background-color: whitesmoke;
+}
