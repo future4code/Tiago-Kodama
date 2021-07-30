@@ -20,7 +20,7 @@ const StyledCard = Styled.div`
         display: flex;
         flex-direction: row;
         align-items: center;
-        width: 50%;
+        width: 80%;
         height: 80%;
 
         button {
@@ -58,7 +58,7 @@ export default class CardMusic extends React.Component{
                     >Play</button>
                     <p>
                         {
-                            music.name
+                            `${music.name} - ${music.album}`
                         }
                     </p>
                 </div>

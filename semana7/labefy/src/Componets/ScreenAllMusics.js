@@ -49,18 +49,32 @@ export default class ScreenAllMusics extends React.Component{
     }
 
     componentDidMount(){
-        const newList = [];
-        for(let i=1; i<100; i++){
-            newList.push({
-                url: `http://spoti4.future4.com.br/${i}.mp3`,
-                name: `Musica ${i}`,
-                album: `Album ${i}`,
-                artist: `Artist ${i}`
-            })
-        }
-
-        this.setState({ allMusics: newList })
+        this.createMusics()
     }
+    createMusics = async () => {
+        try {
+            const newList = [];
+
+            for(let i=1; i<20; i++){
+                const url = `https://www.boredapi.com/api/activity/`
+                const res = await Axios.get(url)
+                const data = res.data
+
+                newList.push({
+                    url: `http://spoti4.future4.com.br/${i}.mp3`,
+                    name: data.activity,
+                    album: data.type,
+                    artist: data.type
+                })
+            }
+    
+            this.setState({ allMusics: newList })
+        }
+        catch(err){
+            console.log('Erro ao criar musicas', err)
+        }
+    }
+
     handleOnChangeSelect = async e => {
         await this.setState({ playlistId: e.target.value })
     }
