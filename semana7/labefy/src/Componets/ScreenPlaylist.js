@@ -1,23 +1,43 @@
 import React from 'react'
 import CardMusic from './CardMusic'
 import Axios from 'axios'
+import Styled from 'styled-components'
+
+const Header = Styled.header`
+    display: flex;
+    padding: 1rem;
+    width: 100%;
+    height: 10rem;
+    background: #9D9D9D;
+
+    h1 {
+        color: white;
+        margin-left: 1rem;
+        font-size: 3rem;
+    }
+`
+
+const Main = Styled.main`
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 3rem 0;
+`
 
 export default class ScreenPlaylist extends React.Component{
 
     state = {
         musics: []
     }
-
     componentDidMount(){
         this.getMusics()
     }
-
     componentDidUpdate(prevProps, prevState){
         if(prevProps.playlist!==this.props.playlist){
             this.getMusics()
         }
     }
-
     getMusics = async () => {
         try {
             const url = `https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists/${this.props.playlist.id}/tracks`
@@ -35,7 +55,6 @@ export default class ScreenPlaylist extends React.Component{
             console.log(error)
         }
     }
-
     handleRemove = async music => {
         try {
             const url = `https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists/${this.props.playlist.id}/tracks/${music.id}`
@@ -59,11 +78,11 @@ export default class ScreenPlaylist extends React.Component{
 
         return(
             <div className='ScreenPlaylist'>
-                <header>
+                <Header>
                     <img src='https://picsum.photos/200' alt='imagem do album' />
                     <h1>{title}</h1>
-                </header>   
-                <div>
+                </Header>   
+                <Main>
                     {
                         this.state.musics.map(music => {
                             return (
@@ -77,7 +96,7 @@ export default class ScreenPlaylist extends React.Component{
                             );
                         })
                     }
-                </div>
+                </Main>
             </div>
         );
     }

@@ -1,5 +1,42 @@
 import React from 'react'
 import axios from 'axios'
+import Styled from 'styled-components'
+
+const Header = Styled.header`
+    display: flex;
+    padding: 1rem;
+    width: 100%;
+    height: 10rem;
+    background: #9D9D9D;
+
+    h1 {
+        color: white;
+        margin-left: 1rem;
+        font-size: 3rem;
+    }
+`
+
+const Main = Styled.main`
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 3rem 0;
+
+    button,
+    input {
+        width: 20rem;
+        height: 2rem;
+        text-align: center;
+        margin: 1rem 0;
+    }
+
+    button {
+        background: black;
+        color: white;
+        font-weight: 700;
+    }
+`
 
 export default class ScreenNewPlaylist extends React.Component{
 
@@ -32,14 +69,19 @@ export default class ScreenNewPlaylist extends React.Component{
     render(){
         return(
             <div className='ScreenNewPlaylist'>
-                <input 
-                    value={this.state.inputNameNewPlaylist}
-                    onChange={this.handleOnChangeInput}
-                    placeholder='Nome da nova playlist'
-                />
-                <button
-                    onClick={this.handleSaveButton}
-                >Save</button>
+                <Header>
+                    <h1>Criando novas playlists</h1>
+                </Header>
+                <Main>
+                    <input 
+                        value={this.state.inputNameNewPlaylist}
+                        onChange={this.handleOnChangeInput}
+                        placeholder='Nome da nova playlist'
+                    />
+                    <button
+                        onClick={this.handleSaveButton}
+                    >Salvar</button>
+                </Main>
             </div>
         );
     }
