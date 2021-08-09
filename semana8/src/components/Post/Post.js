@@ -43,9 +43,9 @@ const Post = (props) => {
     ) : (
       // Funcao map sendo feita na propriedade comentarios do estado. Ou seja, está sendo pego todos os
       // comentários do estado para serem renderizados na tela, dentro do componente CommentContainer 
-      comentarios.map(comentario => {
+      comentarios.map((comentario, index) => {
         return (
-          <CommentContainer>
+          <CommentContainer key={index}>
             <p>{comentario}</p>
           </CommentContainer>
         )
