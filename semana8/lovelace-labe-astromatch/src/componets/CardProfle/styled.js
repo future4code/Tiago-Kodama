@@ -3,7 +3,7 @@ import styled from "styled-components";
 const StyledCardProfile = styled.div`
     width: 100%;
     max-width: 400px;
-    height: 70vh;
+    height: 60vh;
     margin-top: 4vh;
     box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
 
