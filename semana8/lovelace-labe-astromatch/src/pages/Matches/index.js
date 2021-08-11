@@ -1,5 +1,11 @@
+import CardMatch from '../../componets/CardMatch'
+import {StyledContainerMatches} from './styled'
+
 export default function Matches(){
-    return (
-        <p>Matches</p>
-    );
+    return <StyledContainerMatches>
+        <CardMatch />
+        <CardMatch />
+        <CardMatch />
+        <CardMatch />
+    </StyledContainerMatches>
 }
