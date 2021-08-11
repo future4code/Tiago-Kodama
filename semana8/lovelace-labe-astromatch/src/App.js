@@ -1,11 +1,16 @@
+import Styled from 'styled-components'
+
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
+    <AppContainer>
 
-      </header>
-    </div>
+    </AppContainer>
   );
 }
 
 export default App;
+
+const AppContainer = Styled.div`
+  width: 100vw;
+  min-height: 100vh;
+`
