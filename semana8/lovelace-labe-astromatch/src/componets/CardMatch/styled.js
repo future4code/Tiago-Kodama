@@ -27,5 +27,6 @@ export const StyledCardMatches = styled.div`
     button img {
         width: 5vh;
         height: 5vh;
+        margin-right: 5px;
     }
 `

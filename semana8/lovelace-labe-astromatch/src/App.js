@@ -8,7 +8,7 @@ import Clean from './pages/Clean/index';
 import SendMessages from './pages/SendMessages/index';
 
 function App() {
-  const [currentPage, setCurrentPage] = useState('matches')
+  const [currentPage, setCurrentPage] = useState('clean')
 
   useEffect(() => {
     console.log(currentPage)

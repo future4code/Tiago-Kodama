@@ -1,5 +1,8 @@
+import {StyledContainerClean} from './styled'
+
 export default function Clean(){
-    return (
-        <p>Clean</p>
-    );
+    return <StyledContainerClean>
+        <p>Tem certeza que deseja limpar os dados?</p>
+        <button>Remover</button>
+    </StyledContainerClean>
 }
