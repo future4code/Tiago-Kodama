@@ -27,6 +27,7 @@ export default function Matches(props){
         matches.map(match => <CardMatch 
             key={match.id}
             setCurrentPage={props.setCurrentPage}
+            setSelectProfle={props.setSelectProfle}
             profile={match}
         />)}
     </StyledContainerMatches>

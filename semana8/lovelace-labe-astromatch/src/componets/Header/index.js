@@ -1,4 +1,3 @@
-import ImageCircle from '../../assets/circle.png'
 import ImageButtonFind from '../../assets/achar.png'
 import ImageButtonMatch from '../../assets/match.png'
 import ImageButtonClean from '../../assets/clean.png'

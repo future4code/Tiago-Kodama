@@ -4,7 +4,7 @@ import { StyledMenssageBoard, StyledInputMessage, StyledSendMessageContainer, St
 
 import axios from "axios";
 
-export default function SendMessages() {
+export default function SendMessages(props) {
 
     const [messages, setMessages] = useState([])
     const [inputMessage, setInputMessage] = useState('')
@@ -30,17 +30,20 @@ export default function SendMessages() {
 
     const feedReceiveMessage = async () => {
         try {
+            const message = messages[messages.length-1].text
+
             const options = {
                 method: 'GET',
-                url: 'https://ajith-messages.p.rapidapi.com/getMsgs',
-                params: { category: 'love' },
+                url: 'https://ai-chatbot.p.rapidapi.com/chat/free',
+                params: {message: `${message}`, uid: props.profile.id},
                 headers: {
-                    'x-rapidapi-key': '4b3a452826msh742903192d79ac4p1f2704jsn2c2287fdf21b',
-                    'x-rapidapi-host': 'ajith-messages.p.rapidapi.com'
+                  'x-rapidapi-key': '4b3a452826msh742903192d79ac4p1f2704jsn2c2287fdf21b',
+                  'x-rapidapi-host': 'ai-chatbot.p.rapidapi.com'
                 }
-            };
+              };              
+
             const res = await axios.request(options)
-            const himText = res.data.Message
+            const himText = res.data.chatbot.response
             const newMessage = {
                 author: 'Meu futuro amor',
                 text: himText,

@@ -21,11 +21,16 @@ const StyledHead = Styled.div`
         height: 90%;
         border: none;
         background: transparent;
+
+        &:hover {
+            opacity: 0.4;
+        }
     }
 
 
     div button img {
         height: 90%;
+
     }
 `
 

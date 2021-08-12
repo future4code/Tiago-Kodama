@@ -9,6 +9,7 @@ import SendMessages from './pages/SendMessages/index';
 
 function App() {
   const [currentPage, setCurrentPage] = useState('profiles')
+  const [selectedProfile, setSelectProfle] = useState({})
 
   const renderCurrentPage = () => {
     switch (currentPage) {
@@ -16,13 +17,13 @@ function App() {
         return <Profiles />
       
       case 'matches':
-        return <Matches setCurrentPage={setCurrentPage}/>
+        return <Matches setCurrentPage={setCurrentPage} setSelectProfle={setSelectProfle}/>
 
       case 'clean':
         return <Clean />
     
       case 'sendmessages':
-        return <SendMessages />
+        return <SendMessages profile={selectedProfile} />
 
       default:
         return <Profiles />
