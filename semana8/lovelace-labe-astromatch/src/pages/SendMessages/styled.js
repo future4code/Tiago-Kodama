@@ -34,7 +34,7 @@ export const StyledInputMessage = styled.div`
     justify-content: space-around;
 
     input {
-        width: 70vw;
+        width: 60vw;
         max-width: 500px;
         height: 50%;
         padding-left: 1rem; 

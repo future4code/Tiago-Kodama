@@ -8,7 +8,8 @@ export default function SendMessages() {
 
     const [messages, setMessages] = useState([])
     const [inputMessage, setInputMessage] = useState('')
-    const [isHeWritting, setIsHeWritting] = useState(true)
+    const [isHeWritting, setIsHeWritting] = useState(false)
+    const [isHisTurn, setIsHisTrurn] = useState(false)
 
     const handleEnter = async () => {
         if (!inputMessage) return
@@ -24,40 +25,42 @@ export default function SendMessages() {
         }
         const newList = [...messages, newMessage]
         setMessages(newList)
-        setTimeout(() => setIsHeWritting(true), 2000)
+        setTimeout(() => setIsHisTrurn(true), 1000)
+    }
+
+    const feedReceiveMessage = async () => {
+        try {
+            const options = {
+                method: 'GET',
+                url: 'https://ajith-messages.p.rapidapi.com/getMsgs',
+                params: { category: 'love' },
+                headers: {
+                    'x-rapidapi-key': '4b3a452826msh742903192d79ac4p1f2704jsn2c2287fdf21b',
+                    'x-rapidapi-host': 'ajith-messages.p.rapidapi.com'
+                }
+            };
+            const res = await axios.request(options)
+            const himText = res.data.Message
+            const newMessage = {
+                author: 'Meu futuro amor',
+                text: himText,
+                timeStamp: Date.now()
+            }
+            setMessages([...messages, newMessage])
+            setIsHeWritting(false)
+            setIsHisTrurn(false)
+
+        } catch (error) {
+            console.error(error)
+        }
     }
 
     useEffect(() => {
-
-        const feedReceiveMessage = async () => {
-            try {
-                const options = {
-                    method: 'GET',
-                    url: 'https://ajith-messages.p.rapidapi.com/getMsgs',
-                    params: { category: 'love' },
-                    headers: {
-                        'x-rapidapi-key': '4b3a452826msh742903192d79ac4p1f2704jsn2c2287fdf21b',
-                        'x-rapidapi-host': 'ajith-messages.p.rapidapi.com'
-                    }
-                };
-                const res = await axios.request(options)
-                const himText = res.data.Message
-                const newMessage = {
-                    author: 'Meu futuro amor',
-                    text: himText,
-                    timeStamp: Date.now()
-                }
-                setMessages([...messages, newMessage])
-                setIsHeWritting(false)
-
-            } catch (error) {
-                console.error(error)
-            }
+        if(isHisTurn){
+            setIsHeWritting(true)
+            setTimeout(feedReceiveMessage, 3000)
         }
-
-        setTimeout(feedReceiveMessage, 3000)
-
-    }, [isHeWritting])
+    }, [isHisTurn])
 
     return (
         <StyledSendMessageContainer>
