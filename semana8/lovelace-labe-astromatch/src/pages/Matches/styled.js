@@ -7,6 +7,7 @@ export const StyledContainerMatches = styled.div`
     justify-content: space-around;
 
     margin-top: 2vh;
+    margin-bottom: 5vh;
     width: 100%;
     
 `

@@ -1,11 +1,12 @@
 import {StyledCardMatches} from './styled'
-import ProfilePicture from '../../assets/profile.jpeg'
 import MessageIcon from '../../assets/balao.png'
 
 export default function CardMatch(props){
+    const profile = props.profile
+
     return <StyledCardMatches>
-        <img src={ProfilePicture} alt='profile' />
-        <p>Dinossauro Predador Rex</p>
+        <img src={profile.photo} alt='profile' />
+        <p>{profile.name}</p>
         <button
             onClick={() => props.setCurrentPage('sendmessages')}
         >
