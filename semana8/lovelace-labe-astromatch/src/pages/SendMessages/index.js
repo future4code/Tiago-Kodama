@@ -3,6 +3,8 @@ import CardMessage from "../../componets/CardMessage";
 import { StyledMenssageBoard, StyledInputMessage, StyledSendMessageContainer, StyledWriting } from './styled'
 
 import axios from "axios";
+import {chatBotURL} from '../../constants/rapidAPI'
+import {englishToPortuguese, portugueseToEnglish} from '../../utils/translate'
 
 export default function SendMessages(props) {
 
@@ -11,13 +13,14 @@ export default function SendMessages(props) {
     const [isHeWritting, setIsHeWritting] = useState(false)
     const [isHisTurn, setIsHisTrurn] = useState(false)
 
+
     const handleEnter = async () => {
         if (!inputMessage) return
         feedSendMessages(inputMessage)
         setInputMessage('')
     }
 
-    const feedSendMessages = text => {
+    const feedSendMessages = async text => {
         const newMessage = {
             author: 'Você',
             text: text,
@@ -25,17 +28,18 @@ export default function SendMessages(props) {
         }
         const newList = [...messages, newMessage]
         setMessages(newList)
-        setTimeout(() => setIsHisTrurn(true), 1000)
+        setIsHisTrurn(true)
     }
 
     const feedReceiveMessage = async () => {
         try {
             const message = messages[messages.length-1].text
+            const messageEn = await portugueseToEnglish(message)
 
             const options = {
                 method: 'GET',
-                url: 'https://ai-chatbot.p.rapidapi.com/chat/free',
-                params: {message: `${message}`, uid: props.profile.id},
+                url: chatBotURL,
+                params: {message: `${messageEn}`, uid: props.profile.id},
                 headers: {
                   'x-rapidapi-key': '4b3a452826msh742903192d79ac4p1f2704jsn2c2287fdf21b',
                   'x-rapidapi-host': 'ai-chatbot.p.rapidapi.com'
@@ -44,9 +48,11 @@ export default function SendMessages(props) {
 
             const res = await axios.request(options)
             const himText = res.data.chatbot.response
+            const messagePt = await englishToPortuguese(himText)
+
             const newMessage = {
                 author: 'Meu futuro amor',
-                text: himText,
+                text: messagePt,
                 timeStamp: Date.now()
             }
             setMessages([...messages, newMessage])
@@ -61,7 +67,7 @@ export default function SendMessages(props) {
     useEffect(() => {
         if(isHisTurn){
             setIsHeWritting(true)
-            setTimeout(feedReceiveMessage, 3000)
+            feedReceiveMessage()
         }
     }, [isHisTurn])
 
