@@ -11,10 +11,6 @@ const StyledHead = Styled.div`
         height: 90%;
         border: none;
         background: transparent;
-
-        &:hover {
-            height: 80%;
-        }
     }
 
 
