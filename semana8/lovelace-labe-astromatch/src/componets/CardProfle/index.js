@@ -1,6 +1,6 @@
 import StyledCardProfile from "./styled";
 
-export default function CardProfile({profile}){
+export default function CardProfile({profile, status}){
     return <StyledCardProfile>
         <div>
             <img src={profile.photo} alt='profle' />

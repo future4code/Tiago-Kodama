@@ -6,9 +6,9 @@ import axios from "axios";
 
 export default function SendMessages() {
 
-    const [messages, setMessages] = useState([{ author: 'Meu futuro amor', text: 'Sorry.. I do not speak portuguese', timeStamp: Date.now() }])
+    const [messages, setMessages] = useState([])
     const [inputMessage, setInputMessage] = useState('')
-    const [isHeWritting, setIsHeWritting] = useState(false)
+    const [isHeWritting, setIsHeWritting] = useState(true)
 
     const handleEnter = async () => {
         if (!inputMessage) return
@@ -55,7 +55,7 @@ export default function SendMessages() {
             }
         }
 
-        setTimeout(feedReceiveMessage, 7000)
+        setTimeout(feedReceiveMessage, 3000)
 
     }, [isHeWritting])
 

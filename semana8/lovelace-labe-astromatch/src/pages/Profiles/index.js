@@ -1,8 +1,7 @@
 import { useEffect, useState } from "react";
-import CardProfile from "../../componets/CardProfle";
 
+import CardProfile from "../../componets/CardProfle";
 import { StyledContainerProfiles, StyledButtonContainer, StyledLoading } from './styled'
-import { StyledModal } from './styled'
 
 import axios from 'axios'
 import {getProfileURL, choosePersonURL} from '../../constants/astromatchAPI'
@@ -10,7 +9,6 @@ import {getProfileURL, choosePersonURL} from '../../constants/astromatchAPI'
 export default function Profiles() {
     const [profile, setProfile] = useState({})
     const [loading, setLoading] = useState(false)
-    const [mensagem, setMensagem] = useState('')
 
     const getProfile = async () => {
         setLoading(true)
@@ -32,9 +30,10 @@ export default function Profiles() {
             const res = await axios.post(choosePersonURL, body)
 
             if(res.data.isMatch) {
-                setMensagem('Match!')
-            }
+                alert('Match!')
 
+            }
+            
             getProfile()            
         }
         catch(error){
@@ -46,26 +45,13 @@ export default function Profiles() {
         getProfile()
     }, [])
 
-    useEffect(() => {
-        setTimeout(() => setMensagem(''), 2000)
-    }, [mensagem])
-
-    const modal = () => {
-        if(mensagem)
-            return (
-                <StyledModal>
-                    <p>Match!</p>
-                </StyledModal>
-            );
-    }
-
     const render = () => {
         if (!Object.keys(profile).length || loading)
             return <StyledLoading>Loading</StyledLoading>
 
         return (
             <>
-                <CardProfile profile={profile} />
+                <CardProfile profile={profile}/>
                 <StyledButtonContainer>
                     <button
                         onClick={() => decide(false)}
@@ -86,7 +72,6 @@ export default function Profiles() {
 
     return (
         <StyledContainerProfiles>
-            {modal()}
             {render()}
         </StyledContainerProfiles>
     );

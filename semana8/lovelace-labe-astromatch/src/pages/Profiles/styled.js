@@ -42,23 +42,3 @@ export const StyledLoading = styled.p`
     font-size: 1.5rem;
 
 `
-
-export const StyledModal = styled.div`
-    position: absolute;
-    width: 100vw;
-    height: 100vh;
-    padding-top: 30vh;
-
-    background: black;
-    opacity: .95;
-
-    display: flex;
-    justify-content: center;
-
-    p {
-        font-size: 3rem;
-        font-weight: 500;
-        color: white;
-        text-shadow: 1px 1px 1px #000;
-    }
-`
