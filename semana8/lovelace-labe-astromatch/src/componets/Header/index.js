@@ -1,4 +1,7 @@
 import ImageCircle from '../../assets/circle.png'
+import ImageButtonFind from '../../assets/achar.png'
+import ImageButtonMatch from '../../assets/match.png'
+import ImageButtonClean from '../../assets/clean.png'
 import StyledHead from './styled'
 
 export default function Header({ setCurrentPage }) {
@@ -9,7 +12,7 @@ export default function Header({ setCurrentPage }) {
                     onClick={() => setCurrentPage('profiles')}
                 >
                     <img
-                        src={ImageCircle}
+                        src={ImageButtonFind}
                         alt='Botao'
                         draggable="false"
                     />
@@ -19,7 +22,7 @@ export default function Header({ setCurrentPage }) {
                     onClick={() => setCurrentPage('matches')}
                 >
                     <img
-                        src={ImageCircle}
+                        src={ImageButtonMatch}
                         alt='Botao'
                         draggable="false"
                     />
@@ -29,7 +32,7 @@ export default function Header({ setCurrentPage }) {
                     onClick={() => setCurrentPage('clean')}
                 >
                     <img
-                        src={ImageCircle}
+                        src={ImageButtonClean}
                         alt='Botao'
                         draggable="false"
                     />
