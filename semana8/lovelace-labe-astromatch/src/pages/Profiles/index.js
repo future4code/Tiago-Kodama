@@ -9,10 +9,10 @@ export default function Profiles(){
 
             <StyledButtonContainer>
                 <button>
-                    <img src={Image} alt='button' />
+                    <img src={Image} alt='button' draggable="false"/>
                 </button>
                 <button>
-                    <img src={Image} alt='button' />
+                    <img src={Image} alt='button' draggable="false"/>
                 </button>
             </StyledButtonContainer>
         </StyledContainerProfiles>

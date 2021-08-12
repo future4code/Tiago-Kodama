@@ -1,5 +1,10 @@
 import styled from "styled-components";
 
+export const StyledSendMessageContainer = styled.div`
+    max-width: 800px;
+    width: 100%;
+`
+
 export const StyledMenssageBoard = styled.div`
     display: flex;
     flex-direction: column;
@@ -30,13 +35,18 @@ export const StyledInputMessage = styled.div`
 
     input {
         width: 70vw;
+        max-width: 500px;
         height: 50%;
         padding-left: 1rem; 
         outline: none;
+        background: #E5E8E8;
+        border-radius: 8px;
+        border: none;
     }
 
     button {
-        width: 15vw;
+        min-width: 70px;
+        width: 5vw;
         height: 50%;
         font-weight: 700;
         background: #17A589;

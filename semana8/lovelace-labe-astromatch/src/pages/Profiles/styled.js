@@ -9,6 +9,7 @@ export const StyledContainerProfiles = styled.div`
 
 export const StyledButtonContainer = styled.div`
     width: 100%;
+    max-width: 500px;
     margin-top: 4vh;
     display: flex;
     justify-content: space-around;
@@ -16,9 +17,14 @@ export const StyledButtonContainer = styled.div`
     button {
         background: none;
         border: none;
+        max-width: 100px;
+        min-width: 80px;
+        width: 15vw;
 
         img {
-            width: 15vw;
+            width: 90%;
+            
+  
         }
     }
 

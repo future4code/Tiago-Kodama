@@ -20,7 +20,7 @@ function App() {
         return <Profiles />
       
       case 'matches':
-        return <Matches />
+        return <Matches setCurrentPage={setCurrentPage}/>
 
       case 'clean':
         return <Clean />
@@ -46,4 +46,8 @@ export default App;
 const AppContainer = Styled.div`
   width: 100vw;
   min-height: 100vh;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `

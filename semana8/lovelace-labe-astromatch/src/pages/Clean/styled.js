@@ -25,7 +25,11 @@ export const StyledContainerClean = styled.div`
         font-weight: 700;
         border: none;
         border-radius: 5px;
-        padding: .5rem 1rem;
+        padding: .7rem 1rem;
+
+        &:hover {
+            opacity: .5;
+        }
     }
 
 `

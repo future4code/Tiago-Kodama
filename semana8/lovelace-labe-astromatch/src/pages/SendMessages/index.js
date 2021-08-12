@@ -1,9 +1,9 @@
 import CardMessage from "../../componets/CardMessage";
-import {StyledMenssageBoard, StyledInputMessage} from './styled'
+import {StyledMenssageBoard, StyledInputMessage, StyledSendMessageContainer} from './styled'
 
 export default function SendMessages(){
     return (
-        <div>
+        <StyledSendMessageContainer>
             <StyledMenssageBoard>
                 <CardMessage />
                 <CardMessage />
@@ -17,6 +17,6 @@ export default function SendMessages(){
                 <input />
                 <button>Enviar</button>
             </StyledInputMessage>
-        </div>
+        </StyledSendMessageContainer>
     );
 }
