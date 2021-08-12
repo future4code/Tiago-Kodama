@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import Styled from 'styled-components'
 
 import Header from './componets/Header/index'
@@ -9,10 +9,6 @@ import SendMessages from './pages/SendMessages/index';
 
 function App() {
   const [currentPage, setCurrentPage] = useState('profiles')
-
-  useEffect(() => {
-    console.log(currentPage)
-  },[currentPage])
 
   const renderCurrentPage = () => {
     switch (currentPage) {

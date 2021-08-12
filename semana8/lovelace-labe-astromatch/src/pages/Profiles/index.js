@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import CardProfile from "../../componets/CardProfle";
-// import Image from '../../assets/circle.png'
+
 import { StyledContainerProfiles, StyledButtonContainer, StyledLoading } from './styled'
 import { StyledModal } from './styled'
 
@@ -72,14 +72,12 @@ export default function Profiles() {
                         style={{background: 'red'}}
                     >
                         Não
-                        {/* <img src={Image} alt='button' draggable="false" /> */}
                     </button>
                     <button
                         onClick={() => decide(true)}
                         style={{background: 'green'}}
                     >
                         Sim
-                        {/* <img src={Image} alt='button' draggable="false" /> */}
                     </button>
                 </StyledButtonContainer>
             </>
