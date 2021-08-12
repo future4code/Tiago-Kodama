@@ -11,7 +11,7 @@ export const StyledMenssageBoard = styled.div`
     justify-content: flex-start;
     align-items: center;
 
-    overflow-y: auto;
+    overflow-y: scroll;
 
     width: 100%;
     height: 80vh;

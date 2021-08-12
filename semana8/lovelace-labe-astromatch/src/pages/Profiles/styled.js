@@ -40,7 +40,7 @@ export const StyledModal = styled.div`
     padding-top: 30vh;
 
     background: black;
-    opacity: .85;
+    opacity: .95;
 
     display: flex;
     justify-content: center;

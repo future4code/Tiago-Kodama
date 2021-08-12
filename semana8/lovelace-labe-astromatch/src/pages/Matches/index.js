@@ -25,6 +25,7 @@ export default function Matches(props){
     return <StyledContainerMatches>
         {!matches.length? <p>Você não tem nenhum match</p> :
         matches.map(match => <CardMatch 
+            key={match.id}
             setCurrentPage={props.setCurrentPage}
             profile={match}
         />)}
