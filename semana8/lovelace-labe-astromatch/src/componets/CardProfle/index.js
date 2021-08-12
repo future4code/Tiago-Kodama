@@ -1,18 +1,16 @@
 import StyledCardProfile from "./styled";
-import Image from '../../assets/profile.jpeg'
 
-export default function CardProfile(){
+export default function CardProfile({profile}){
     return <StyledCardProfile>
         <div>
-            <img src={Image} alt='profle' />
+            <img src={profile.photo} alt='profle' />
             <section>
-                <h2>Dinossauro Mutante Legal</h2>
-                <p><strong>26 </strong>anos</p>
+                <h2>{profile.name}</h2>
+                <p><strong>{profile.age} </strong>anos</p>
             </section>
         </div>
         <div>
-            <p>Bio: industry Lorem Ipsum has been the industry's standard dummy text ever since the 1500s when an unknown printer took a galley of type and scrambled it to make a type specimen book it has?
-</p>
+            <p>{profile.bio}</p>
         </div>
     </StyledCardProfile>
 }

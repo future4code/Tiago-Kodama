@@ -20,6 +20,7 @@ const StyledCardProfile = styled.div`
         section {
             display: flex;
             flex-wrap: wrap;
+            flex-direction: column;
             padding: 10px;
             width: 167px;
             height: 167px;

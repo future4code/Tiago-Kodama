@@ -23,11 +23,32 @@ export const StyledButtonContainer = styled.div`
 
         img {
             width: 90%;
-            
-  
         }
     }
+`
 
+export const StyledLoading = styled.p`
+    margin-top: 10vh;
+    font-size: 1.5rem;
 
 `
 
+export const StyledModal = styled.div`
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    padding-top: 30vh;
+
+    background: black;
+    opacity: .85;
+
+    display: flex;
+    justify-content: center;
+
+    p {
+        font-size: 3rem;
+        font-weight: 500;
+        color: white;
+        text-shadow: 1px 1px 1px #000;
+    }
+`
