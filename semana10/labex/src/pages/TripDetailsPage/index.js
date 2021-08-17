@@ -1,3 +1,11 @@
+import {useParams} from 'react-router-dom'
+
 export default function TripDetailsPage(){
-    return <p>TripDetailsPage</p>
+    const params = useParams()
+    return (
+        <div>
+            <p>TripDetailsPage</p>
+            <p>{params.id}</p>
+        </div>
+    );
 }

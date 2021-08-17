@@ -1,3 +1,12 @@
+import {useHistory} from 'react-router-dom'
+
 export default function ListTripPage(){
-    return <p>ListTripPage</p>
+
+    const history = useHistory()
+    return (
+        <div>
+            <p>ListTripPage</p>
+            <button onClick={() => history.push('/trips/application')}>ApplicationFormPage</button>
+        </div>
+    );
 }

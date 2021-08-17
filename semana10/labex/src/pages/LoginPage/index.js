@@ -1,3 +1,12 @@
+import {useHistory} from 'react-router-dom'
+
 export default function LoginPage(){
-    return <p>LoginPage</p>
+
+    const history = useHistory()
+    return (
+        <div>
+            <p>Login</p>
+            <button onClick={() => history.push('/admin/trips/list')}>ApplicationFormPage</button>
+        </div>
+    );
 }
