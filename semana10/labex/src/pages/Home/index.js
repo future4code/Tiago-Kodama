@@ -1,12 +1,20 @@
 import {useHistory} from 'react-router-dom'
 
+import {Container, Box, ButtonPrimary, PageTitle} from '../../style/global'
+
 export default function Home(){
+
     const history = useHistory()
+
     return (
-        <div>
-            <p>Home</p>
-            <button onClick={() => history.push('/trips/list')}>ListTrips</button>
-            <button onClick={() => history.push('/login')}>Admin</button>
-        </div>
+        <Container>
+            <Box>
+                <PageTitle>Home</PageTitle>
+            </Box>
+            <Box>
+                <ButtonPrimary onClick={() => history.push('/trips/list')}>ListTrips</ButtonPrimary>
+                <ButtonPrimary onClick={() => history.push('/login')}>Admin</ButtonPrimary>
+            </Box>
+        </Container>
     );
 }
