@@ -1,3 +1,4 @@
+import { pathAdmin, pathApplicationFormPage, pathCreateTrip, pathListTrips, pathLogin, pathTripsDetailsPage } from '../constants/paths'
 import {BrowserRouter, Switch, Route} from 'react-router-dom'
 
 import Home from '../pages/Home'
@@ -16,22 +17,22 @@ export const Routes = () => {
                 <Route exact path="/">
                     <Home />
                 </Route>
-                <Route exact path="/admin/trips/list">
+                <Route exact path={pathAdmin}>
                     <AdminHomePage />
                 </Route>
-                <Route exact path="/trips/application">
+                <Route exact path={pathApplicationFormPage}>
                     <ApplicationFormPage />
                 </Route>
-                <Route exact path="/admin/trips/create">
+                <Route exact path={pathCreateTrip}>
                     <CreateTripPage />
                 </Route>
-                <Route exact path="/trips/list">
+                <Route exact path={pathListTrips}>
                     <ListTripPage />
                 </Route>
-                <Route exact path="/login">
+                <Route exact path={pathLogin}>
                     <LoginPage />
                 </Route>
-                <Route exact path="/admin/trips/:id">
+                <Route exact path={`${pathTripsDetailsPage}/:id`}>
                     <TripDetailsPage />
                 </Route>
             </Switch>

@@ -1,4 +1,6 @@
 import {useHistory} from 'react-router-dom'
+import { pathApplicationFormPage } from '../../constants/paths';
+
 import {Container, Box, ButtonPrimary, PageTitle} from '../../style/global'
 
 export default function ListTripPage(){
@@ -10,7 +12,7 @@ export default function ListTripPage(){
                 <PageTitle>List Trip Page</PageTitle>
             </Box>
             <Box>
-                <ButtonPrimary onClick={() => history.push('/trips/application')}>ApplicationFormPage</ButtonPrimary>
+                <ButtonPrimary onClick={() => history.push(pathApplicationFormPage)}>ApplicationFormPage</ButtonPrimary>
             </Box>
         </Container>
     );

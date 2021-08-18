@@ -1,4 +1,5 @@
 import {useHistory} from 'react-router-dom'
+import { pathListTrips, pathAdmin } from '../../constants/paths';
 
 import {Container, Box, ButtonPrimary, PageTitle} from '../../style/global'
 
@@ -12,8 +13,8 @@ export default function Home(){
                 <PageTitle>Home</PageTitle>
             </Box>
             <Box>
-                <ButtonPrimary onClick={() => history.push('/trips/list')}>ListTrips</ButtonPrimary>
-                <ButtonPrimary onClick={() => history.push('/login')}>Admin</ButtonPrimary>
+                <ButtonPrimary onClick={() => history.push(pathListTrips)}>ListTrips</ButtonPrimary>
+                <ButtonPrimary onClick={() => history.push(pathAdmin)}>Admin</ButtonPrimary>
             </Box>
         </Container>
     );
