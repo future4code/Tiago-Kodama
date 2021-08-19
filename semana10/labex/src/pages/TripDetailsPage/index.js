@@ -22,6 +22,8 @@ export default function TripDetailsPage() {
         axios.get(`${urlGetTripDetail}/${idTrip}`, { headers })
             .then(res => console.log(res.data))
             .catch(err => alert(err.response.data.message))
+            
+    // eslint-disable-next-line
     }, [])
 
     return (

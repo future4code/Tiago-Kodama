@@ -11,5 +11,6 @@ export function useProtectPage() {
 
         if (!token) history.replace(pathLogin)
 
-    }, [])
+    // eslint-disable-next-line
+    }, []) 
 }
