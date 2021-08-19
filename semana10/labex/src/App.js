@@ -1,7 +1,6 @@
 import styled from "styled-components"
 import { StylesProvider } from '@material-ui/core/styles';
 
-
 import { Routes } from "./routes/routes"
 
 export default function App() {

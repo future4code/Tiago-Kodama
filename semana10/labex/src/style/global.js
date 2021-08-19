@@ -26,7 +26,6 @@ export const PageTitle = styled.h1`
     margin-top: 4rem;
     text-align: center;
     font-size: 2rem;
-
 `
 
 export const ButtonPrimary = styled(Button)`

@@ -1,11 +1,8 @@
 import { useParams } from 'react-router-dom'
 import { useEffect } from 'react';
 import { useProtectPage } from '../../hooks/useProtectPage'
-
 import { urlGetTripDetail } from '../../constants/apiLabex';
-
 import axios from 'axios'
-
 
 export default function TripDetailsPage() {
     const params = useParams()

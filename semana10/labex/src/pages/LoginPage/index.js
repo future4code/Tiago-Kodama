@@ -6,7 +6,6 @@ import { useForm } from '../../hooks/useForm';
 
 import axios from 'axios'
 
-
 export default function LoginPage() {
     const { form, onChange, cleanFields } = useForm({ email: '', password: '' })
     const history = useHistory()
