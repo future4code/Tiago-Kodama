@@ -24,7 +24,7 @@ export default function ListTripPage(){
                 <PageTitle>List Trip Page</PageTitle>
             </Box>
             <Box>
-                {trips.map(trip => <CardTripsToSubscribe object={trip}/>)}
+                {trips.map(trip => <CardTripsToSubscribe key={trip.id} object={trip}/>)}
                 <ButtonPrimary onClick={() => history.push(pathApplicationFormPage)}>ApplicationFormPage</ButtonPrimary>
             </Box>
         </Container>

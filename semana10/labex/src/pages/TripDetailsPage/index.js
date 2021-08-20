@@ -1,24 +1,39 @@
+import axios from 'axios'
 import { useParams } from 'react-router-dom'
 import { useEffect } from 'react';
 import { useProtectPage } from '../../hooks/useProtectPage'
 import { urlGetTripDetail } from '../../constants/apiLabex';
-import axios from 'axios'
+import { useState } from 'react';
+
+import CardTripDetail from '../../components/CardTripDetail';
+import ContainerStatusCandidates from '../../components/ContainerStatusCandidates';
 
 export default function TripDetailsPage() {
+    useProtectPage()
+    const [tripDetail, setTripDetail] = useState({})
     const params = useParams()
     const idTrip = params.id
 
-    useProtectPage()
+    const getTripDetail = async () => {
+        try {
+            const token = localStorage.getItem('token')
+
+            if (!token) return
+    
+            const headers = { auth: token }
+            const res = await axios.get(urlGetTripDetail(idTrip), { headers })
+
+            setTripDetail(res.data.trip)
+            console.log(tripDetail)
+
+        } catch (error) {
+            alert('Erro ao buscar detalhes da viagem.')
+        }
+    }
+
 
     useEffect(() => {
-        const token = localStorage.getItem('token')
-
-        if (!token) return
-
-        const headers = { auth: token }
-        axios.get(`${urlGetTripDetail}/${idTrip}`, { headers })
-            .then(res => console.log(res.data))
-            .catch(err => alert(err.response.data.message))
+        getTripDetail()
             
     // eslint-disable-next-line
     }, [])
@@ -26,7 +41,13 @@ export default function TripDetailsPage() {
     return (
         <div>
             <p>TripDetailsPage</p>
-            <p>{params.id}</p>
+            <CardTripDetail object={tripDetail} />
+            <ContainerStatusCandidates 
+                candidates={tripDetail.candidates} 
+                approved={tripDetail.approved} 
+                trip={tripDetail}
+                updateTripDetail={getTripDetail}
+            />
         </div>
     );
 }
