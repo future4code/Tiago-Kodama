@@ -4,3 +4,4 @@ export const urlCreateTrip = 'https://us-central1-labenu-apis.cloudfunctions.net
 export const urlGetTrips = 'https://us-central1-labenu-apis.cloudfunctions.net/labeX/tiagokodama/trips'
 
 export const urlApplyToTripById = id => `https://us-central1-labenu-apis.cloudfunctions.net/labeX/tiagokodama/trips/${id}/apply`
+export const urlDeleteTripById = id => `https://us-central1-labenu-apis.cloudfunctions.net/labeX/tiagokodama/trips/${id}`
