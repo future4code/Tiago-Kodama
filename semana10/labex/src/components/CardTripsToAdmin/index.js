@@ -1,33 +1,16 @@
 import { useHistory } from "react-router-dom"
 import { pathTripsDetailsPage } from '../../constants/paths'
 import { StyledCardTrip } from './styled'
-
-import { makeStyles } from '@material-ui/core/styles';
+import { useStyles } from '../../hooks/useStyles'
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 
-const useStyles = makeStyles({
-    root: {
-        minWidth: 275,
-    },
-    bullet: {
-        display: 'inline-block',
-        margin: '0 2px',
-        transform: 'scale(0.8)',
-    },
-    title: {
-        fontSize: 14,
-    },
-    pos: {
-        marginBottom: 12,
-    },
-});
 
 export default function CardTripsToAdmin({ tripInfos, handleRemoveButton }) {
     const history = useHistory()
- 
+
     const classes = useStyles();
     const bull = <span className={classes.bullet}>•</span>;
 
@@ -41,10 +24,10 @@ export default function CardTripsToAdmin({ tripInfos, handleRemoveButton }) {
                 {tripInfos.name}
             </Typography>
             <Typography className={classes.pos} color="textSecondary">
-            ID: {tripInfos.id}
+                ID: {tripInfos.id}
             </Typography>
             <Typography variant="body2" component="p">
-            {tripInfos.description}          
+                {tripInfos.description}
             </Typography>
         </CardContent>
         <CardActions>

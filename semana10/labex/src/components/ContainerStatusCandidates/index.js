@@ -1,8 +1,9 @@
 import axios from 'axios'
+import CardPersonsToAdmin from '../CardPersonsToAdmin'
+
 import { urlDecideCandidateByTripAndCandidate } from '../../constants/apiLabex'
 import {StyledContainerStatusCantidates} from './styled'
 
-import CardPersonsToAdmin from '../CardPersonsToAdmin'
 
 export default function ContainerStatusCandidates({candidates=[], approved=[], trip={}, updateTripDetail}){
 

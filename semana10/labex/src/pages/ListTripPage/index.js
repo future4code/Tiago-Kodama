@@ -1,11 +1,10 @@
 import axios from 'axios'
+import CardTrip from '../../components/CardTrip';
 import { useHistory } from 'react-router-dom'
 import { pathApplicationFormPage } from '../../constants/paths';
 import { urlGetTrips } from '../../constants/apiLabex';
 import { useState, useEffect } from 'react';
-
 import { Container, Box, ButtonPrimary, PageTitle, ContainerCardTrip } from '../../style/global'
-import CardTrip from '../../components/CardTrip';
 
 export default function ListTripPage() {
     const [trips, setTrips] = useState([])

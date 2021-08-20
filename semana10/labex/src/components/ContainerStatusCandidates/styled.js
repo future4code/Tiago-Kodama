@@ -22,6 +22,10 @@ export const StyledContainerStatusCantidates = styled(Container)`
         border: 1px solid white;
         border-radius: 5px;
         margin-top: 10px;
-        min-width: 300px;
     }
+
+    & > div {
+        min-width: 350px;
+    }
+
 `

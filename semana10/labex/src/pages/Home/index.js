@@ -1,6 +1,5 @@
 import { useHistory } from 'react-router-dom'
 import { pathListTrips, pathAdmin } from '../../constants/paths';
-
 import { Container, Box, ButtonPrimary, PageTitle } from '../../style/global'
 
 export default function Home() {

@@ -1,12 +1,11 @@
 import axios from 'axios'
+import CardTrip from '../../components/CardTrip';
+import ContainerStatusCandidates from '../../components/ContainerStatusCandidates';
 import { useHistory, useParams } from 'react-router-dom'
 import { useEffect } from 'react';
 import { useProtectPage } from '../../hooks/useProtectPage'
 import { urlGetTripDetail } from '../../constants/apiLabex';
 import { useState } from 'react';
-
-import CardTrip from '../../components/CardTrip';
-import ContainerStatusCandidates from '../../components/ContainerStatusCandidates';
 import { Container, Box, ButtonPrimary, PageTitle } from '../../style/global'
 import { pathAdmin } from '../../constants/paths';
 
@@ -22,7 +21,7 @@ export default function TripDetailsPage() {
             const token = localStorage.getItem('token')
 
             if (!token) return
-    
+
             const headers = { auth: token }
             const res = await axios.get(urlGetTripDetail(idTrip), { headers })
 
@@ -36,8 +35,7 @@ export default function TripDetailsPage() {
 
     useEffect(() => {
         getTripDetail()
-            
-    // eslint-disable-next-line
+        // eslint-disable-next-line
     }, [])
 
     return (
@@ -53,9 +51,9 @@ export default function TripDetailsPage() {
                 <CardTrip tripInfo={tripDetail} />
             </Box>
             <Box>
-                <ContainerStatusCandidates 
-                    candidates={tripDetail.candidates} 
-                    approved={tripDetail.approved} 
+                <ContainerStatusCandidates
+                    candidates={tripDetail.candidates}
+                    approved={tripDetail.approved}
                     trip={tripDetail}
                     updateTripDetail={getTripDetail}
                 />

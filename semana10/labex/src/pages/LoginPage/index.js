@@ -1,10 +1,9 @@
+import axios from 'axios'
 import { useEffect } from 'react';
 import { useHistory } from 'react-router-dom'
 import { urlLogin } from '../../constants/apiLabex';
 import { pathAdmin } from '../../constants/paths';
 import { useForm } from '../../hooks/useForm';
-
-import axios from 'axios'
 
 export default function LoginPage() {
     const { form, onChange, cleanFields } = useForm({ email: '', password: '' })
