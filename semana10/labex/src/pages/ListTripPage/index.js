@@ -5,7 +5,7 @@ import { urlGetTrips } from '../../constants/apiLabex';
 import { useState, useEffect } from 'react';
 
 import { Container, Box, ButtonPrimary, PageTitle, ContainerCardTrip } from '../../style/global'
-import CardTripsToSubscribe from '../../components/CardTripsToSubscribe';
+import CardTrip from '../../components/CardTrip';
 
 export default function ListTripPage() {
     const [trips, setTrips] = useState([])
@@ -24,11 +24,11 @@ export default function ListTripPage() {
             </Box>
             <Box>
                 <ButtonPrimary onClick={() => history.push('/')}>Página inicial</ButtonPrimary>
-                <ButtonPrimary onClick={() => history.push(pathApplicationFormPage)}>ApplicationFormPage</ButtonPrimary>
+                <ButtonPrimary onClick={() => history.push(pathApplicationFormPage)}>Candidatar à viagem</ButtonPrimary>
             </Box>
             <Box>
                 <ContainerCardTrip>
-                {trips.map(trip => <CardTripsToSubscribe key={trip.id} tripInfo={trip} />)}
+                {trips.map(trip => <CardTrip key={trip.id} tripInfo={trip} />)}
                 </ContainerCardTrip>
             </Box>
         </Container>

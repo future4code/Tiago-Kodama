@@ -22,7 +22,7 @@ const useStyles = makeStyles({
   },
 });
 
-export default function CardTripsToSubscribe({ tripInfo }) {
+export default function CardTrip({ tripInfo }) {
   const classes = useStyles();
   const bull = <span className={classes.bullet}>•</span>;
 

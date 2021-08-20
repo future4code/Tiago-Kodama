@@ -1,6 +1,8 @@
 import axios from 'axios'
 import { urlDecideCandidateByTripAndCandidate } from '../../constants/apiLabex'
+import {StyledContainerStatusCantidates} from './styled'
 
+import CardPersonsToAdmin from '../CardPersonsToAdmin'
 
 export default function ContainerStatusCandidates({candidates=[], approved=[], trip={}, updateTripDetail}){
 
@@ -25,23 +27,27 @@ export default function ContainerStatusCandidates({candidates=[], approved=[], t
 
     }
 
-    return <div>
+    return <StyledContainerStatusCantidates>
         <div>
-            <p><strong>Candidatos</strong></p>
+            <h2>Candidatos</h2>
             {candidates.map(candidate => (
-                <div key={candidate.id}> 
-                    <p>{candidate.name}</p>
-                    <button onClick={() => aproveCandidate(candidate, true)}>Aceitar</button>
-                </div>
+                <CardPersonsToAdmin 
+                    key={candidate.id}
+                    personInfos={candidate}
+                    handleButtons={{
+                        "Aceitar": () => aproveCandidate(candidate, true)
+                    }}
+                />
             ))}
         </div>
         <div>
-            <p><strong>Aprovados</strong></p>
+            <h2>Aprovados</h2>
             {approved.map(candidate => (
-                <div key={candidate.id}> 
-                    <p>{candidate.name}</p>
-                </div>
+                <CardPersonsToAdmin 
+                    key={candidate.id} 
+                    personInfos={candidate}
+                />
             ))}
         </div>
-    </div>
+    </StyledContainerStatusCantidates>
 }
