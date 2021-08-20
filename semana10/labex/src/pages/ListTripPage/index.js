@@ -1,14 +1,13 @@
-import {useHistory} from 'react-router-dom'
+import axios from 'axios'
+import { useHistory } from 'react-router-dom'
 import { pathApplicationFormPage } from '../../constants/paths';
+import { urlGetTrips } from '../../constants/apiLabex';
+import { useState, useEffect } from 'react';
+
+import { Container, Box, ButtonPrimary, PageTitle, ContainerCardTrip } from '../../style/global'
 import CardTripsToSubscribe from '../../components/CardTripsToSubscribe';
 
-import {Container, Box, ButtonPrimary, PageTitle} from '../../style/global'
-import { useState } from 'react';
-import axios from 'axios'
-import { useEffect } from 'react';
-import { urlGetTrips } from '../../constants/apiLabex';
-
-export default function ListTripPage(){
+export default function ListTripPage() {
     const [trips, setTrips] = useState([])
     const history = useHistory()
 
@@ -21,11 +20,16 @@ export default function ListTripPage(){
     return (
         <Container>
             <Box>
-                <PageTitle>List Trip Page</PageTitle>
+                <PageTitle>Lista de viagens</PageTitle>
             </Box>
             <Box>
-                {trips.map(trip => <CardTripsToSubscribe key={trip.id} object={trip}/>)}
+                <ButtonPrimary onClick={() => history.push('/')}>Página inicial</ButtonPrimary>
                 <ButtonPrimary onClick={() => history.push(pathApplicationFormPage)}>ApplicationFormPage</ButtonPrimary>
+            </Box>
+            <Box>
+                <ContainerCardTrip>
+                {trips.map(trip => <CardTripsToSubscribe key={trip.id} tripInfo={trip} />)}
+                </ContainerCardTrip>
             </Box>
         </Container>
     );

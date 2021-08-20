@@ -1,3 +1,4 @@
+import "./style/global.css"
 import styled from "styled-components"
 import { StylesProvider } from '@material-ui/core/styles';
 
@@ -18,6 +19,5 @@ const ContainerApp = styled.div`
   padding: 0;
   box-sizing: border-box;
 
-  width: 99vw;
-  height: 97vh;
+  max-width: 100vw;
 `

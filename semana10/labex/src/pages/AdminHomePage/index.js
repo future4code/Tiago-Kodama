@@ -6,6 +6,8 @@ import { pathCreateTrip } from '../../constants/paths'
 import { urlGetTrips, urlDeleteTripById } from '../../constants/apiLabex';
 
 import CardTripsToAdmin from '../../components/CardTripsToAdmin';
+import { Container, Box, ButtonPrimary, PageTitle, ButtonAction, ContainerCardTrip } from '../../style/global'
+
 
 export default function AdminHomePage() {
     useProtectPage()
@@ -21,7 +23,7 @@ export default function AdminHomePage() {
         try {
             const res = await axios.get(urlGetTrips)
             setTrips(res.data.trips)
-            
+
         } catch (error) {
             alert('Erro ao buscar viagems')
         }
@@ -33,25 +35,40 @@ export default function AdminHomePage() {
             "Content-Type": "application/json"
         }
 
-        axios.delete(urlDeleteTripById(id), {headers})
+        axios.delete(urlDeleteTripById(id), { headers })
             .then(res => {
-                if(res.status===200){
+                if (res.status === 200) {
                     alert("Viagem removida com sucesso")
                     updateTrips()
                 }
                 else {
-                    alert("Viagem não pode ser criada")                
+                    alert("Viagem não pode ser criada")
                 }
             })
             .catch(err => alert(err.response.data.message))
     }
 
     return (
-        <div>
-            <p>AdminHomePage</p>
-            {trips.map(trip => <CardTripsToAdmin object={trip} handleRemoveButton={handleRemoveButton} key={trip.id}/>)}
-
-            <button onClick={() => history.push(pathCreateTrip)}>CreateTrip</button>
-        </div>
+        <Container>
+            <Box>
+                <PageTitle>Página administrativa</PageTitle>
+            </Box>
+            <Box>
+                <ButtonPrimary onClick={() => history.push('/')}>Página inicial</ButtonPrimary>
+            </Box>
+            <Box>
+                <ContainerCardTrip>
+                {trips.map(trip => (
+                <CardTripsToAdmin 
+                    tripInfos={trip} 
+                    handleRemoveButton={handleRemoveButton} 
+                    key={trip.id} 
+                />))}
+                </ContainerCardTrip>
+            </Box>
+            <Box>
+                <ButtonAction onClick={() => history.push(pathCreateTrip)}>Criar viagem</ButtonAction>
+            </Box>
+        </Container>
     );
 }
