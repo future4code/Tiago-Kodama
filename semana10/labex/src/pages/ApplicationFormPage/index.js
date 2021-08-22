@@ -8,11 +8,15 @@ import { Container, Box, ButtonPrimary, PageTitle, ButtonAction } from '../../st
 import { useHistory } from "react-router-dom"
 
 import { StyledForm } from './styled'
+import { useError } from "../../hooks/useError"
+import ModalError from '../../components/ModalError';
+
 
 export default function ApplicatioinFormPage() {
 
     const [allCountryName, setAllCountryName] = useState([])
     const [allTrips, setAllTrips] = useState([])
+    const { errMessage, setErrMessage} = useError()
     const history = useHistory()
 
     const { form, onChange, cleanFields } = useForm({
@@ -31,25 +35,26 @@ export default function ApplicatioinFormPage() {
         const body = form
         axios.post(urlApplyToTripById(form.trip), body, { headers })
             .then(res => {
-                alert(res.data.message)
+                setErrMessage(res.data.message)
                 cleanFields()
             })
-            .catch(() => alert("Erro ao tentar aplicar a vaga."))
+            .catch(() => setErrMessage("Erro ao tentar aplicar a vaga."))
     }
 
     useEffect(() => {
 
         axios.get(urlGetTrips)
             .then(res => setAllTrips(res.data.trips))
-            .catch(() => alert("Não foi possível buscar a lista de viagens."))
+            .catch(() => setErrMessage("Não foi possível buscar a lista de viagens."))
 
         axios.get(urlGetAllCountrys)
             .then(res => setAllCountryName(res.data))
-            .catch(() => alert("Não foi possível buscar o nome dos países."))
+            .catch(() => setErrMessage("Não foi possível buscar o nome dos países."))
     }, [])
 
     return (
         <Container>
+            <ModalError message={errMessage} />
             <Box>
                 <PageTitle>Formulário para se candidatar a vaga</PageTitle>
             </Box>

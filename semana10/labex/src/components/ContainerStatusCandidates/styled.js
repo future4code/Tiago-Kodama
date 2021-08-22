@@ -8,6 +8,7 @@ export const StyledContainerStatusCantidates = styled(Container)`
     justify-content: space-around;
     width: 100vw;
     min-height: 45vh;
+    border-radius: 5px;
 
     padding: 1vw;
     background: rgb(46,46,46);

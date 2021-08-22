@@ -7,13 +7,16 @@ import { urlGetTrips, urlDeleteTripById } from '../../constants/apiLabex';
 
 import CardTripsToAdmin from '../../components/CardTripsToAdmin';
 import { Container, Box, ButtonPrimary, PageTitle, ButtonAction, ContainerCardTrip } from '../../style/global'
+import { useError } from '../../hooks/useError';
+import ModalError from '../../components/ModalError';
 
 
 export default function AdminHomePage() {
     useProtectPage()
-
+    
     const history = useHistory()
     const [trips, setTrips] = useState([])
+    const { errMessage, setErrMessage } = useError()
 
     useEffect(() => {
         updateTrips()
@@ -25,7 +28,7 @@ export default function AdminHomePage() {
             setTrips(res.data.trips)
 
         } catch (error) {
-            alert('Erro ao buscar viagems')
+            setErrMessage('Erro ao buscar viagems')
         }
     }
 
@@ -38,18 +41,19 @@ export default function AdminHomePage() {
         axios.delete(urlDeleteTripById(id), { headers })
             .then(res => {
                 if (res.status === 200) {
-                    alert("Viagem removida com sucesso")
+                    setErrMessage("Viagem removida com sucesso")
                     updateTrips()
                 }
                 else {
-                    alert("Viagem não pode ser criada")
+                    setErrMessage("Viagem não pode ser criada")
                 }
             })
-            .catch(err => alert(err.response.data.message))
+            .catch(err => setErrMessage(err.response.data.message))
     }
-
+    
     return (
         <Container>
+            <ModalError message={errMessage} />
             <Box>
                 <PageTitle>Página administrativa</PageTitle>
             </Box>

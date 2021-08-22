@@ -1,20 +1,24 @@
 import { useHistory } from 'react-router-dom'
 import { pathListTrips, pathAdmin } from '../../constants/paths';
-import { Container, Box, ButtonPrimary, PageTitle } from '../../style/global'
+import { Box, ButtonPrimary, PageTitle } from '../../style/global'
+import { StyledContainer } from './styled'
 
 export default function Home() {
 
     const history = useHistory()
 
     return (
-        <Container>
+        <StyledContainer>
             <Box>
-                <PageTitle>Home</PageTitle>
+                <PageTitle>Labex</PageTitle>
+            </Box>
+                <p>Conhecendo os 93 bilhões de anos-luz do seu Universo.</p>
+            <Box>
             </Box>
             <Box>
                 <ButtonPrimary onClick={() => history.push(pathListTrips)}>Ver viagems</ButtonPrimary>
                 <ButtonPrimary onClick={() => history.push(pathAdmin)}>Administração</ButtonPrimary>
             </Box>
-        </Container>
+        </StyledContainer>
     );
 }

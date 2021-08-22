@@ -6,10 +6,12 @@ import { urlCreateTrip } from "../../constants/apiLabex"
 import { Container, Box, ButtonPrimary, PageTitle, ButtonAction } from '../../style/global'
 import { useHistory } from "react-router-dom"
 import { StyledForm } from './styled'
-
+import { useError } from '../../hooks/useError';
+import ModalError from '../../components/ModalError';
 
 export default function CreateTripPage() {
     const { form, onChange, cleanFields } = useForm({ name: '', planet: '', date: '', description: '', durationInDays: '' })
+    const { errMessage, setErrMessage } = useError()
 
     const history = useHistory()
     
@@ -27,18 +29,19 @@ export default function CreateTripPage() {
         axios.post(urlCreateTrip, body, { headers })
             .then(res => {
                 if (res.status === 200) {
-                    alert("Viagem criada com sucesso")
+                    setErrMessage("Viagem criada com sucesso")
                     cleanFields()
                 }
                 else {
-                    alert("Viagem não pode ser criada")
+                    setErrMessage("Viagem não pode ser criada")
                 }
             })
-            .catch(err => alert(err.response.data.message))
+            .catch(err => setErrMessage(err.response.data.message))
     }
 
     return (
         <Container>
+            <ModalError message={errMessage} />
             <Box>
                 <PageTitle>Criar uma viagem</PageTitle>
             </Box>

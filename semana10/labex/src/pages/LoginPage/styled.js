@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { FormGroup } from '@material-ui/core';
 
-export const StyledForm = styled(FormGroup)`
+export const StyledForm = styled.form`
     width: 50vw;
     min-width: 320px;
     margin: 15px;
@@ -19,6 +19,10 @@ export const StyledForm = styled(FormGroup)`
     textarea {
         margin: .3rem 0;
         padding: .5rem;
+    }
+
+    button {
+        margin: 1rem 0;
     }
 
 `

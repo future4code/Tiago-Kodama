@@ -5,19 +5,23 @@ import { pathApplicationFormPage } from '../../constants/paths';
 import { urlGetTrips } from '../../constants/apiLabex';
 import { useState, useEffect } from 'react';
 import { Container, Box, ButtonPrimary, PageTitle, ContainerCardTrip } from '../../style/global'
+import { useError } from '../../hooks/useError';
+import ModalError from '../../components/ModalError';
 
 export default function ListTripPage() {
     const [trips, setTrips] = useState([])
+    const { errMessage, setErrMessage } = useError()
     const history = useHistory()
 
     useEffect(() => {
         axios.get(urlGetTrips)
             .then(res => setTrips(res.data.trips))
-            .catch(() => alert('Erro ao buscar viagems'))
+            .catch(() => setErrMessage('Erro ao buscar viagems'))
     }, [])
 
     return (
         <Container>
+            <ModalError message={errMessage} />
             <Box>
                 <PageTitle>Lista de viagens</PageTitle>
             </Box>

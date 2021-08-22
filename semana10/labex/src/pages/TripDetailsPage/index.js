@@ -6,12 +6,16 @@ import { useEffect } from 'react';
 import { useProtectPage } from '../../hooks/useProtectPage'
 import { urlGetTripDetail } from '../../constants/apiLabex';
 import { useState } from 'react';
-import { Container, Box, ButtonPrimary, PageTitle } from '../../style/global'
+import { Box, ButtonPrimary, PageTitle } from '../../style/global'
+import { StyledContainer } from './styled'
 import { pathAdmin } from '../../constants/paths';
+import { useError } from '../../hooks/useError';
+import ModalError from '../../components/ModalError';
 
 export default function TripDetailsPage() {
     useProtectPage()
     const [tripDetail, setTripDetail] = useState({})
+    const { errMessage, setErrMessage } = useError()
     const params = useParams()
     const history = useHistory()
     const idTrip = params.id
@@ -28,7 +32,7 @@ export default function TripDetailsPage() {
             setTripDetail(res.data.trip)
 
         } catch (error) {
-            alert('Erro ao buscar detalhes da viagem.')
+            setErrMessage('Erro ao buscar detalhes da viagem.')
         }
     }
 
@@ -39,7 +43,8 @@ export default function TripDetailsPage() {
     }, [])
 
     return (
-        <Container>
+        <StyledContainer>
+            <ModalError message={errMessage} />
             <Box>
                 <PageTitle>Administração da viagem</PageTitle>
             </Box>
@@ -58,6 +63,6 @@ export default function TripDetailsPage() {
                     updateTripDetail={getTripDetail}
                 />
             </Box>
-        </Container>
+        </StyledContainer>
     );
 }
