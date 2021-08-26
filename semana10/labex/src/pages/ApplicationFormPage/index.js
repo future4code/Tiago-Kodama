@@ -50,6 +50,7 @@ export default function ApplicatioinFormPage() {
         axios.get(urlGetAllCountrys)
             .then(res => setAllCountryName(res.data))
             .catch(() => setErrMessage("Não foi possível buscar o nome dos países."))
+    // eslint-disable-next-line
     }, [])
 
     return (

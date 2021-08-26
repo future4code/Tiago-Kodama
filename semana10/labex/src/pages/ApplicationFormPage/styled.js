@@ -1,7 +1,6 @@
 import styled from "styled-components";
-import { FormGroup } from '@material-ui/core';
 
-export const StyledForm = styled(FormGroup)`
+export const StyledForm = styled.form`
     width: 50vw;
     min-width: 320px;
     margin: 15px;

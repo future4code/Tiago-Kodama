@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { FormGroup } from '@material-ui/core';
 
 export const StyledForm = styled.form`
     width: 50vw;

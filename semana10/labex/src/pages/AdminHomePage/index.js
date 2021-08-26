@@ -20,6 +20,7 @@ export default function AdminHomePage() {
 
     useEffect(() => {
         updateTrips()
+        // eslint-disable-next-line
     }, [])
 
     const updateTrips = async () => {

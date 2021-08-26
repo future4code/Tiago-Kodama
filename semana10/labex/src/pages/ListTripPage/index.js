@@ -17,6 +17,7 @@ export default function ListTripPage() {
         axios.get(urlGetTrips)
             .then(res => setTrips(res.data.trips))
             .catch(() => setErrMessage('Erro ao buscar viagems'))
+    // eslint-disable-next-line
     }, [])
 
     return (
