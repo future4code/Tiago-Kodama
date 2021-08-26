@@ -1,0 +1,1 @@
+export const urlGetAllCountrys = "https://restcountries.eu/rest/v2/all"
