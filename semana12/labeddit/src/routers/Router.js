@@ -3,11 +3,12 @@ import LoginPage from '../pages/LoginPage'
 import SignUpPage from '../pages/SignUpPage'
 import CommentsPage from '../pages/CommentsPage'
 import PostsPage from '../pages/PostsPage'
-
+import Header from '../components/header'
 
 const Router = () => {
     return (
         <BrowserRouter>
+            <Header />
             <Switch>
                 <Route exact path='/signup'>
                     <SignUpPage />
