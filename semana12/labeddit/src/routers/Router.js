@@ -9,17 +9,17 @@ const Router = () => {
     return (
         <BrowserRouter>
             <Switch>
+                <Route exact path='/signup'>
+                    <SignUpPage />
+                </Route>
                 <Route exact path='/login'>
                     <LoginPage />
                 </Route>
-                <Route>
-                    <SignUpPage exact path='signup'/>
+                <Route exact path='/comments/:id'>
+                    <CommentsPage />
                 </Route>
-                <Route>
-                    <CommentsPage exact path='comments:id'/>
-                </Route>
-                <Route>
-                    <PostsPage exact path='posts:id'/>
+                <Route  exact path='/posts/:id'>
+                    <PostsPage/>
                 </Route>
                 <Route>
                     <p>Error: Page do not exist</p>

@@ -1,10 +1,13 @@
 import Router from './routers/Router'
+import theme from './constants/themes'
+import { ThemeProvider } from '@material-ui/core/styles'
+
 
 function App() {
   return (
-    <div>
+    <ThemeProvider theme={theme}>
       <Router />
-    </div>
+    </ThemeProvider>
   );
 }
 
