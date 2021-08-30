@@ -1,8 +1,13 @@
+import Post from "../../components/post";
+import { StyledPostsPage } from './styled'
+
 function PostsPage() {
     return (
-      <div>
-        PostsPage
-      </div>
+      <StyledPostsPage>
+        <Post />
+        <Post />
+        <Post />
+      </StyledPostsPage>
     );
   }
   

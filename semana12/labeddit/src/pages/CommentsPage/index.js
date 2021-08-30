@@ -1,12 +1,27 @@
-const { Button } = require("@material-ui/core");
+import { Button } from "@material-ui/core";
+import Comment from "../../components/comment";
+import Post from "../../components/post";
+import { StyledCommentPage, StyledCommentContainer, StyledForm } from './styled'
 
 function CommentsPage() {
     return (
-      <div>
-        CommentsPage
-        <Button variant="contained" color="primary">Clicar</Button>
-        <Button variant="contained" color="secondary">Secondary</Button>
-      </div>
+      <StyledCommentPage>
+        <Post />
+        <StyledCommentContainer>
+          <StyledForm>
+            <input />
+            <Button>Comment</Button>
+          </StyledForm>
+
+          <Comment />
+          <Comment />
+          <Comment />
+          <Comment />
+          <Comment />
+
+
+        </StyledCommentContainer>
+      </StyledCommentPage>
     );
   }
   
