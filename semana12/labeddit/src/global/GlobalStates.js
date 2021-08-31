@@ -6,6 +6,9 @@ import { BASE_URL } from '../constants/urls'
 
 const GlobalState = (props) => {
     const [token, setToken] = useState('')
+    const [posts, setPosts] = useState([])
+    const headers = { 'Content-Type': 'application/json' }
+
 
     useEffect(() => {
         const contentLocalStorage = window.localStorage.getItem('token')
@@ -15,7 +18,6 @@ const GlobalState = (props) => {
     const login = async (form, clear, setMessage) => {
         try {
             const url = `${BASE_URL}/users/login`
-            const headers = { 'Content-Type': 'application/json' }
             const body = { email: form['Email'], password: form['Password'] }
     
             const res = await axios.post(url, body, { headers })
@@ -36,7 +38,6 @@ const GlobalState = (props) => {
     const signup = async (form, clear, setMessage) => {
         try {
             const url = `${BASE_URL}/users/signup`
-            const headers = { 'Content-Type': 'application/json' }
             const body = { username: form['Name'], email: form['Email'], password: form['Password'] }
     
             const res = await axios.post(url, body, { headers })
@@ -53,9 +54,21 @@ const GlobalState = (props) => {
         }
     }
 
-    const states = { token }
-    const setters = { setToken }
-    const requests = { login, signup }
+    const getPosts = async (setMessage) => {
+        try {
+            const url = `${BASE_URL}/posts`
+            const res = await axios.get(url, { headers: {...headers, Authorization: token} })
+            setPosts(res.data)
+            
+        } catch (error) {
+            setMessage('Error when we try to get posts.')
+            console.log(error.response.data)
+        }
+    }
+
+    const states = { token, posts }
+    const setters = { setToken, setPosts }
+    const requests = { login, signup, getPosts }
 
     return (
         <GlobalContext.Provider value={{ states, setters, requests }}>

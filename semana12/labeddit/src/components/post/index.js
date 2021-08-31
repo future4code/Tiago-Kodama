@@ -1,22 +1,53 @@
 import { StyledPost, StyledButton } from './styled'
+import ArrowUpwardIcon from '@material-ui/icons/ArrowUpward';
+import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward';
+import { useEffect, useState } from 'react';
+import { formatDate } from '../../tools/convertDates'
 
-export default function Post(){
+export default function Post({data}){
+    const currentCount = Number(data.voteSum===null? 0: data.voteSum)
+    const [amIliked, setAmILiked] = useState(data.userVote)
+    const [voteCounter, setVoteCounter] = useState(currentCount)
+
+
+    useEffect(() => {
+        if(amIliked===null) return
+
+        const voteValue = amIliked? 1:-1
+        setVoteCounter(currentCount+voteValue)
+
+        // eslint-disable-next-line
+    }, [amIliked])
+    
+
     return (
         <StyledPost>
             <aside>
-                votes
+                <ArrowUpwardIcon 
+                color={amIliked===true? 'primary':'inherit'} 
+                onClick={() => setAmILiked(true)}
+                />
+                {voteCounter}
+                <ArrowDownwardIcon 
+                color={amIliked===false? 'primary':'inherit'}
+                onClick={() => setAmILiked(false)}
+                />
             </aside>
             <header>
-                <h4>Name</h4>
-                <h5>25/08/</h5>
+                <h4>{data.username}</h4>
+                <h5>{formatDate(data.createdAt)}</h5>
             </header>
             <main>
-            when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets 
+                <strong>{data.title}</strong>
+                <p>{data.body}</p>
             </main>
             <footer>
                 <StyledButton
                     variant="outlined"
-                >595 Comments</StyledButton>
+                >{data.commentCount && data.commentCount>1?
+                 `${data.commentCount} Comments`
+                 :'Comment'}
+                </StyledButton>
             </footer>
         </StyledPost>
     );

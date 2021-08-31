@@ -21,6 +21,11 @@ export const StyledPost = styled.div`
         grid-row: 1 / 4;
         grid-column: 1 / 2;
         background: #E1E1E1;
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
     }
     header {
         grid-row: 1 / 2;
@@ -42,6 +47,15 @@ export const StyledPost = styled.div`
         grid-column: 2 / 3;
         background: white;
         padding: 1rem;
+
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: flex-start;
+
+        strong {
+            margin: 5px 0;
+        }
     }
     footer {
         grid-row: 3 / 4;

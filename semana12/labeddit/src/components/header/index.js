@@ -18,7 +18,6 @@ export default function Header() {
     const [anchorEl, setAnchorEl] = useState(null);
     const open = Boolean(anchorEl);
 
-
     
     const handleMenu = (event) => {
         setAnchorEl(event.currentTarget);
@@ -27,6 +26,10 @@ export default function Header() {
     const handleClose = () => {
         setAnchorEl(null);
     };
+
+    const handleFeed = () => {
+        goToPosts(history)
+    }
 
     const handleLog = () => {
         if(states.token){
@@ -71,7 +74,7 @@ export default function Header() {
                             onClose={handleClose}
                         >
                             <MenuItem onClick={() => alert('profile')}>Profile</MenuItem>
-                            <MenuItem onClick={() => alert('My account')}>My account</MenuItem>
+                            <MenuItem onClick={handleFeed}>Feed</MenuItem>
                             <MenuItem onClick={handleLog}>{states.token? 'Logout':'Login'}</MenuItem>
                         </Menu>
                     </div>
