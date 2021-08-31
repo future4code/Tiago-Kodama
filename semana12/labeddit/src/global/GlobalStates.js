@@ -61,7 +61,7 @@ const GlobalState = (props) => {
             setPosts(res.data)
             
         } catch (error) {
-            setMessage('Error when we try to get posts.')
+            setMessage('Error when we try to get posts. \n Maybe you have to logout and login.')
             console.log(error.response.data)
         }
     }

@@ -10,7 +10,7 @@ import { Button } from '@material-ui/core';
 
 function PostsPage() {
   useProtectedPage()
-
+  
   const [message, setMessage] = useState('')
   const [page, setPage] = useState(2)
   const { states, setters, requests } = useContext(GlobalContext)

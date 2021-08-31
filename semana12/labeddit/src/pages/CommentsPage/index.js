@@ -6,7 +6,7 @@ import { StyledCommentPage, StyledCommentContainer, StyledForm } from './styled'
 function CommentsPage() {
     return (
       <StyledCommentPage>
-        <Post />
+        {/* <Post /> */}
         <StyledCommentContainer>
           <StyledForm>
             <input />

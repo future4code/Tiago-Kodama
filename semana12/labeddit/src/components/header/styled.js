@@ -6,4 +6,10 @@ export const StyledToobar = styled(Toolbar)`
     justify-content: space-between;
     align-items: center;
     padding: 0 1rem;
+
+    button {
+        border: none;
+        background: none;
+        text-shadow: 2px 1px 0px #fff, 3px 4px 0px rgba(0,0,0,0.15);
+    }
 `

@@ -18,7 +18,7 @@ export default function Header() {
     const [anchorEl, setAnchorEl] = useState(null);
     const open = Boolean(anchorEl);
 
-    
+
     const handleMenu = (event) => {
         setAnchorEl(event.currentTarget);
     };
@@ -32,53 +32,55 @@ export default function Header() {
     }
 
     const handleLog = () => {
-        if(states.token){
+        if (states.token) {
             window.localStorage.setItem('token', '')
             setters.setToken('')
-        } 
-        
+        }
+
         goToLogin(history)
         handleClose()
     }
 
 
     return (
-            <AppBar position="static" color='secondary'>
-                <StyledToobar>
+        <AppBar position="static" color='secondary'>
+            <StyledToobar>
+                <button onClick={() => goToPosts(history)}>
                     <Typography variant="h5" color='primary'>
                         <strong>Labeddit</strong>
                     </Typography>
-                    <div>
-                        <IconButton
-                            aria-label="account of current user"
-                            aria-controls="menu-appbar"
-                            aria-haspopup="true"
-                            onClick={handleMenu}
-                            color={states.token? 'primary':'white'}
-                        >
-                            <AccountCircle />
-                        </IconButton>
-                        <Menu
-                            id="menu-appbar"
-                            anchorEl={anchorEl}
-                            anchorOrigin={{
-                                vertical: 'top',
-                                horizontal: 'right',
-                            }}
-                            keepMounted
-                            transformOrigin={{
-                                vertical: 'top',
-                                horizontal: 'right',
-                            }}
-                            open={open}
-                            onClose={handleClose}
-                        >
-                            <MenuItem onClick={() => alert('profile')}>Profile</MenuItem>
-                            <MenuItem onClick={handleFeed}>Feed</MenuItem>
-                            <MenuItem onClick={handleLog}>{states.token? 'Logout':'Login'}</MenuItem>
-                        </Menu>
-                    </div>
-                </StyledToobar>
-            </AppBar>
+                </button>
+                <div>
+                    <IconButton
+                        aria-label="account of current user"
+                        aria-controls="menu-appbar"
+                        aria-haspopup="true"
+                        onClick={handleMenu}
+                        color={states.token ? 'primary' : 'white'}
+                    >
+                        <AccountCircle />
+                    </IconButton>
+                    <Menu
+                        id="menu-appbar"
+                        anchorEl={anchorEl}
+                        anchorOrigin={{
+                            vertical: 'top',
+                            horizontal: 'right',
+                        }}
+                        keepMounted
+                        transformOrigin={{
+                            vertical: 'top',
+                            horizontal: 'right',
+                        }}
+                        open={open}
+                        onClose={handleClose}
+                    >
+                        <MenuItem onClick={() => alert('profile')}>Profile</MenuItem>
+                        <MenuItem onClick={handleFeed}>Feed</MenuItem>
+                        <MenuItem onClick={handleLog}>{states.token ? 'Logout' : 'Login'}</MenuItem>
+                    </Menu>
+                </div>
+            </StyledToobar>
+        </AppBar>
     );
 }
