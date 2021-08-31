@@ -5,8 +5,10 @@ import { StyledLoginPage } from './styled'
 import { useHistory } from "react-router-dom";
 import { goToSignUp } from "../../routers/coordenator"
 import { login } from "../../services/accessApp"
+import { useUnprotectedPage } from "../../hooks/useUnprotectedPage"
 
 export default function LoginPage() {
+  useUnprotectedPage()
   const { form, handleInputChange, clear } = useForm({Email: '', Password: ''})
   const history = useHistory()
 

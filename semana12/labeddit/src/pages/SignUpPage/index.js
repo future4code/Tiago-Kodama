@@ -1,8 +1,11 @@
 import Form from "../../components/form";
 import { useForm } from "../../hooks/useForm";
 import { signup } from "../../services/accessApp"
+import { useUnprotectedPage } from "../../hooks/useUnprotectedPage"
 
 export default function SignUpPage() {
+  useUnprotectedPage()
+  
   const { form, handleInputChange, clear } = useForm({ Name: '', Email: '', Password: '' })
 
 
