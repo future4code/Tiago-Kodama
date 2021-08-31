@@ -7,8 +7,8 @@ import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 import { StyledToobar } from './styled'
 import { useHistory } from 'react-router-dom';
-import { goToLogin } from "../../routers/coordenator"
 import GlobalContext from "../../global/GlobalContext"
+import { goToLogin, goToPosts } from "../../routers/coordenator"
 
 export default function Header() {
     const { states, setters } = useContext(GlobalContext)

@@ -10,6 +10,6 @@ export const goToComments = (history, id) => {
     history.push(`/comments/${id}`)
 }
 
-export const goToPosts = (history, id) => {
-    history.push(`/posts/${id}`)
+export const goToPosts = (history) => {
+    history.push(`/posts`)
 }

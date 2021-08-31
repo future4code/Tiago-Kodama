@@ -19,7 +19,7 @@ const Router = () => {
                 <Route exact path='/comments/:id'>
                     <CommentsPage />
                 </Route>
-                <Route  exact path='/posts/:id'>
+                <Route  exact path='/posts'>
                     <PostsPage/>
                 </Route>
                 <Route>
