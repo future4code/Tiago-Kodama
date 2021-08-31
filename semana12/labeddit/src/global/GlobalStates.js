@@ -54,9 +54,9 @@ const GlobalState = (props) => {
         }
     }
 
-    const getPosts = async (setMessage) => {
+    const getPosts = async (numberPage, setMessage) => {
         try {
-            const url = `${BASE_URL}/posts`
+            const url = `${BASE_URL}/posts?size=5&page=${numberPage}`
             const res = await axios.get(url, { headers: {...headers, Authorization: token} })
             setPosts(res.data)
             

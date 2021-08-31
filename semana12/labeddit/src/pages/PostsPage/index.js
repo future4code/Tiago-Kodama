@@ -6,18 +6,24 @@ import { useProtectedPage } from "../../hooks/useProtectedPage"
 import { useContext } from "react";
 import { useEffect } from "react";
 import { useState } from "react";
+import { Button } from '@material-ui/core';
 
 function PostsPage() {
-  // useProtectedPage()
+  useProtectedPage()
 
   const [message, setMessage] = useState('')
+  const [page, setPage] = useState(2)
   const { states, setters, requests } = useContext(GlobalContext)
 
-  useEffect(() => {
-    requests.getPosts(setMessage)
+  const handleChangePage = value => {
+    if(value<1 && page===1) return
+    setPage(page+value)
+  }
 
+  useEffect(() => {
+    requests.getPosts(page, setMessage)
     // eslint-disable-next-line
-  }, [])
+  }, [page])
 
     return (
       <StyledPostsPage>
@@ -25,6 +31,11 @@ function PostsPage() {
           <Post data={post} key={post.id}/>
         ))}
         {message && <Alert severity="warning">{message}</Alert>}
+        <div>
+          <Button onClick={() => handleChangePage(-1)}>Previous</Button>
+          {page}
+          <Button onClick={() => handleChangePage(1)}>Next</Button>
+        </div>
       </StyledPostsPage>
     );
   }
