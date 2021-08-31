@@ -1,5 +1,6 @@
 import Form from "../../components/form";
 import { useForm } from "../../hooks/useForm";
+import { signup } from "../../services/accessApp"
 
 export default function SignUpPage() {
   const { form, handleInputChange, clear } = useForm({ Name: '', Email: '', Password: '' })
@@ -25,8 +26,7 @@ export default function SignUpPage() {
 
   const handleSubmit = e => {
     e.preventDefault()
-    console.log('SignUp', form)
-    clear()
+    signup(form, clear)
   }
   
 

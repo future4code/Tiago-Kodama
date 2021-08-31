@@ -7,13 +7,13 @@ import { goToSignUp } from "../../routers/coordenator"
 import { login } from "../../services/accessApp"
 
 export default function LoginPage() {
-  const { form, handleInputChange, clear } = useForm({Name: '', Password: ''})
+  const { form, handleInputChange, clear } = useForm({Email: '', Password: ''})
   const history = useHistory()
 
   const inputs = [
     {
-      label: 'Name',
-      type: 'text',
+      label: 'Email',
+      type: 'email',
       command: handleInputChange
     },
     {
