@@ -1,24 +1,33 @@
 import Form from "../../components/form";
+import { useForm } from "../../hooks/useForm";
 
 export default function SignUpPage() {
+  const { form, handleInputChange, clear } = useForm({ Name: '', Email: '', Password: '' })
+
 
   const inputs = [
     {
       label: 'Name',
       type: 'text',
-      command: () => console.log('input name')
+      command: handleInputChange
     },
     {
       label: 'Email',
       type: 'email',
-      command: () => console.log('input email')
+      command: handleInputChange
     },
     {
       label: 'Password',
       type: 'password',
-      command: () => console.log('input password')
+      command: handleInputChange
     }
   ]
+
+  const handleSubmit = e => {
+    e.preventDefault()
+    console.log('SignUp', form)
+    clear()
+  }
   
 
   return (
@@ -26,7 +35,8 @@ export default function SignUpPage() {
       <Form 
         title={'Sign Up'}
         inputs={inputs}
-        onsubmit={() => console.log('clicou em enviar')}
+        onsubmit={handleSubmit}
+        form={form}
         />
     </div>
   );
