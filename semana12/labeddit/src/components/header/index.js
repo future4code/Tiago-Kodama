@@ -42,8 +42,8 @@ export default function Header() {
     return (
             <AppBar position="static" color='secondary'>
                 <StyledToobar>
-                    <Typography variant="h6" color='primary'>
-                        Labeddit
+                    <Typography variant="h5" color='primary'>
+                        <strong>Labeddit</strong>
                     </Typography>
                     <div>
                         <IconButton
