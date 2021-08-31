@@ -1,5 +1,7 @@
+import Alert from '@material-ui/lab/Alert';
 import Form from "../../components/form";
 import GlobalContext from "../../global/GlobalContext";
+import { useState } from 'react';
 import { useForm } from "../../hooks/useForm";
 import { useHistory } from "react-router-dom";
 import { useUnprotectedPage } from "../../hooks/useUnprotectedPage"
@@ -11,8 +13,8 @@ import { goToSignUp } from "../../routers/coordenator"
 export default function LoginPage() {
   useUnprotectedPage()
 
-  const { states, setters, requests } = useContext(GlobalContext)
-
+  const { requests } = useContext(GlobalContext)
+  const [message, setMessage] = useState('')
   const { form, handleInputChange, clear } = useForm({Email: '', Password: ''})
   const history = useHistory()
 
@@ -32,7 +34,7 @@ export default function LoginPage() {
 
   const handleSubmit = e => {
     e.preventDefault()
-    requests.login(form, clear)
+    requests.login(form, clear, setMessage)
   }
 
 
@@ -46,7 +48,8 @@ export default function LoginPage() {
         />
       <Button
         onClick={() => goToSignUp(history)}
-      >I don't have account</Button>
+        >I don't have account</Button>
+    {message && <Alert severity="warning">{message}</Alert>}
     </StyledLoginPage>
   );
 }

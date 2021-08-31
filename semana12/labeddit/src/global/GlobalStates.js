@@ -12,8 +12,7 @@ const GlobalState = (props) => {
         setToken(contentLocalStorage)
     },[])
 
-
-    const login = async (form, clear) => {
+    const login = async (form, clear, setMessage) => {
         try {
             const url = `${BASE_URL}/users/login`
             const headers = { 'Content-Type': 'application/json' }
@@ -22,11 +21,11 @@ const GlobalState = (props) => {
             const res = await axios.post(url, body, { headers })
             window.localStorage.setItem('token', res.data.token)
             setToken(res.data.token)
-            alert('Welcome')
+            setMessage('Welcome')
             clear()
     
         } catch (error) {
-            alert('We could not find your account')
+            setMessage('We could not find your account')
             console.log(error.response.data)
             error.response.data.errors && error.response.data.errors.forEach(element => {
                 console.log(element)
@@ -34,7 +33,7 @@ const GlobalState = (props) => {
         }
     }
 
-    const signup = async (form, clear) => {
+    const signup = async (form, clear, setMessage) => {
         try {
             const url = `${BASE_URL}/users/signup`
             const headers = { 'Content-Type': 'application/json' }
@@ -43,11 +42,11 @@ const GlobalState = (props) => {
             const res = await axios.post(url, body, { headers })
             window.localStorage.setItem('token', res.data.token)
             setToken(res.data.token)
-            alert('We have created your account')
+            setMessage('We have created your account')
             clear()
     
         } catch (error) {
-            alert('We could not create your account')
+            setMessage('We could not create your account')
             error.response.data.errors && error.response.data.errors.forEach(element => {
                 console.log(element)
             });

@@ -1,15 +1,17 @@
 import Form from "../../components/form";
+import Alert from '@material-ui/lab/Alert';
 import { useForm } from "../../hooks/useForm";
-import { signup } from "../../services/accessApp"
 import { useUnprotectedPage } from "../../hooks/useUnprotectedPage"
-import { useContext } from 'react'
+import { useContext, useState } from 'react'
+import { StyledSignUpPage } from './styled'
 import GlobalContext from "../../global/GlobalContext";
 
 export default function SignUpPage() {
   useUnprotectedPage()
   
-  const { states, setters, requests } = useContext(GlobalContext)
+  const { requests } = useContext(GlobalContext)
   const { form, handleInputChange, clear } = useForm({ Name: '', Email: '', Password: '' })
+  const [message, setMessage] = useState('')
 
 
   const inputs = [
@@ -32,18 +34,19 @@ export default function SignUpPage() {
 
   const handleSubmit = e => {
     e.preventDefault()
-    requests.signup(form, clear)
+    requests.signup(form, clear, setMessage)
   }
   
 
   return (
-    <div>
+    <StyledSignUpPage>
       <Form 
         title={'Sign Up'}
         inputs={inputs}
         onsubmit={handleSubmit}
         form={form}
         />
-    </div>
+      {message && <Alert severity="warning">{message}</Alert>}
+    </StyledSignUpPage>
   );
 }
