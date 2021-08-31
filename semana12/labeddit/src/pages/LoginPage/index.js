@@ -1,14 +1,18 @@
 import Form from "../../components/form";
-import { Button } from "@material-ui/core";
+import GlobalContext from "../../global/GlobalContext";
 import { useForm } from "../../hooks/useForm";
-import { StyledLoginPage } from './styled'
 import { useHistory } from "react-router-dom";
-import { goToSignUp } from "../../routers/coordenator"
-import { login } from "../../services/accessApp"
 import { useUnprotectedPage } from "../../hooks/useUnprotectedPage"
+import { useContext } from "react";
+import { Button } from "@material-ui/core";
+import { StyledLoginPage } from './styled'
+import { goToSignUp } from "../../routers/coordenator"
 
 export default function LoginPage() {
   useUnprotectedPage()
+
+  const { states, setters, requests } = useContext(GlobalContext)
+
   const { form, handleInputChange, clear } = useForm({Email: '', Password: ''})
   const history = useHistory()
 
@@ -28,7 +32,7 @@ export default function LoginPage() {
 
   const handleSubmit = e => {
     e.preventDefault()
-    login(form, clear)
+    requests.login(form, clear)
   }
 
 

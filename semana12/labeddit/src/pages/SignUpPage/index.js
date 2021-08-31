@@ -2,10 +2,13 @@ import Form from "../../components/form";
 import { useForm } from "../../hooks/useForm";
 import { signup } from "../../services/accessApp"
 import { useUnprotectedPage } from "../../hooks/useUnprotectedPage"
+import { useContext } from 'react'
+import GlobalContext from "../../global/GlobalContext";
 
 export default function SignUpPage() {
   useUnprotectedPage()
   
+  const { states, setters, requests } = useContext(GlobalContext)
   const { form, handleInputChange, clear } = useForm({ Name: '', Email: '', Password: '' })
 
 
@@ -29,7 +32,7 @@ export default function SignUpPage() {
 
   const handleSubmit = e => {
     e.preventDefault()
-    signup(form, clear)
+    requests.signup(form, clear)
   }
   
 
