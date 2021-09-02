@@ -110,9 +110,24 @@ const GlobalState = (props) => {
         }
     }
 
+    const createPost = async (page, title, body, setMessage) => {
+        try {
+            const url = `${BASE_URL}/posts`
+            const res = await axios.post(url, { title, body }, { headers: { ...headers, Authorization: token } })
+
+            if(res.status===201){
+                getPosts(page, setMessage)
+            }
+
+        } catch (error) {
+            setMessage('Error when we try to register your post. \n Maybe you will have to logout and login.')
+            console.log(error.response.data)
+        }
+    }
+
     const states = { token, posts, commentsOfSomePost }
     const setters = { setToken, setPosts }
-    const requests = { login, signup, getPosts, votePost, getPostComments, createComment }
+    const requests = { login, signup, getPosts, votePost, getPostComments, createComment, createPost }
 
     return (
         <GlobalContext.Provider value={{ states, setters, requests }}>
