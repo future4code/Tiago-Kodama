@@ -27,7 +27,7 @@ export default function Post({ data, handleVotePost }) {
                             color={myVote === 1 ? 'primary' : 'inherit'}
                             onClick={() => handleLike(1)}
                         />
-                        {Number(data.voteSum) === null ? 0 : data.voteSum}
+                        {Number(data.voteSum) === null ? 0 : Number(data.voteSum)}
                         <ArrowDownwardIcon
                             color={myVote === -1 ? 'primary' : 'inherit'}
                             onClick={() => handleLike(-1)}
