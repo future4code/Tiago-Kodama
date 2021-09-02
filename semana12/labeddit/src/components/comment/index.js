@@ -43,7 +43,7 @@ export default function Comment({data, setMessage}){
             <div>
                 <Button
                     onClick={handleButtonLike}
-                    color={myVote===0? 'white' : 'primary'}
+                    color={myVote===0? 'inherit' : 'primary'}
                 >{handlePlural('Like', data.voteSum)}</Button>
             </div>
         </StyledComment>

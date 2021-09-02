@@ -1,7 +1,6 @@
 import GlobalContext from '../../global/GlobalContext'
 import Post from "../../components/post";
 import Alert from '@material-ui/lab/Alert';
-import { StyledPostsPage } from './styled'
 import { useProtectedPage } from "../../hooks/useProtectedPage"
 import { useContext } from "react";
 import { useEffect } from "react";
@@ -9,15 +8,18 @@ import { useState } from "react";
 import { Button } from '@material-ui/core';
 import Form from '../../components/form';
 import { useForm } from '../../hooks/useForm';
+import CircularProgress from '@material-ui/core/CircularProgress';
+import { StyledPostsPage, StyledForm } from './styled'
+
 
 function PostsPage() {
   useProtectedPage()
-  
+
   const [message, setMessage] = useState('')
   const [page, setPage] = useState(1)
-  const { form, handleInputChange, clear } = useForm({Title: '', Body: ''})
+  const { form, handleInputChange, clear } = useForm({ Title: '', Body: '' })
   const { states, setters, requests } = useContext(GlobalContext)
-  
+
   const inputs = [
     {
       label: 'Title',
@@ -51,27 +53,43 @@ function PostsPage() {
     // eslint-disable-next-line
   }, [page])
 
+  if (states.isLoading && !states.posts.length) {
+    return (
+      <StyledPostsPage>
+        <CircularProgress />
+      </StyledPostsPage>
+    );
+  }
+
   return (
     <StyledPostsPage>
-      <Form
-        title='Create my post'
-        inputs={inputs}
-        form={form}
-        onsubmit={handleSubmit}
-      />
-      {states.posts && states.posts.map(post => (
-        <Post
-          data={post}
-          key={post.id}
-          handleVotePost={handleVotePost}
-        />
-      ))}
       {message && <Alert severity="warning">{message}</Alert>}
-      <div>
-        <Button onClick={() => handleChangePage(-1)}>Previous</Button>
-        {page}
-        <Button onClick={() => handleChangePage(1)}>Next</Button>
-      </div>
+      <StyledForm>
+        <Form
+          title='Create my post'
+          inputs={inputs}
+          form={form}
+          onsubmit={handleSubmit}
+        />
+      </StyledForm>
+      {
+        states.posts ?
+          <>
+            {states.posts.map(post => (
+              <Post
+                data={post}
+                key={post.id}
+                handleVotePost={handleVotePost}
+              />
+            ))}
+            <div>
+              <Button onClick={() => handleChangePage(-1)}>Previous</Button>
+              {page}
+              <Button onClick={() => handleChangePage(1)}>Next</Button>
+            </div>
+          </>
+          : <p>You don't have any post</p>
+      }
     </StyledPostsPage>
   );
 }

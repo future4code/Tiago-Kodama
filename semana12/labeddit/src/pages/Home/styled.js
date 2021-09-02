@@ -19,6 +19,6 @@ export const StyledForm = styled.div`
     padding: 5px;
     padding-bottom: 20px;
     margin-bottom: 30px;
-    width: 90vw;
+    width: 100vw;
     max-width: 500px;
 `

@@ -4,7 +4,7 @@ import { Button } from '@material-ui/core'
 
 export const StyledPost = styled.div`
     box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
-    width: 100%;
+    width: 90%;
     max-width: 500px;
 
     display: grid;
@@ -47,13 +47,16 @@ export const StyledPost = styled.div`
         grid-column: 2 / 3;
         background: white;
         padding: 1rem;
+        max-width: 90%;
 
         display: flex;
         flex-direction: column;
         align-items: flex-start;
         justify-content: flex-start;
 
-        strong {
+        p, strong {
+            overflow-wrap: break-word;
+            max-width: 90%;
             margin: 5px 0;
         }
     }

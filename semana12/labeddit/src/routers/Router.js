@@ -3,6 +3,7 @@ import LoginPage from '../pages/LoginPage'
 import SignUpPage from '../pages/SignUpPage'
 import CommentsPage from '../pages/CommentsPage'
 import PostsPage from '../pages/PostsPage'
+import Home from '../pages/Home'
 import Header from '../components/header'
 
 const Router = () => {
@@ -10,6 +11,9 @@ const Router = () => {
         <BrowserRouter>
             <Header />
             <Switch>
+                <Route exact path='/'>
+                    <Home />
+                </Route>
                 <Route exact path='/signup'>
                     <SignUpPage />
                 </Route>

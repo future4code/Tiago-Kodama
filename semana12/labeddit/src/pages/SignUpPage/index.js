@@ -5,13 +5,14 @@ import { useUnprotectedPage } from "../../hooks/useUnprotectedPage"
 import { useContext, useState } from 'react'
 import { StyledSignUpPage } from './styled'
 import GlobalContext from "../../global/GlobalContext";
+import { CircularProgress } from "@material-ui/core";
 
 export default function SignUpPage() {
-  
-  const { requests } = useContext(GlobalContext)
+
+  const { states, setters, requests } = useContext(GlobalContext)
   const { form, handleInputChange, clear } = useForm({ Name: '', Email: '', Password: '' })
   const [message, setMessage] = useState('')
-  
+
   useUnprotectedPage(message)
 
   const inputs = [
@@ -36,17 +37,23 @@ export default function SignUpPage() {
     e.preventDefault()
     requests.signup(form, clear, setMessage)
   }
-  
+
 
   return (
     <StyledSignUpPage>
-      <Form 
-        title={'Sign Up'}
-        inputs={inputs}
-        onsubmit={handleSubmit}
-        form={form}
-        />
-      {message && <Alert severity="warning">{message}</Alert>}
+      {
+        states.isLoading ?
+          <CircularProgress margin='normal' /> :
+          <>
+            <Form
+              title={'Sign Up'}
+              inputs={inputs}
+              onsubmit={handleSubmit}
+              form={form}
+            />
+            {message && <Alert severity="warning">{message}</Alert>}
+          </>
+      }
     </StyledSignUpPage>
   );
 }

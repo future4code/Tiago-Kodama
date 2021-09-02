@@ -6,15 +6,15 @@ import { useForm } from "../../hooks/useForm";
 import { useHistory } from "react-router-dom";
 import { useUnprotectedPage } from "../../hooks/useUnprotectedPage"
 import { useContext } from "react";
-import { Button } from "@material-ui/core";
+import { Button, CircularProgress } from "@material-ui/core";
 import { StyledLoginPage } from './styled'
 import { goToSignUp } from "../../routers/coordenator"
 
 export default function LoginPage() {
-  
-  const { requests } = useContext(GlobalContext)
+
   const [message, setMessage] = useState('')
-  const { form, handleInputChange, clear } = useForm({Email: '', Password: ''})
+  const { form, handleInputChange, clear } = useForm({ Email: '', Password: '' })
+  const { states, setters, requests } = useContext(GlobalContext)
   const history = useHistory()
 
   useUnprotectedPage(message)
@@ -31,7 +31,7 @@ export default function LoginPage() {
       command: handleInputChange
     }
   ]
-  
+
 
   const handleSubmit = e => {
     e.preventDefault()
@@ -41,16 +41,22 @@ export default function LoginPage() {
 
   return (
     <StyledLoginPage>
-      <Form 
-        title={'Login'}
-        inputs={inputs}
-        onsubmit={handleSubmit}
-        form={form}
-        />
-      <Button
-        onClick={() => goToSignUp(history)}
-        >I don't have an account</Button>
-    {message && <Alert severity="warning">{message}</Alert>}
+      {
+        states.isLoading ?
+        <CircularProgress margin='normal'/> :
+        <>
+          <Form
+            title={'Login'}
+            inputs={inputs}
+            onsubmit={handleSubmit}
+            form={form}
+          />
+          <Button
+            onClick={() => goToSignUp(history)}
+          >I don't have an account</Button>
+          {message && <Alert severity="warning">{message}</Alert>}
+        </>
+      }
     </StyledLoginPage>
   );
 }

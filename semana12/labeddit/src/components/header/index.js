@@ -8,7 +8,8 @@ import Menu from '@material-ui/core/Menu';
 import { StyledToobar } from './styled'
 import { useHistory } from 'react-router-dom';
 import GlobalContext from "../../global/GlobalContext"
-import { goToLogin, goToPosts } from "../../routers/coordenator"
+import { goToHome, goToLogin, goToPosts } from "../../routers/coordenator"
+import { Button } from '@material-ui/core';
 
 export default function Header() {
     const { states, setters } = useContext(GlobalContext)
@@ -29,6 +30,12 @@ export default function Header() {
 
     const handleFeed = () => {
         goToPosts(history)
+        handleClose()
+    }
+
+    const handleHome = () => {
+        history.push('/')
+        handleClose()
     }
 
     const handleLog = () => {
@@ -75,12 +82,18 @@ export default function Header() {
                         open={open}
                         onClose={handleClose}
                     >
-                        <MenuItem onClick={() => alert('profile')}>Profile</MenuItem>
+                        <MenuItem onClick={handleHome}>Profile</MenuItem>
                         <MenuItem onClick={handleFeed}>Feed</MenuItem>
                         <MenuItem onClick={handleLog}>{states.token ? 'Logout' : 'Login'}</MenuItem>
                     </Menu>
                 </div>
             </StyledToobar>
+            <div>
+                <Button onClick={() => history.goBack()}>Back</Button>
+                <Button onClick={() => history.goForward()}>Foward</Button>
+                <Button onClick={() => goToHome(history)}>Home</Button>
+                <Button onClick={() => goToPosts(history)}>Feed</Button>
+            </div>
         </AppBar>
     );
 }
