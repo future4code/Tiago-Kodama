@@ -4,29 +4,32 @@ import Alert from '@material-ui/lab/Alert';
 import { Button } from "@material-ui/core";
 import { useParams } from 'react-router-dom'
 import { useContext, useEffect, useState } from 'react'
+import { useForm } from '../../hooks/useForm';
 import Comment from "../../components/comment";
 import GlobalContext from '../../global/GlobalContext'
 import Post from "../../components/post";
-import { useForm } from '../../hooks/useForm';
 
 function CommentsPage() {
   const { id } = useParams()
   const { states, setters, requests } = useContext(GlobalContext)
   const { form, handleInputChange, clear } = useForm({ Comment: '' })
   const [message, setMessage] = useState('')
+  const [post, setPost] = useState({})
 
-  const post = states.posts.filter(post => id === post.id)[0]
-
-
+  
   const handleSendComment = e => {
     e.preventDefault();
     requests.createComment(id, form.Comment, setMessage)
     clear()
   }
-
-
+  
+  
   useEffect(() => {
+    
+
     requests.getPostComments(id, setMessage)
+    setPost(states.posts.filter(post => id === post.id)[0])
+
 
     // eslint-disable-next-line
   }, [])

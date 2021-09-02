@@ -58,7 +58,7 @@ const GlobalState = (props) => {
     const getPosts = async (numberPage, setMessage) => {
         try {
             const url = `${BASE_URL}/posts?size=3&page=${numberPage}`
-            const res = await axios.get(url, { headers: { ...headers, Authorization: token } })
+            const res = await axios.get(url, { headers: { ...headers, Authorization: window.localStorage.getItem('token') } })
             setPosts(res.data)
 
         } catch (error) {
@@ -70,7 +70,7 @@ const GlobalState = (props) => {
     const getPostComments = async (id, setMessage) => {
         try {
             const url = `${BASE_URL}/posts/${id}/comments`
-            const res = await axios.get(url, { headers: { ...headers, Authorization: token } })
+            const res = await axios.get(url, { headers: { ...headers, Authorization: window.localStorage.getItem('token') } })
             setCommentsOfSomePost(res.data)
 
         } catch (error) {
@@ -82,7 +82,7 @@ const GlobalState = (props) => {
     const votePost = async (id, direction, page, setMessage) => {
         try {
             const url = `${BASE_URL}/posts/${id}/votes`
-            const res = await axios.post(url, { direction }, { headers: { ...headers, Authorization: token } })
+            const res = await axios.post(url, { direction }, { headers: { ...headers, Authorization: window.localStorage.getItem('token') } })
 
             if (res.status === 201) {
                 console.log(res.data, direction)
@@ -95,13 +95,42 @@ const GlobalState = (props) => {
         }
     }
 
-    const voteComment = async (id, postId, direction, setMessage) => {
+    const voteComment = async (id, postId, setMessage) => {
         try {
             const url = `${BASE_URL}/comments/${id}/votes`
-            const res = await axios.post(url, { direction: direction }, { headers: { ...headers, Authorization: token } })
+            const res = await axios.post(url, { direction: 1 }, { headers: { ...headers, Authorization: window.localStorage.getItem('token') } })
 
             if (res.status === 201) {
-                console.log(res.data, direction)
+                getPostComments(postId, setMessage)
+            }
+
+        } catch (error) {
+            setMessage('Error when we try to register your vote. \n Maybe you will have to logout and login.')
+            console.log(error.response.data)
+        }
+    }
+
+    const changeVoteComment = async (id, postId, setMessage) => {
+        try {
+            const url = `${BASE_URL}/comments/${id}/votes`
+            const res = await axios.put(url, { direction: -1 }, { headers: { ...headers, Authorization: window.localStorage.getItem('token') } })
+
+            if (res.status === 200) {
+                getPostComments(postId, setMessage)
+            }
+
+        } catch (error) {
+            setMessage('Error when we try to register your vote. \n Maybe you will have to logout and login.')
+            console.log(error.response.data)
+        }
+    }
+
+    const deleteVoteComment = async (id, postId, setMessage) => {
+        try {
+            const url = `${BASE_URL}/comments/${id}/votes`
+            const res = await axios.delete(url, { headers: { ...headers, Authorization: window.localStorage.getItem('token') } })
+
+            if (res.status === 204) {
                 getPostComments(postId, setMessage)
             }
 
@@ -114,7 +143,7 @@ const GlobalState = (props) => {
     const createComment = async (id, body, setMessage) => {
         try {
             const url = `${BASE_URL}/posts/${id}/comments`
-            const res = await axios.post(url, { body }, { headers: { ...headers, Authorization: token } })
+            const res = await axios.post(url, { body }, { headers: { ...headers, Authorization: window.localStorage.getItem('token') } })
 
             if(res.status===201){
                 getPostComments(id, setMessage)
@@ -129,7 +158,7 @@ const GlobalState = (props) => {
     const createPost = async (page, title, body, setMessage) => {
         try {
             const url = `${BASE_URL}/posts`
-            const res = await axios.post(url, { title, body }, { headers: { ...headers, Authorization: token } })
+            const res = await axios.post(url, { title, body }, { headers: { ...headers, Authorization: window.localStorage.getItem('token') } })
 
             if(res.status===201){
                 getPosts(page, setMessage)
@@ -143,7 +172,7 @@ const GlobalState = (props) => {
 
     const states = { token, posts, commentsOfSomePost }
     const setters = { setToken, setPosts }
-    const requests = { login, signup, getPosts, votePost, getPostComments, createComment, createPost, voteComment }
+    const requests = { login, signup, getPosts, votePost, getPostComments, createComment, createPost, voteComment, changeVoteComment, deleteVoteComment }
 
     return (
         <GlobalContext.Provider value={{ states, setters, requests }}>

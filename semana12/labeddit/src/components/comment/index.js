@@ -10,11 +10,27 @@ export default function Comment({data, setMessage}){
     const { states, setters, requests } = useContext(GlobalContext)
     const [myVote, setMyVote] = useState(Number(data.userVote))
 
+console.log(data)
     const handleButtonLike = () => {
-        if(myVote===1) setMyVote(-1)
-        else setMyVote(1)
 
-        requests.voteComment(data.id, data.postId, myVote, setMessage)
+        switch (myVote) {
+            case 0:
+                requests.voteComment(data.id, data.postId, setMessage)
+                setMyVote(1)
+                break;
+            case 1:
+                requests.changeVoteComment(data.id, data.postId, setMessage)
+                setMyVote(-1)
+                break;
+            case -1:
+                requests.deleteVoteComment(data.id, data.postId, setMessage)
+                setMyVote(0)
+                break;
+        
+            default:
+                break;
+        }
+
     }
 
     return (
@@ -28,6 +44,7 @@ export default function Comment({data, setMessage}){
             <div>
                 <Button
                     onClick={handleButtonLike}
+                    color={myVote===0? 'white' : 'primary'}
                 >{handlePlural('Like', data.voteSum)}</Button>
             </div>
         </StyledComment>
