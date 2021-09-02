@@ -7,6 +7,7 @@ import { BASE_URL } from '../constants/urls'
 const GlobalState = (props) => {
     const [token, setToken] = useState('')
     const [posts, setPosts] = useState([])
+    const [commentsOfSomePost, setCommentsOfSomePost] = useState([])
     const headers = { 'Content-Type': 'application/json' }
 
 
@@ -66,6 +67,18 @@ const GlobalState = (props) => {
         }
     }
 
+    const getPostComments = async (id, setMessage) => {
+        try {
+            const url = `${BASE_URL}/posts/${id}/comments`
+            const res = await axios.get(url, { headers: { ...headers, Authorization: token } })
+            setCommentsOfSomePost(res.data)
+
+        } catch (error) {
+            setMessage('Error when we try to get comments. \n Maybe you have to logout and login.')
+            console.log(error.response.data)
+        }
+    }
+
     const votePost = async (id, direction, page, setMessage) => {
         try {
             const url = `${BASE_URL}/posts/${id}/votes`
@@ -82,9 +95,9 @@ const GlobalState = (props) => {
         }
     }
 
-    const states = { token, posts }
+    const states = { token, posts, commentsOfSomePost }
     const setters = { setToken, setPosts }
-    const requests = { login, signup, getPosts, votePost }
+    const requests = { login, signup, getPosts, votePost, getPostComments }
 
     return (
         <GlobalContext.Provider value={{ states, setters, requests }}>
