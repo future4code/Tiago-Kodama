@@ -48,7 +48,7 @@ export default function LoginPage() {
         />
       <Button
         onClick={() => goToSignUp(history)}
-        >I don't have account</Button>
+        >I don't have an account</Button>
     {message && <Alert severity="warning">{message}</Alert>}
     </StyledLoginPage>
   );

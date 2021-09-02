@@ -12,12 +12,16 @@ function PostsPage() {
   useProtectedPage()
   
   const [message, setMessage] = useState('')
-  const [page, setPage] = useState(2)
+  const [page, setPage] = useState(1)
   const { states, setters, requests } = useContext(GlobalContext)
 
   const handleChangePage = value => {
     if(value<1 && page===1) return
     setPage(page+value)
+  }
+
+  const handleVotePost = (id, direction) => {
+    requests.votePost(id, direction, page, setMessage)
   }
 
   useEffect(() => {
@@ -28,7 +32,11 @@ function PostsPage() {
     return (
       <StyledPostsPage>
         {states.posts && states.posts.map(post => (
-          <Post data={post} key={post.id}/>
+          <Post 
+            data={post}
+             key={post.id}
+             handleVotePost={handleVotePost}
+             />
         ))}
         {message && <Alert severity="warning">{message}</Alert>}
         <div>

@@ -1,40 +1,34 @@
 import { StyledPost, StyledButton } from './styled'
 import ArrowUpwardIcon from '@material-ui/icons/ArrowUpward';
 import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { formatDate } from '../../tools/convertDates'
 import { useHistory } from 'react-router-dom';
 import { goToComments } from '../../routers/coordenator'
 
-export default function Post({data}){
-   
-    const currentCount = Number(data.voteSum===null? 0: data.voteSum)
-    const [amIliked, setAmILiked] = useState(data.userVote)
-    const [voteCounter, setVoteCounter] = useState(currentCount)
+export default function Post({data, handleVotePost}){
+
+    const [myVote, setMyVote] = useState(data.userVote===null? 0 : Number(data.userVote))
     const history = useHistory()
-
-    useEffect(() => {
-        if(amIliked===null) return
-
-
-        const voteValue = amIliked? 1:-1
-        setVoteCounter(currentCount+voteValue)
-
-        // eslint-disable-next-line
-    }, [amIliked])
     
+    const handleLike = direction => {
+        if(myVote===direction) return
+
+        handleVotePost(data.id, direction)
+        setMyVote(direction)
+    }
 
     return (
         <StyledPost>
             <aside>
                 <ArrowUpwardIcon 
-                color={amIliked===true? 'primary':'inherit'} 
-                onClick={() => setAmILiked(true)}
+                color={myVote===1? 'primary':'inherit'} 
+                onClick={() => handleLike(1)}
                 />
-                {voteCounter}
+                {Number(data.voteSum)===null? 0: data.voteSum}
                 <ArrowDownwardIcon 
-                color={amIliked===false? 'primary':'inherit'}
-                onClick={() => setAmILiked(false)}
+                color={myVote===-1? 'primary':'inherit'}
+                onClick={() => handleLike(-1)}
                 />
             </aside>
             <header>

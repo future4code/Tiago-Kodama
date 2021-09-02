@@ -13,19 +13,19 @@ const GlobalState = (props) => {
     useEffect(() => {
         const contentLocalStorage = window.localStorage.getItem('token')
         setToken(contentLocalStorage)
-    },[])
+    }, [])
 
     const login = async (form, clear, setMessage) => {
         try {
             const url = `${BASE_URL}/users/login`
             const body = { email: form['Email'], password: form['Password'] }
-    
+
             const res = await axios.post(url, body, { headers })
             window.localStorage.setItem('token', res.data.token)
             setToken(res.data.token)
             setMessage('Welcome')
             clear()
-    
+
         } catch (error) {
             setMessage('We could not find your account')
             console.log(error.response.data)
@@ -39,13 +39,13 @@ const GlobalState = (props) => {
         try {
             const url = `${BASE_URL}/users/signup`
             const body = { username: form['Name'], email: form['Email'], password: form['Password'] }
-    
+
             const res = await axios.post(url, body, { headers })
             window.localStorage.setItem('token', res.data.token)
             setToken(res.data.token)
             setMessage('We have created your account')
             clear()
-    
+
         } catch (error) {
             setMessage('We could not create your account')
             error.response.data.errors && error.response.data.errors.forEach(element => {
@@ -56,19 +56,35 @@ const GlobalState = (props) => {
 
     const getPosts = async (numberPage, setMessage) => {
         try {
-            const url = `${BASE_URL}/posts?size=5&page=${numberPage}`
-            const res = await axios.get(url, { headers: {...headers, Authorization: token} })
+            const url = `${BASE_URL}/posts?size=3&page=${numberPage}`
+            const res = await axios.get(url, { headers: { ...headers, Authorization: token } })
             setPosts(res.data)
-            
+
         } catch (error) {
             setMessage('Error when we try to get posts. \n Maybe you have to logout and login.')
             console.log(error.response.data)
         }
     }
 
+    const votePost = async (id, direction, page, setMessage) => {
+        try {
+            const url = `${BASE_URL}/posts/${id}/votes`
+            const res = await axios.post(url, { direction }, { headers: { ...headers, Authorization: token } })
+            
+            if(res.status===201) {
+                console.log(res.data, direction)
+                getPosts(page, setMessage)
+            }
+            
+        } catch (error) {
+            setMessage('Error when we try to register your vote. \n Maybe you will have to logout and login.')
+            console.log(error.response.data)
+        }
+    }
+
     const states = { token, posts }
     const setters = { setToken, setPosts }
-    const requests = { login, signup, getPosts }
+    const requests = { login, signup, getPosts, votePost }
 
     return (
         <GlobalContext.Provider value={{ states, setters, requests }}>
