@@ -25,7 +25,7 @@ export const StyledCommentContainer = styled.div`
     justify-content: flex-start;
     align-items: center;
     width: 100%;
-    background: #e3e3e3;
+    background: #F2F1F1;
     padding: 1rem;
     margin-top: 2rem;
     box-sizing: border-box;

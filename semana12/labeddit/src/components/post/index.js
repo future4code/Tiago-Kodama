@@ -6,13 +6,12 @@ import { formatDate } from '../../tools/convertDates'
 import { useHistory } from 'react-router-dom';
 import { goToComments } from '../../routers/coordenator'
 
-export default function Post({data, handleVotePost}){
-
-    const [myVote, setMyVote] = useState(data.userVote===null? 0 : Number(data.userVote))
+export default function Post({ data, handleVotePost }) {
+    const [myVote, setMyVote] = useState(data.userVote === null ? 0 : Number(data.userVote))
     const history = useHistory()
-    
+
     const handleLike = direction => {
-        if(myVote===direction) return
+        if (myVote === direction) return
 
         handleVotePost(data.id, direction)
         setMyVote(direction)
@@ -20,17 +19,22 @@ export default function Post({data, handleVotePost}){
 
     return (
         <StyledPost>
-            <aside>
-                <ArrowUpwardIcon 
-                color={myVote===1? 'primary':'inherit'} 
-                onClick={() => handleLike(1)}
-                />
-                {Number(data.voteSum)===null? 0: data.voteSum}
-                <ArrowDownwardIcon 
-                color={myVote===-1? 'primary':'inherit'}
-                onClick={() => handleLike(-1)}
-                />
-            </aside>
+            {
+                handleVotePost !== undefined ?
+                    <aside>
+                        <ArrowUpwardIcon
+                            color={myVote === 1 ? 'primary' : 'inherit'}
+                            onClick={() => handleLike(1)}
+                        />
+                        {Number(data.voteSum) === null ? 0 : data.voteSum}
+                        <ArrowDownwardIcon
+                            color={myVote === -1 ? 'primary' : 'inherit'}
+                            onClick={() => handleLike(-1)}
+                        />
+                    </aside> :
+                    <aside>
+                    </aside>
+            }
             <header>
                 <h4>{data.username}</h4>
                 <h5>{formatDate(data.createdAt)}</h5>
@@ -39,15 +43,21 @@ export default function Post({data, handleVotePost}){
                 <strong>{data.title}</strong>
                 <p>{data.body}</p>
             </main>
-            <footer>
-                <StyledButton
-                    variant="outlined"
-                    onClick={() => goToComments(history, 5)}
-                >{data.commentCount && data.commentCount>1?
-                 `${data.commentCount} Comments`
-                 :'Comment'}
-                </StyledButton>
-            </footer>
+            {
+                handleVotePost !== undefined ?
+                    <footer>
+                        <StyledButton
+                            variant="outlined"
+                            onClick={() => goToComments(history, data.id)}
+                        >{data.commentCount && data.commentCount > 1 ?
+                            `${data.commentCount} Comments`
+                            : 'Comment'}
+                        </StyledButton>
+                    </footer>
+                    :
+                    <footer>
+                    </footer>
+            }
         </StyledPost>
     );
 }

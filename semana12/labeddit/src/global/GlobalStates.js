@@ -70,12 +70,12 @@ const GlobalState = (props) => {
         try {
             const url = `${BASE_URL}/posts/${id}/votes`
             const res = await axios.post(url, { direction }, { headers: { ...headers, Authorization: token } })
-            
-            if(res.status===201) {
+
+            if (res.status === 201) {
                 console.log(res.data, direction)
                 getPosts(page, setMessage)
             }
-            
+
         } catch (error) {
             setMessage('Error when we try to register your vote. \n Maybe you will have to logout and login.')
             console.log(error.response.data)
