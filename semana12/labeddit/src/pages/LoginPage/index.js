@@ -11,12 +11,13 @@ import { StyledLoginPage } from './styled'
 import { goToSignUp } from "../../routers/coordenator"
 
 export default function LoginPage() {
-  useUnprotectedPage()
-
+  
   const { requests } = useContext(GlobalContext)
   const [message, setMessage] = useState('')
   const { form, handleInputChange, clear } = useForm({Email: '', Password: ''})
   const history = useHistory()
+
+  useUnprotectedPage(message)
 
   const inputs = [
     {

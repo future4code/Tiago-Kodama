@@ -7,12 +7,12 @@ import { StyledSignUpPage } from './styled'
 import GlobalContext from "../../global/GlobalContext";
 
 export default function SignUpPage() {
-  useUnprotectedPage()
   
   const { requests } = useContext(GlobalContext)
   const { form, handleInputChange, clear } = useForm({ Name: '', Email: '', Password: '' })
   const [message, setMessage] = useState('')
-
+  
+  useUnprotectedPage(message)
 
   const inputs = [
     {

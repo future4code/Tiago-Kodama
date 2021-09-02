@@ -1,14 +1,14 @@
 import { useLayoutEffect } from "react";
 import { useHistory } from "react-router-dom";
 
-export function useUnprotectedPage(){
+export function useUnprotectedPage(message){
     const history = useHistory()
 
     useLayoutEffect(() => {
 
         const token = window.localStorage.getItem('token')
 
-        if(token) history.goBack()
+        if(token) history.push('/')
 
-    }, [history])
+    }, [history, message])
 }

@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react"
 import GlobalContext from "./GlobalContext"
 import axios from 'axios'
 import { BASE_URL } from '../constants/urls'
+import { useHistory } from "react-router-dom"
+import { goToPosts } from "../routers/coordenator"
 
 
 const GlobalState = (props) => {
