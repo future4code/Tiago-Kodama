@@ -10,7 +10,6 @@ export default function Comment({data, setMessage}){
     const { states, setters, requests } = useContext(GlobalContext)
     const [myVote, setMyVote] = useState(Number(data.userVote))
 
-console.log(data)
     const handleButtonLike = () => {
 
         switch (myVote) {

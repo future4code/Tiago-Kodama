@@ -8,8 +8,11 @@ import { useForm } from '../../hooks/useForm';
 import Comment from "../../components/comment";
 import GlobalContext from '../../global/GlobalContext'
 import Post from "../../components/post";
+import { useProtectedPage } from '../../hooks/useProtectedPage';
 
 function CommentsPage() {
+  useProtectedPage()
+
   const { id } = useParams()
   const { states, setters, requests } = useContext(GlobalContext)
   const { form, handleInputChange, clear } = useForm({ Comment: '' })
@@ -25,39 +28,45 @@ function CommentsPage() {
   
   
   useEffect(() => {
-    
-
     requests.getPostComments(id, setMessage)
-    setPost(states.posts.filter(post => id === post.id)[0])
 
+    if(states.posts)
+      setPost(states.posts.filter(post => id === post.id)[0])
 
     // eslint-disable-next-line
   }, [])
 
+
   return (
     <StyledCommentPage>
       {message && <Alert severity="warning">{message}</Alert>}
-      <Post data={post} />
-      <StyledCommentContainer>
-        <StyledForm onSubmit={handleSendComment}>
-          <input
-            type='text'
-            name={'Comment'}
-            onChange={handleInputChange}
-            value={form.Comment}
-            placeholder={'Write something beautiful'}
-            required
-            autoComplete='off'
-          />
-          <Button type='submit'>Comment</Button>
-        </StyledForm>
-        {
-          states.commentsOfSomePost &&
-          states.commentsOfSomePost.map(comment => (
-            <Comment data={comment} setMessage={setMessage} key={comment.id} />
-          ))
-        }
-      </StyledCommentContainer>
+      {
+        states.posts && states.posts.length?
+        <>
+          <Post data={post} />
+          <StyledCommentContainer>
+            <StyledForm onSubmit={handleSendComment}>
+              <input
+                type='text'
+                name={'Comment'}
+                onChange={handleInputChange}
+                value={form.Comment}
+                placeholder={'Write something beautiful'}
+                required
+                autoComplete='off'
+              />
+              <Button type='submit'>Comment</Button>
+            </StyledForm>
+            {
+              states.commentsOfSomePost &&
+              states.commentsOfSomePost.map(comment => (
+                <Comment data={comment} setMessage={setMessage} key={comment.id} />
+              ))
+            }
+          </StyledCommentContainer>
+        </> :
+        <p>Please, select the post correctly</p>
+      }
     </StyledCommentPage>
   );
 }
