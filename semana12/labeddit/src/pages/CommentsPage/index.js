@@ -12,10 +12,10 @@ import { useForm } from '../../hooks/useForm';
 function CommentsPage() {
   const { id } = useParams()
   const { states, setters, requests } = useContext(GlobalContext)
-  const { form, handleInputChange, clear } = useForm({Comment: ''})
+  const { form, handleInputChange, clear } = useForm({ Comment: '' })
   const [message, setMessage] = useState('')
 
-  const post = states.posts.filter(post => id===post.id)[0]
+  const post = states.posts.filter(post => id === post.id)[0]
 
 
   const handleSendComment = e => {
@@ -28,7 +28,7 @@ function CommentsPage() {
   useEffect(() => {
     requests.getPostComments(id, setMessage)
 
-  // eslint-disable-next-line
+    // eslint-disable-next-line
   }, [])
 
   return (
@@ -37,7 +37,7 @@ function CommentsPage() {
       <Post data={post} />
       <StyledCommentContainer>
         <StyledForm onSubmit={handleSendComment}>
-          <input 
+          <input
             type='text'
             name={'Comment'}
             onChange={handleInputChange}
@@ -51,7 +51,7 @@ function CommentsPage() {
         {
           states.commentsOfSomePost &&
           states.commentsOfSomePost.map(comment => (
-            <Comment data={comment}/>
+            <Comment data={comment} setMessage={setMessage} key={comment.id} />
           ))
         }
       </StyledCommentContainer>

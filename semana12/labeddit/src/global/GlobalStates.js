@@ -95,6 +95,22 @@ const GlobalState = (props) => {
         }
     }
 
+    const voteComment = async (id, postId, direction, setMessage) => {
+        try {
+            const url = `${BASE_URL}/comments/${id}/votes`
+            const res = await axios.post(url, { direction: direction }, { headers: { ...headers, Authorization: token } })
+
+            if (res.status === 201) {
+                console.log(res.data, direction)
+                getPostComments(postId, setMessage)
+            }
+
+        } catch (error) {
+            setMessage('Error when we try to register your vote. \n Maybe you will have to logout and login.')
+            console.log(error.response.data)
+        }
+    }
+
     const createComment = async (id, body, setMessage) => {
         try {
             const url = `${BASE_URL}/posts/${id}/comments`
@@ -127,7 +143,7 @@ const GlobalState = (props) => {
 
     const states = { token, posts, commentsOfSomePost }
     const setters = { setToken, setPosts }
-    const requests = { login, signup, getPosts, votePost, getPostComments, createComment, createPost }
+    const requests = { login, signup, getPosts, votePost, getPostComments, createComment, createPost, voteComment }
 
     return (
         <GlobalContext.Provider value={{ states, setters, requests }}>
