@@ -26,7 +26,7 @@ export const StyledComment = styled.div`
 
         h4 {
             margin: 0 1rem;
-            color: #ECEBEB;
+            color: white;
         }
         h5 {
             color: #ECEBEB;

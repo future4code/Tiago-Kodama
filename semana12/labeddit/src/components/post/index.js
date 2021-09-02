@@ -5,6 +5,7 @@ import { useState } from 'react';
 import { formatDate } from '../../tools/convertDates'
 import { useHistory } from 'react-router-dom';
 import { goToComments } from '../../routers/coordenator'
+import { handlePlural } from '../../tools/plural';
 
 export default function Post({ data, handleVotePost }) {
     const [myVote, setMyVote] = useState(data.userVote === null ? 0 : Number(data.userVote))
@@ -46,12 +47,8 @@ export default function Post({ data, handleVotePost }) {
             {
                 handleVotePost !== undefined ?
                     <footer>
-                        <StyledButton
-                            variant="outlined"
-                            onClick={() => goToComments(history, data.id)}
-                        >{data.commentCount && data.commentCount > 1 ?
-                            `${data.commentCount} Comments`
-                            : 'Comment'}
+                        <StyledButton variant="outlined" onClick={() => goToComments(history, data.id)}                        >
+                            {handlePlural('Comment', data.commentCount)}
                         </StyledButton>
                     </footer>
                     :
