@@ -14,7 +14,7 @@ export default function LoginPage() {
 
   const [message, setMessage] = useState('')
   const { form, handleInputChange, clear } = useForm({ Email: '', Password: '' })
-  const { states, setters, requests } = useContext(GlobalContext)
+  const { states, requests } = useContext(GlobalContext)
   const history = useHistory()
 
   useUnprotectedPage(message)

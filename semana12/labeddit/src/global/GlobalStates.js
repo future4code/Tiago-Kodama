@@ -81,12 +81,15 @@ const GlobalState = (props) => {
         }
     }
 
-    const getAllPosts = async (setMessage) => {
+    const getAllPosts = async (numberPage ,setMessage) => {
         try {
             setIsLoading(true)
-            const url = `${BASE_URL}/posts?size=30`
+            const url = `${BASE_URL}/posts?size=12&page=${numberPage}`
             const res = await axios.get(url, { headers: { ...headers, Authorization: window.localStorage.getItem('token') } })
-            setAllPosts(res.data)
+            // setAllPosts([...allPosts, ...res.data])
+
+            let all = new Set([...allPosts, ...res.data]);
+            setAllPosts([...all]);
 
         } catch (error) {
             setMessage('Error when we try to get posts. \n Maybe you have to logout and login.')
@@ -120,7 +123,6 @@ const GlobalState = (props) => {
             const res = await axios.post(url, { direction }, { headers: { ...headers, Authorization: window.localStorage.getItem('token') } })
 
             if (res.status === 201) {
-                console.log(res.data, direction)
                 getPosts(page, setMessage)
             }
 
