@@ -9,7 +9,7 @@ import { CircularProgress } from "@material-ui/core";
 
 export default function SignUpPage() {
 
-  const { states, setters, requests } = useContext(GlobalContext)
+  const { states, requests } = useContext(GlobalContext)
   const { form, handleInputChange, clear } = useForm({ Name: '', Email: '', Password: '' })
   const [message, setMessage] = useState('')
 

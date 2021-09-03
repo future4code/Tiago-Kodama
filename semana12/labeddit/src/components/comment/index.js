@@ -7,7 +7,7 @@ import { handlePlural } from '../../tools/plural'
 
 export default function Comment({data, setMessage}){
 
-    const { states, setters, requests } = useContext(GlobalContext)
+    const { requests } = useContext(GlobalContext)
     const [myVote, setMyVote] = useState(Number(data.userVote))
 
     const handleButtonLike = () => {

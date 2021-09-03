@@ -1,11 +1,9 @@
-import { useContext, useLayoutEffect } from "react";
+import { useLayoutEffect } from "react";
 import { useHistory } from "react-router-dom";
-import GlobalContext from "../global/GlobalContext";
-import { goToLogin, goToPosts } from "../routers/coordenator"
+import { goToLogin } from "../routers/coordenator"
 
 export function useProtectedPage(){
     const history = useHistory()
-    const { states, setters, requests } = useContext(GlobalContext)
     
     useLayoutEffect(() => {
         

@@ -14,7 +14,7 @@ function CommentsPage() {
   useProtectedPage()
 
   const { id } = useParams()
-  const { states, setters, requests } = useContext(GlobalContext)
+  const { states, requests } = useContext(GlobalContext)
   const { form, handleInputChange, clear } = useForm({ Comment: '' })
   const [message, setMessage] = useState('')
   const [post, setPost] = useState({})

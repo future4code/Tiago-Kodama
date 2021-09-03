@@ -18,7 +18,7 @@ function PostsPage() {
   const [message, setMessage] = useState('')
   const [page, setPage] = useState(1)
   const { form, handleInputChange, clear } = useForm({ Title: '', Body: '' })
-  const { states, setters, requests } = useContext(GlobalContext)
+  const { states, requests } = useContext(GlobalContext)
 
   const inputs = [
     {

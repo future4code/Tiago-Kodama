@@ -8,18 +8,50 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 import { StyledPostsPage } from './styled'
 import TopPost from '../../components/topPost';
 
+import { useRef } from 'react';
 
 function Home() {
   useProtectedPage()
 
   const [message, setMessage] = useState('')
-  const { states, setters, requests } = useContext(GlobalContext)
+  const { states, requests } = useContext(GlobalContext)
+  const [pageNum, setPageNum] = useState(1);
+  const [lastElement, setLastElement] = useState(null);
+
+  const TOTAL_PAGES = 3;
+
+  const observer = useRef(
+    new IntersectionObserver(
+      (entries) => {
+        const first = entries[0];
+        if (first.isIntersecting) {
+          setPageNum((no) => no + 1);
+        }
+      })
+  );
 
 
   useEffect(() => {
-    requests.getAllPosts(setMessage)
+    requests.getAllPosts(pageNum, setMessage)
+
     // eslint-disable-next-line
-  }, [])
+  }, [pageNum]);
+
+  useEffect(() => {
+    const currentElement = lastElement;
+    const currentObserver = observer.current;
+
+    if (currentElement) {
+      currentObserver.observe(currentElement);
+    }
+
+    return () => {
+      if (currentElement) {
+        currentObserver.unobserve(currentElement);
+      }
+    };
+  }, [lastElement]);
+
 
   if (states.isLoading && !states.allPosts.length) {
     return (
@@ -29,7 +61,6 @@ function Home() {
     );
   }
 
-
   return (
     <StyledPostsPage>
       <h2>Top posts</h2>
@@ -38,20 +69,23 @@ function Home() {
         states.allPosts ?
           <>
             {states.allPosts
-            .sort((postA, postB) => {
-              const sumA = Number(postA.voteSum) + Number(postA.commentCount)
-              const sumB = Number(postB.voteSum) + Number(postB.commentCount)
-
-              if(sumA===sumB) return 0
-              else if(sumA>sumB) return -1
-              else return 1
-            })
-            .map(post => (
-              <TopPost post={post} />
-            ))}
+              .map(post => (
+                <div
+                  key={post.id}
+                  ref={setLastElement}
+                >
+                  <TopPost post={post} />
+                </div>
+              ))}
           </>
           : <p>You don't have any post</p>
       }
+
+      {states.isLoading && <p className='text-center'>loading...</p>}
+
+      {pageNum - 1 === TOTAL_PAGES && (
+        <p className='text-center my-10'>:)</p>
+      )}
     </StyledPostsPage>
   );
 }
