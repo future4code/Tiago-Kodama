@@ -1,7 +1,9 @@
+import { StyledHome } from './styled'
+
 export default function Home(){
     return (
-        <div>
+        <StyledHome>
             Home
-        </div>
+        </StyledHome>
     );
 }
