@@ -1,11 +1,12 @@
 import Routers from "./routes/routers";
+import GlobalStateContext from './global/GlobalStateContext'
 
 
 function App() {
   return (
-    <div>
+    <GlobalStateContext>
       <Routers />
-    </div>
+    </GlobalStateContext>
   );
 }
 
