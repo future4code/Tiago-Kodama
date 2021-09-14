@@ -16,7 +16,7 @@ export const StyledButtonLeft = styled.button`
     left: 10px;
 
     border-radius: 5px;
-    padding: 5px;
+    padding: 5px 8px;
     border: none;
     color: white;
     background: ${colorPrimary};
@@ -28,7 +28,7 @@ export const StyledButtonRight = styled.button`
     right: 10px;
 
     border-radius: 5px;
-    padding: 5px;
+    padding: 5px 8px;
     border: none;
     color: white;
     background: ${colorPrimary};

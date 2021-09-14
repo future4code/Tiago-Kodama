@@ -12,6 +12,12 @@ export const StyledCard = styled.div`
     background: ${bgCard};
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 
+    p {
+        position: absolute;
+        bottom: 1px;
+        font-size: .8rem;
+    }
+
     img {
         width: 104px;
         height: 219px;
