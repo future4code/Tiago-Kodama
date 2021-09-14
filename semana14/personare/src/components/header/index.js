@@ -1,4 +1,4 @@
-import { StyledHeader, StyledButton, StyledTitle } from './styled'
+import { StyledHeader, StyledButton, StyledTitle, StyledSpan } from './styled'
 
 export default function Header(){
     return (

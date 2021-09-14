@@ -8,26 +8,25 @@ export const StyledHeader = styled.div`
     background: ${bgHeader};
 
     display: grid;
-    grid-template-rows: 1;
-    grid-template-columns: 3;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr;
     align-items: center;
+    justify-items: start;
 `
 
 export const StyledButton = styled.button`
     grid-column: 1 / 2;
     grid-rows; 1 / 2;
-    border: 1px solid black;
     background: none;
+    border: none;
     color: ${colorNeutral};
     font-size: 1rem;
-
 `
 
 export const StyledTitle = styled.h1`
-border: 1px solid black;
-
     grid-column: 2 / 3;
     grid-rows; 1 / 2;
+    place-self: center;
     font-size: 1.5rem;
     color: ${colorNeutral};
 `
