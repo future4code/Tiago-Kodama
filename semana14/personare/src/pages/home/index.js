@@ -4,6 +4,7 @@ import Header from '../../components/header';
 import { StyledHome, StyledButton } from './styled'
 
 export default function Home(){
+
     return (
         <StyledHome>
             <Header />
