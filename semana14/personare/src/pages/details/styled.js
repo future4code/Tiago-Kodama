@@ -15,6 +15,7 @@ export const StyledDetailsContainer = styled.div`
     margin: 2rem 0;
     padding: 1rem;
     width: 80%;
+    max-width: 400px;
     border-radius: 10px;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 
