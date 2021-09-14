@@ -1,10 +1,11 @@
 import Header from '../../components/header';
-import { StyledHome } from './styled'
+import { StyledHome, StyledButton } from './styled'
 
 export default function Home(){
     return (
         <StyledHome>
             <Header />
+            <StyledButton>Start</StyledButton>
         </StyledHome>
     );
 }
