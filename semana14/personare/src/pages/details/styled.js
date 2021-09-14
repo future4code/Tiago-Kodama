@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import { bgScreen, bgCard, colorBlack } from "../../constants/colors/theme"
-import { colorPrimary, colorNeutral } from '../../constants/colors/theme'
 
 export const StyledDetails = styled.div`
     width: 100vw;

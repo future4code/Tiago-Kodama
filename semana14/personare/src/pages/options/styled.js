@@ -16,5 +16,5 @@ export const StyledText = styled.p`
     font-size: 24px;
     line-height: 28px;
     color: ${colorNeutral};
-    margin: 2rem 0;
+    margin: 2.45rem 0;
 `

@@ -1,6 +1,15 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import { bgScreen } from "../../constants/colors/theme"
 import { colorPrimary, colorNeutral } from '../../constants/colors/theme'
+
+const buttonAnimation = keyframes`
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;        
+    }
+`
 
 export const StyledHome = styled.div`
     width: 100vw;
@@ -27,4 +36,8 @@ export const StyledButton = styled.button`
     &:hover{
         opacity: .8;
     }
+
+    animation: ${props =>
+        props.start? buttonAnimation : ''
+    } 0.2s linear;
 `
