@@ -1,10 +1,9 @@
 import { StyledCard } from './styled'
 
-export default function Card({key, name, src}){
+export default function Card({id, name, srcFront, srcBack, isFront, scrollTo}){
     return (
-        <StyledCard>
-            <p>{name}</p>
-            <img src={src} alt={name}/>
+        <StyledCard scrollTo={scrollTo}>
+            <img src={isFront? srcFront: srcBack} alt={name}/>
         </StyledCard>
     );
 }

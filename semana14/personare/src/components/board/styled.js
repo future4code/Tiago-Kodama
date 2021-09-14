@@ -2,12 +2,13 @@ import styled from "styled-components";
 import { colorPrimary } from '../../constants/colors/theme'
 
 export const StyledBoard = styled.div`
+    margin-top: 2rem;
     width: 100vw;
     display: flex;
     justify-content: center;
     align-items: center;
     overflow-x: hidden;
-    background: gray;
+    background: none;
     position: relative;
 `
     
