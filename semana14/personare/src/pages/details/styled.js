@@ -19,6 +19,8 @@ export const StyledDetailsContainer = styled.div`
     border-radius: 10px;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 
+    word-break: break-all;
+
     p {
         color: ${colorBlack};
         font-family: Roboto;
