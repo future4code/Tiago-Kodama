@@ -38,6 +38,6 @@ export const StyledButton = styled.button`
     }
 
     animation: ${props =>
-        props.start? buttonAnimation : ''
+        props.isStart? buttonAnimation : ''
     } 0.2s linear;
 `

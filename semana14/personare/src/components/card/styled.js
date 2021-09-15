@@ -30,8 +30,8 @@ const moveToLeft = keyframes`
     }
 `
 
-const verifyMove = (command, start) => {
-    if(start) return rotate
+const verifyMove = (command, isStart) => {
+    if(isStart) return rotate
 
     if(command==='right') return moveToRight
     else if(command==='left') return moveToLeft
@@ -61,6 +61,6 @@ export const StyledCard = styled.div`
     }
 
     animation: ${props =>
-        props.scrollTo? verifyMove(props.scrollTo, props.start) : ''
+        props.scrollTo? verifyMove(props.scrollTo, props.isStart) : ''
     } 0.5s linear;
 `

@@ -4,20 +4,20 @@ import Header from '../../components/header';
 import { StyledHome, StyledButton } from './styled'
 
 export default function Home(){
-    const [start, setStart] = useState(false)
+    const [isStart, setIsStart] = useState(false)
     const [isFront, setIsFront] = useState(true)
 
     return (
         <StyledHome>
             <Header />
             <StyledButton
-                start={start}
-                onClick={() => setStart(true)}
+                isStart={isStart}
+                onClick={() => setIsStart(true)}
             >Start</StyledButton>
             <Board 
                 isFront={isFront}
                 setIsFront={setIsFront}
-                start={start}
+                isStart={isStart}
             />
         </StyledHome>
     );

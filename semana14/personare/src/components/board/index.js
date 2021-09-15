@@ -4,8 +4,9 @@ import tarot from '../../assets/tarot.json'
 import { useEffect, useState } from 'react'
 import { randomSort } from '../../tools/randomSort'
 import { useHistory } from 'react-router'
+import { goToOptions } from '../../routes/coordenator'
 
-export default function Board({isFront, setIsFront,start}){
+export default function Board({isFront, setIsFront,isStart}){
     const BASE_URL = tarot.imagesUrl
     const imageBack = tarot.imageBackCard
 
@@ -21,13 +22,13 @@ export default function Board({isFront, setIsFront,start}){
     }, [scrollTo])
 
     useEffect(() => {
-        if(start) {
-            setTimeout(() => history.push('/options'), 500)
+        if(isStart) {
+            setTimeout(() => goToOptions(history), 500)
             setTimeout(() => setIsFront(false), 250)
         }
 
     // eslint-disable-next-line
-    }, [start])
+    }, [isStart])
 
 
     const renderCards = cards.map((card, index) => (
@@ -39,7 +40,7 @@ export default function Board({isFront, setIsFront,start}){
             srcFront={BASE_URL+card.image}
             srcBack={imageBack}
             scrollTo={scrollTo}
-            start={start}
+            isStart={isStart}
         />
     ))
 
