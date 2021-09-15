@@ -23,6 +23,10 @@ export const StyledButton = styled.button`
     border: none;
     color: ${colorNeutral};
     font-size: 1rem;
+
+    img {
+        width: 1.5rem;
+    }
 `
 
 export const StyledTitle = styled.h1`

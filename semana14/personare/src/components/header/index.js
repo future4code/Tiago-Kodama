@@ -1,5 +1,6 @@
 import { useHistory } from 'react-router';
 import { StyledHeader, StyledButton, StyledTitle } from './styled'
+import arrowButtonIcon from '../../assets/img/arrow.svg'
 
 export default function Header(){
     const history = useHistory()
@@ -9,7 +10,7 @@ export default function Header(){
             {history.location.pathname!=='/' &&
             <StyledButton
                 onClick={() => history.push('/')}
-            >Back</StyledButton>}
+            ><img src={arrowButtonIcon} alt='button icon'/></StyledButton>}
             <StyledTitle>Title</StyledTitle>
         </StyledHeader>
     );
