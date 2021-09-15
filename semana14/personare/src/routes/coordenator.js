@@ -7,5 +7,5 @@ export const goToOptions = (history) => {
 }
 
 export const goToDetails = (history, id) => {
-    history.push(`/details/:${id}`)
+    history.push(`/details/${id}`)
 }
