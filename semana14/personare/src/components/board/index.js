@@ -9,7 +9,7 @@ import { goToOptions } from '../../routes/coordenator'
 export default function Board({isFront, setIsFront,isStart}){
     const BASE_URL = tarot.imagesUrl
     const imageBack = tarot.imageBackCard
-
+    
     const history = useHistory()
 
     const [cards, setCards] = useState(isFront? tarot.cards: randomSort(tarot.cards))

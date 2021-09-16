@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { bgHeader, colorNeutral } from '../../constants/colors/theme'
 
-export const StyledHeader = styled.div`
+export const StyledHeader = styled.header`
     margin: 0;
     height: 50px;
     width: 100vw;
