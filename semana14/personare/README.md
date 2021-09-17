@@ -1,6 +1,9 @@
 # Tarot
 ## Case React da empresa Personare
 
+### Link do surge
+https://hurried-sign.surge.sh/
+
 ### Features
 
 - Tela inicial mostrando todas as cartas
