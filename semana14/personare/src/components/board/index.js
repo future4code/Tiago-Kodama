@@ -57,7 +57,7 @@ export default function Board({isFront, setIsFront,isStart}){
     }
 
     return (
-        <StyledBoard>
+        <StyledBoard role='combobox'>
             <StyledButtonLeft
                 onClick={handlePrev}
             >Prev</StyledButtonLeft>
