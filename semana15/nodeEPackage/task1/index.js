@@ -1,13 +1,16 @@
-/**
- * a) Responda como comentário no seu código: como fazemos para acessar os parâmetros passados na linha de comando para o Node?
- * R: passamos ao rodar index no process.argv
- * 
- *  b) Crie um programa que receba seu nome e sua idade. Após receber estes valores, imprima no console uma mensagem que siga a seguinte estrutura:
- */
+const chalk = require('chalk')
 
- const [,,inputName, inputAge] = process.argv
+const main = (inputName, inputAge) => {
+    try {
+        if(!inputName || !inputAge) throw new Error('Esperava dois argumentos.')
 
- console.log(`Olá, ${inputName}! 
- Você tem ${inputAge} anos.`)
- 
- console.log(`Em sete anos você terá ${Number(inputAge)+7}`)
+        console.log(`Olá, ${inputName}! Você tem ${inputAge} anos.`)
+        console.log(`Em sete anos você terá ${Number(inputAge)+7}`)
+    } catch (error) {
+        console.error(chalk.red(`Erro: ${error.message}`),)
+    }
+}
+
+const [,,inputName, inputAge] = process.argv
+
+main(inputName, inputAge)
