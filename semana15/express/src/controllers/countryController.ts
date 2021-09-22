@@ -71,3 +71,32 @@ export const filterByParameters = (req:Request, res:Response) => {
         res.send(error.message)
     }
 }
+
+export const updateCountry = (req:Request, res:Response) => {
+  try {
+    const { id } = req.params;
+    const { name, capital } = req.body
+
+    if(!id || !name || !capital) {
+        res.statusCode = 400
+        throw new Error("Incorrect data")
+    }
+
+    const findedCountry:(country|undefined) = countries.find(country => country.id===Number(id))
+
+    if(!findedCountry){
+        res.statusCode = 404
+        throw new Error("This ID have not a country")
+    }
+
+
+    //Pensar como fazer a edição
+
+
+    res.send("Updated")
+
+    
+  } catch (error:any) {
+    res.send(error.message)
+  }
+}
