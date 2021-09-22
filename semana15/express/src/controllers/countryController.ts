@@ -12,6 +12,7 @@ export const findAll = (req: Request, res: Response) => {
 
 export const findCountryById = (req: Request, res: Response) => {
   try {
+
     const { id } = req.params;
 
     if(!id) {
@@ -25,6 +26,8 @@ export const findCountryById = (req: Request, res: Response) => {
         res.statusCode = 404
         throw new Error("This ID have not a country")
     }
+
+    res.send(findedCountry)
 
   } catch (error:any) {
       res.send(error.message)
@@ -40,8 +43,29 @@ export const filterByParameters = (req:Request, res:Response) => {
             throw new Error("Please, insert some filter")
         }
 
-        throw new Error("Método não implementado");
+        const selectedCountry:Array<country> = countries
+                  .filter(country => {
+                    if(typeof name === 'string'){
+                      return country.name.toUpperCase().includes(name.toUpperCase())
+                    }
+                  })
+                  .filter(country => {
+                    if(typeof capital === 'string'){
+                      return country.capital.toUpperCase().includes(capital.toUpperCase())
+                    }
+                  })
+                  .filter(country => {
+                    if(typeof continent === 'string'){
+                      return country.continent.toUpperCase().includes(continent.toUpperCase())
+                    }
+                  })
+
+        if(!selectedCountry.length){
+          res.statusCode = 404
+          throw new Error("Not find")
+        }
         
+        res.send(selectedCountry)
 
     } catch (error:any) {
         res.send(error.message)
