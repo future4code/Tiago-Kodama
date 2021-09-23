@@ -63,3 +63,21 @@ export const alterateUser = (id:number):user => {
 
     return userToUpdate
 }
+
+export const realterateUser = (id:number):user => {
+    const userToUpdate:(user|undefined) = users.find(user => {
+        return user.id===id
+    })
+
+    if(!userToUpdate){
+        throw new Error('Can not find user')
+    }
+
+    if(!userToUpdate.name.includes('-ALTERADO')){
+        throw new Error('This user has not been alterated')
+    }
+
+    userToUpdate.name = userToUpdate.name.replace(/ALTERADO/i,'REALTERADO')
+
+    return userToUpdate
+}
