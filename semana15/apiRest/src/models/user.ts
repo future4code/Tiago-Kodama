@@ -22,3 +22,31 @@ export const findUserByName = (name: string):(user|undefined) => {
 
     return userPerName
 }
+
+export const createUser = (
+    name:string,
+    age:number,
+    email: string,
+    type: PRIVILAGE
+):user => {
+
+    const isAlreadyExists:boolean = users.some(user => {
+        return user.email === email
+    })
+
+    if(isAlreadyExists){
+        throw new Error('The email already exists')
+    }
+
+    const newUser:user = {
+        age: age,
+        name: name,
+        email: email,
+        type: type,
+        id: Date.now()
+    }
+
+    users.push(newUser)
+
+    return newUser
+}

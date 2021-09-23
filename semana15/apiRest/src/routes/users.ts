@@ -2,13 +2,16 @@ import { Router } from 'express';
 import {
     getUsers,
     getUsersByType,
-    getUserByName
+    getUserByName,
+    newUser
 } from '../controllers/userController';
 
 const router = Router()
 
 router.get('/users', getUsers)
 router.get('/users/:type', getUsersByType)
-router.post('/users', getUserByName)
+
+router.post('/user',newUser)
+router.post('/user/:name', getUserByName)
 
 export default router
