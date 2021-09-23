@@ -6,7 +6,8 @@ import {
   findUserByName,
   createUser,
   alterateUser,
-  realterateUser
+  realterateUser,
+  removeUser
 } from "../models/user";
 
 export const getUsers = (req: Request, res: Response) => {
@@ -118,5 +119,23 @@ export const reupdateUser = (req:Request, res:Response) => {
 
     } catch (error:any) {
         res.send(error.message).end()
+    }
+}
+
+export const deleteById = (req:Request, res:Response) => {
+    try {
+        res.statusCode = 401
+        const id:number = req.body.id
+
+        if(isNaN(id)){
+            res.statusCode = 422
+        }
+
+        removeUser(id)
+        
+        res.status(200).send('User removed')
+
+    } catch (error:any) {
+        res.send(error.message)
     }
 }

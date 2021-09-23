@@ -81,3 +81,13 @@ export const realterateUser = (id:number):user => {
 
     return userToUpdate
 }
+
+export const removeUser = (id:number) => {
+    const index:(number|undefined) = users.map(user => user.id).indexOf(id)
+
+    if(index===undefined || index===-1){
+        throw new Error('Incorrect id')
+    }
+
+    users.splice(index,1)    
+}

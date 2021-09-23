@@ -5,7 +5,8 @@ import {
   getUserByName,
   newUser,
   updateUser,
-  reupdateUser
+  reupdateUser,
+  deleteById
 } from "../controllers/userController";
 
 const router = Router();
@@ -16,6 +17,7 @@ router.get("/users/:type", getUsersByType);
 router.post("/user", newUser);
 router.put("/user", updateUser);
 router.patch("/user", reupdateUser);
+router.delete("/user", deleteById);
 router.post("/user/:name", getUserByName);
 
 export default router;
