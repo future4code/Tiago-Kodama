@@ -1,11 +1,14 @@
 import { Request, Response } from "express";
-import { countries } from "../assets/data";
 import { country, CONTINENTS } from "../constants/types";
+import { CountryRepository } from "../repositores/CountryRepositores";
+
+const countryRepository: CountryRepository = new CountryRepository();
 
 export const findAll = (req: Request, res: Response) => {
   try {
-    res.send(countries);
-  } catch (error) {
+    res.send(countryRepository.getCountries());
+  } catch (error: any) {
+    console.log(error.message);
     res.status(404).send("We could not found");
   }
 };
@@ -19,9 +22,9 @@ export const findCountryById = (req: Request, res: Response) => {
       throw new Error("Incorrect ID");
     }
 
-    const findedCountry: country | undefined = countries.find(
-      (country) => country.id === Number(id)
-    );
+    const findedCountry: country | undefined = countryRepository
+      .getCountries()
+      .find((country) => country.id === Number(id));
 
     if (!findedCountry) {
       res.statusCode = 404;
@@ -43,7 +46,8 @@ export const filterByParameters = (req: Request, res: Response) => {
       throw new Error("Please, insert some filter");
     }
 
-    const selectedCountry: Array<country> = countries
+    const selectedCountry: Array<country> = countryRepository
+      .getCountries()
       .filter((country) => {
         return country.name
           .toUpperCase()
@@ -83,18 +87,21 @@ export const updateCountry = (req: Request, res: Response) => {
       throw new Error("Incorrect data");
     }
 
-    const findedCountry: country | undefined = countries.find(
-      (country) => country.id === Number(id)
-    );
+    const findedCountry: country | undefined = countryRepository
+      .getCountries()
+      .find((country) => country.id === Number(id));
 
-    if (!findedCountry) {
+    if (!findedCountry || !Object.keys(findedCountry)) {
       res.statusCode = 404;
       throw new Error("This ID have not a country");
     }
 
-    //Pensar como fazer a edição
+    findedCountry.name = name;
+    findedCountry.capital = capital;
 
-    res.send("Updated");
+    countryRepository.update(findedCountry);
+
+    res.send(findedCountry);
   } catch (error: any) {
     res.send(error.message);
   }
@@ -115,16 +122,16 @@ export const removeCountry = (req: Request, res: Response) => {
       throw new Error("Incorrect authorization");
     }
 
-    const findedCountry: country | undefined = countries.find(
-      (country) => country.id === Number(id)
-    );
+    const findedCountry: country | undefined = countryRepository
+      .getCountries()
+      .find((country) => country.id === Number(id));
 
     if (!findedCountry) {
       res.statusCode = 404;
       throw new Error("This ID have not a country");
     }
 
-    //Pensar como fazer a remoção
+    countryRepository.remove(Number(id))
 
     res.send("Removed");
   } catch (error: any) {
@@ -147,25 +154,31 @@ export const createCountry = (req: Request, res: Response) => {
       throw new Error("Incorrect authorization");
     }
 
-    const alreadyExist:boolean = countries.some(country => country.name.toUpperCase().includes((name as string).toUpperCase())) 
+    const alreadyExist: boolean = countryRepository
+      .getCountries()
+      .some((country) =>
+        country.name.toUpperCase().includes((name as string).toUpperCase())
+      );
 
-    if(alreadyExist){
-      res.statusCode = 400
-      throw new Error("This country already exists")
+    if (alreadyExist) {
+      res.statusCode = 400;
+      throw new Error("This country already exists");
     }
 
+    const newCountry: country = {
+      capital: capital,
+      name: name,
+      continent: continent,
+      id: Date.now(),
+    };
+
+    countryRepository.insert(newCountry);
+
     res.send({
-        "message": "Success!",
-        "country":{
-           "id": Date.now(),
-           "name": name,
-           "capital": capital,
-           "continent": continent
-        }
-    })
-
-
-  } catch (error:any) {
-    res.send(error.message)
+      message: "Success!",
+      country: newCountry,
+    });
+  } catch (error: any) {
+    res.send(error.message);
   }
 };

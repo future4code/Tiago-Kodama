@@ -1,12 +1,12 @@
 import { Router } from "express";
 import { 
-    filterByParameters, 
-    findAll, 
+    createCountry,
+    findAll,
+    filterByParameters,
     findCountryById,
     updateCountry,
-    removeCountry,
-    createCountry
-} from "../controllers/countryController";
+    removeCountry
+ } from "../controllers/countryController";
 
 const router = Router()
 
@@ -14,7 +14,7 @@ router.get("/countries", findAll)
 router.post("/countries", createCountry)
 router.get("/countries/search", filterByParameters)
 router.get("/countries/:id", findCountryById)
-router.post("/countries/:id", updateCountry)
+router.put("/countries/:id", updateCountry)
 router.delete("/countries/:id", removeCountry)
 
 export default router
