@@ -1,52 +1,65 @@
-import { PRIVILAGE, user } from '../constants/types';
-import { USERS } from '../constants/users';
+import { PRIVILAGE, user } from "../constants/types";
+import { USERS } from "../constants/users";
 
-const users:Array<user> = [...USERS]
+const users: Array<user> = [...USERS];
 
-export const findUsers = ():Array<user> => {
-    return users
-}
+export const findUsers = (): Array<user> => {
+  return users;
+};
 
-export const findUsersByType = (type: PRIVILAGE):Array<user> => {
-    const usersPerType: (Array<user>) = users.filter(user => {
-        return user.type === type
-    })
+export const findUsersByType = (type: PRIVILAGE): Array<user> => {
+  const usersPerType: Array<user> = users.filter((user) => {
+    return user.type === type;
+  });
 
-    return usersPerType
-}
+  return usersPerType;
+};
 
-export const findUserByName = (name: string):(user|undefined) => {
-    const userPerName:(user|undefined) = users.find(user => {
-        return user.name.toUpperCase() === name.toUpperCase()
-    })
+export const findUserByName = (name: string): user | undefined => {
+  const userPerName: user | undefined = users.find((user) => {
+    return user.name.toUpperCase() === name.toUpperCase();
+  });
 
-    return userPerName
-}
+  return userPerName;
+};
 
 export const createUser = (
-    name:string,
-    age:number,
-    email: string,
-    type: PRIVILAGE
-):user => {
+  name: string,
+  age: number,
+  email: string,
+  type: PRIVILAGE
+): user => {
+  const isAlreadyExists: boolean = users.some((user) => {
+    return user.email === email;
+  });
 
-    const isAlreadyExists:boolean = users.some(user => {
-        return user.email === email
+  if (isAlreadyExists) {
+    throw new Error("The email already exists");
+  }
+
+  const newUser: user = {
+    age: age,
+    name: name,
+    email: email,
+    type: type,
+    id: Date.now(),
+  };
+
+  users.push(newUser);
+
+  return newUser;
+};
+
+export const alterateUser = (id:number):user => {
+    const userToUpdate:(user|undefined) = users.find(user => {
+        return user.id===id
     })
 
-    if(isAlreadyExists){
-        throw new Error('The email already exists')
+    if(!userToUpdate){
+        throw new Error('Can not find user')
     }
 
-    const newUser:user = {
-        age: age,
-        name: name,
-        email: email,
-        type: type,
-        id: Date.now()
-    }
+    userToUpdate.name += '-ALTERADO'
 
-    users.push(newUser)
-
-    return newUser
+    return userToUpdate
 }

@@ -5,6 +5,7 @@ import {
   findUsersByType,
   findUserByName,
   createUser,
+  alterateUser
 } from "../models/user";
 
 export const getUsers = (req: Request, res: Response) => {
@@ -78,3 +79,23 @@ export const newUser = (req: Request, res: Response) => {
       res.send(error.message)
   }
 };
+
+export const updateUser = (req:Request, res:Response) => {
+    try {
+        res.statusCode = 401
+
+        const id:number = req.body.id
+
+        if(isNaN(id)){
+            res.statusCode = 422
+            throw new Error('Missing id')
+        }
+
+        alterateUser(id)
+
+        res.status(201).end()
+
+    } catch (error) {
+        res.end()
+    }
+}
