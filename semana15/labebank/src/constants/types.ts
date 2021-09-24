@@ -1,4 +1,4 @@
-export type movimento = {
+export type Movimento = {
     cpf: string,
     valor: number,
     data: Date,
