@@ -1,11 +1,11 @@
-type movimento = {
+export type movimento = {
     cpf: string,
     valor: number,
     data: Date,
     descricao?: string
 }
 
-type Usuario = {
+export type Usuario = {
     nome: string,
     cpf: string,
     dataNascimento: Date,
