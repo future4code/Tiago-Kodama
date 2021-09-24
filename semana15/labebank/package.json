@@ -4,7 +4,9 @@
   "description": "Sistema de controle e interface de aplicação do banco Labebank",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "tsc",
+    "start": "tsc && node ./build/app.js",
+    "dev": "ts-node-dev ./src/app.ts"
   },
   "author": "Tiago Kodama",
   "license": "ISC",
