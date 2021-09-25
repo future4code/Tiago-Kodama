@@ -6,6 +6,7 @@ let extratos:Array<Movimento> = []
 
 export const usuarioModels = {
     verUsuarios: ():Array<Usuario> => {
+        console.log(`[PEGAR USUARIOS] - ${paraDDMMAAA(Date.now())}`)
         return usuarios
     },
 
@@ -89,6 +90,7 @@ export const usuarioModels = {
         extratos.push(comprovanteRecebeu)
         extratos.push(comprovanteDepositou)
 
+        console.log(`[TRANSFERENCIA INTERNA] ${usuario.nome} - ${paraDDMMAAA(Date.now())}`)
         return comprovanteDepositou
     }
 }
