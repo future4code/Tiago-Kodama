@@ -3,92 +3,99 @@ import { usuarioModels } from "../models/usuario";
 import { Usuario } from "../constants/types";
 import { extrairNumerosCPf } from "../tools/lidandoCPF";
 
-export const criarConta = (req:Request, res:Response) => {
-    try {
-        res.statusCode = 400
+export const pegarUsuarios = (req: Request, res: Response) => {
+  try {
+    res.statusCode = 500;
 
-        const nome:string = req.body.nome
-        const cpf:string = extrairNumerosCPf(req.body.cpf)
-        const dataNascimento:Date = new Date(req.body.dataNascimento)
-        const saldo: number = 0
+    res.status(200).send(usuarioModels.verUsuarios());
+  } catch (error: any) {
+    res.send(error.message);
+  }
+};
 
-        if(!nome||!cpf||!dataNascimento){
-            res.statusCode = 422
-            throw new Error('Informações incorretas ou faltando')
-        }
+export const criarConta = (req: Request, res: Response) => {
+  try {
+    res.statusCode = 400;
 
-        const novoUsuario:Usuario = { nome, cpf, dataNascimento, saldo}
-        usuarioModels.criarConta(novoUsuario)
+    const nome: string = req.body.nome;
+    const cpf: string = extrairNumerosCPf(req.body.cpf);
+    const dataNascimento: Date = new Date(req.body.dataNascimento);
+    const saldo: number = 0;
 
-        res.status(201).send('O usuário foi criado.')
-
-    } catch (error:any) {
-        res.send(error.message)
+    if (!nome || !cpf || !dataNascimento) {
+      res.statusCode = 422;
+      throw new Error("Informações incorretas ou faltando");
     }
-}
 
-export const adicionarSaldo = (req:Request, res:Response) => {
-    try {
-        res.statusCode = 400
+    const novoUsuario: Usuario = { nome, cpf, dataNascimento, saldo };
+    usuarioModels.criarConta(novoUsuario);
 
-        const saldo: number = req.body.saldo
-        const cpf: string = extrairNumerosCPf(req.body.cpf)
+    res.status(201).send("O usuário foi criado.");
+  } catch (error: any) {
+    res.send(error.message);
+  }
+};
 
-        if(!saldo||!cpf){
-            res.statusCode = 422
-            throw new Error('Informações incorretas ou faltando')
-        }
+export const adicionarSaldo = (req: Request, res: Response) => {
+  try {
+    res.statusCode = 400;
 
-        usuarioModels.adicionarSaldo(cpf, saldo)
+    const saldo: number = req.body.saldo;
+    const cpf: string = extrairNumerosCPf(req.body.cpf);
 
-        res.status(200).send('Saldo adicionado')
-
-
-    } catch (error: any) {
-        res.send(error.message)
+    if (!saldo || !cpf) {
+      res.statusCode = 422;
+      throw new Error("Informações incorretas ou faltando");
     }
-}
 
-export const consultarSaldo = (req:Request, res:Response) => {
-    try {
-        res.statusCode = 400
+    usuarioModels.adicionarSaldo(cpf, saldo);
 
-        const nome:string = req.body.nome
-        const cpf:string = extrairNumerosCPf(req.body.cpf)
-        
-        if(!nome||!cpf){
-            res.statusCode = 422
-            throw new Error('Faltando informação')
-        }
+    res.status(200).send("Saldo adicionado");
+  } catch (error: any) {
+    res.send(error.message);
+  }
+};
 
-        const saldo:number = usuarioModels.pegarSaldoPeloNomeECPF(nome, cpf)
+export const consultarSaldo = (req: Request, res: Response) => {
+  try {
+    res.statusCode = 400;
 
-        res.status(200).send({saldo})
-        
-    } catch (error:any) {
-        res.send(error.message)
+    const nome: string = req.body.nome;
+    const cpf: string = extrairNumerosCPf(req.body.cpf);
+
+    if (!nome || !cpf) {
+      res.statusCode = 422;
+      throw new Error("Faltando informação");
     }
-}
 
-export const transferenciaInterna = (req:Request, res:Response) => {
-    try {
-        res.statusCode = 400
+    const saldo: number = usuarioModels.pegarSaldoPeloNomeECPF(nome, cpf);
 
-        const nome: string = req.body.nome
-        const cpf: string = req.body.cpf
-        const nomeDestinatario: string = req.body.nomeDestinatario
-        const cpfDestinatario:string = req.body.cpfDestinatario
-        const valorTransferir:number = req.body.valorTransferir
+    res.status(200).send({ saldo });
+  } catch (error: any) {
+    res.send(error.message);
+  }
+};
 
-        usuarioModels.transferenciaInterna(
-            nome,
-            cpf,
-            nomeDestinatario,
-            cpfDestinatario,
-            valorTransferir
-        )
+export const transferenciaInterna = (req: Request, res: Response) => {
+  try {
+    res.statusCode = 400;
 
-    } catch (error:any) {
-        res.send(error.message)
-    }
-}
+    const nome: string = req.body.nome;
+    const cpf: string = req.body.cpf;
+    const nomeDestinatario: string = req.body.nomeDestinatario;
+    const cpfDestinatario: string = req.body.cpfDestinatario;
+    const valorTransferir: number = req.body.valorTransferir;
+
+    const comprovante = usuarioModels.transferenciaInterna(
+      nome,
+      cpf,
+      nomeDestinatario,
+      cpfDestinatario,
+      valorTransferir
+    );
+
+    res.status(200).send(comprovante);
+  } catch (error: any) {
+    res.send(error.message);
+  }
+};

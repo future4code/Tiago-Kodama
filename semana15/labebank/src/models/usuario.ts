@@ -5,6 +5,10 @@ let usuarios:Array<Usuario> = []
 let extratos:Array<Movimento> = []
 
 export const usuarioModels = {
+    verUsuarios: ():Array<Usuario> => {
+        return usuarios
+    },
+
     criarConta: (novoUsuario:Usuario):void => {
         const jaExiste = usuarios.some(e => e.cpf===novoUsuario.cpf)
 
@@ -53,8 +57,8 @@ export const usuarioModels = {
         nomeDestinatario: string, 
         cpfDestinatario:string, 
         valorTransferir:number
-        ):void => {
-            
+        ):Movimento => {
+
         const usuario = usuarios.find(e => e.nome===nome && e.cpf===cpf)
         const destinatario = usuarios.find(e => e.nome===nomeDestinatario && e.cpf===cpfDestinatario)
 
@@ -67,6 +71,25 @@ export const usuarioModels = {
 
         usuario.saldo -= valorTransferir
         destinatario.saldo += valorTransferir
+
+        const comprovanteRecebeu:Movimento = {
+            cpf: destinatario.cpf,
+            data: new Date(Date.now()),
+            valor: valorTransferir,
+            descricao: `Valor depositado pelo ${usuario.nome}`
+        }
+
+        const comprovanteDepositou:Movimento = {
+            cpf: usuario.cpf,
+            data: new Date(Date.now()),
+            valor: (-1)*valorTransferir,
+            descricao: `Valor depositado para ${destinatario.nome}`
+        }
+
+        extratos.push(comprovanteRecebeu)
+        extratos.push(comprovanteDepositou)
+
+        return comprovanteDepositou
     }
 }
 
