@@ -69,3 +69,26 @@ export const consultarSaldo = (req:Request, res:Response) => {
         res.send(error.message)
     }
 }
+
+export const transferenciaInterna = (req:Request, res:Response) => {
+    try {
+        res.statusCode = 400
+
+        const nome: string = req.body.nome
+        const cpf: string = req.body.cpf
+        const nomeDestinatario: string = req.body.nomeDestinatario
+        const cpfDestinatario:string = req.body.cpfDestinatario
+        const valorTransferir:number = req.body.valorTransferir
+
+        usuarioModels.transferenciaInterna(
+            nome,
+            cpf,
+            nomeDestinatario,
+            cpfDestinatario,
+            valorTransferir
+        )
+
+    } catch (error:any) {
+        res.send(error.message)
+    }
+}

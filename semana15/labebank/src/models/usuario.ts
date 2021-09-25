@@ -5,7 +5,7 @@ let usuarios:Array<Usuario> = []
 let extratos:Array<Movimento> = []
 
 export const usuarioModels = {
-    criarConta: (novoUsuario:Usuario) => {
+    criarConta: (novoUsuario:Usuario):void => {
         const jaExiste = usuarios.some(e => e.cpf===novoUsuario.cpf)
 
         if(jaExiste){
@@ -16,7 +16,7 @@ export const usuarioModels = {
         console.log(`[CRIOU] ${novoUsuario.nome} - ${paraDDMMAAA(Date.now())}`)
     },
 
-    adicionarSaldo: (cpf: string, valor: number) => {
+    adicionarSaldo: (cpf: string, valor: number):void => {
         const usuario:(Usuario|undefined) = usuarios.find(e => e.cpf===cpf)
 
         if(!usuario){
@@ -31,6 +31,8 @@ export const usuarioModels = {
         }
 
         extratos.push(novoMovimento)
+        usuario.saldo += valor
+
         console.log(`[ADICIONAR SALDO] ${usuario.nome} - ${paraDDMMAAA(Date.now())}`)
     },
 
@@ -41,28 +43,30 @@ export const usuarioModels = {
             throw new Error('Usuário não encontrado.')
         }
 
-        let saldo = 0
-
-        extratos.filter(e => {
-            return e.cpf===cpf
-        
-        }).forEach(e => {
-            saldo += e.valor
-        })
-
         console.log(`[CONSULTAR SALDO] ${usuario.nome} - ${paraDDMMAAA(Date.now())}`)
-        return saldo
+        return usuario.saldo
     },
 
-    transferenciaInterna: (nome: string, cpf: string, nomeDestinatario: string, cpfDestinatario:string):boolean => {
+    transferenciaInterna: (
+        nome: string, 
+        cpf: string, 
+        nomeDestinatario: string, 
+        cpfDestinatario:string, 
+        valorTransferir:number
+        ):void => {
+            
         const usuario = usuarios.find(e => e.nome===nome && e.cpf===cpf)
         const destinatario = usuarios.find(e => e.nome===nomeDestinatario && e.cpf===cpfDestinatario)
 
-        if(!usuario || !destinatario){
+        if(!usuario || !destinatario || valorTransferir<0){
             throw new Error('Informações inválidas')
         }
+        if(usuario.saldo<valorTransferir){
+            throw new Error('Saldo insuficiente')
+        }
 
-        return true
+        usuario.saldo -= valorTransferir
+        destinatario.saldo += valorTransferir
     }
 }
 
