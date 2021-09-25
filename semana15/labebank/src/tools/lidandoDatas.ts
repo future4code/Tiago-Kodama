@@ -9,7 +9,7 @@ export const paraDDMMAAA = (dataMilisegundos: number): string => {
   return `${dia}/${mes}/${ano} ${hora}:${minutos}`;
 };
 
-export const ehMaior18 = (nascimento: Date): number => {
+export const ehMaior18 = (nascimento: Date): boolean => {
   const hoje = new Date(Date.now());
 
   const fezAniversario =
@@ -17,8 +17,8 @@ export const ehMaior18 = (nascimento: Date): number => {
     hoje.getDate() >= nascimento.getDate();
 
   if (fezAniversario) {
-    return hoje.getFullYear() - nascimento.getFullYear();
+    return hoje.getFullYear() - nascimento.getFullYear() >= 18;
   }
 
-  return hoje.getFullYear() - nascimento.getFullYear() - 1;
+  return hoje.getFullYear() - nascimento.getFullYear() - 1 >= 18;
 };

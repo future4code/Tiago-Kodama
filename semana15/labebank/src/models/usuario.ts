@@ -1,5 +1,5 @@
 import { Movimento, Usuario } from "../constants/types";
-import { paraDDMMAAA } from "../tools/lidandoDatas";
+import { ehMaior18, paraDDMMAAA } from "../tools/lidandoDatas";
 
 let usuarios: Array<Usuario> = [];
 
@@ -31,6 +31,9 @@ export const usuarioModels = {
 
     if (jaExiste) {
       throw new Error("CPF já cadastrado");
+    }
+    if (!ehMaior18(novoUsuario.dataNascimento)) {
+      throw new Error("Usuário deve ter no mínimo 18 anos");
     }
 
     usuarios.push(novoUsuario);
