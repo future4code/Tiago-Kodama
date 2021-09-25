@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { usuarioModels } from "../models/usuario";
-import { Usuario } from "../constants/types";
+import { Movimento, Usuario } from "../constants/types";
 import { extrairNumerosCPf } from "../tools/lidandoCPF";
 
 export const pegarUsuarios = (req: Request, res: Response) => {
@@ -21,13 +21,20 @@ export const criarConta = (req: Request, res: Response) => {
     const cpf: string = extrairNumerosCPf(req.body.cpf);
     const dataNascimento: Date = new Date(req.body.dataNascimento);
     const saldo: number = 0;
+    const extrato: Array<Movimento> = [];
 
     if (!nome || !cpf || !dataNascimento) {
       res.statusCode = 422;
       throw new Error("Informações incorretas ou faltando");
     }
 
-    const novoUsuario: Usuario = { nome, cpf, dataNascimento, saldo };
+    const novoUsuario: Usuario = {
+      nome,
+      cpf,
+      dataNascimento,
+      saldo,
+      extrato,
+    };
     usuarioModels.criarConta(novoUsuario);
 
     res.status(201).send("O usuário foi criado.");

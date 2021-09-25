@@ -9,5 +9,6 @@ export type Usuario = {
     nome: string,
     cpf: string,
     dataNascimento: Date,
-    saldo: number
+    saldo: number,
+    extrato: Array<Movimento>
 }
