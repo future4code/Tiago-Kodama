@@ -9,10 +9,10 @@ import {
 
 const router = Router()
 
-router.get('/usuario', pegarUsuarios)
-router.post('/usuario/criar-conta', criarConta)
-router.post('/usuario/adicionar-saldo', adicionarSaldo)
-router.post('/usuario/consultar-saldo', consultarSaldo)
-router.post('/usuario/transferencia-interna', transferenciaInterna)
+router.get('/users', pegarUsuarios)
+router.post('/users/criar-conta', criarConta)
+router.post('/users/adicionar-saldo', adicionarSaldo)
+router.post('/users/consultar-saldo', consultarSaldo)
+router.post('/users/transferencia-interna', transferenciaInterna)
 
 export default router;
