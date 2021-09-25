@@ -1,5 +1,5 @@
 import { Movimento, Usuario } from "../constants/types";
-import { paraDDMMAAA } from "../tools/handleDate";
+import { paraDDMMAAA } from "../tools/lidandoDatas";
 
 let usuarios:Array<Usuario> = []
 let extratos:Array<Movimento> = []

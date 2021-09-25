@@ -18,3 +18,10 @@ const server = app.listen(process.env.PORT || 3003, () => {
        console.error(`Failure upon starting server.`);
     }
 });
+
+/**
+ * https://labenu.notion.site/WFS13-S15-Sistema-Banc-rio-812c008af6d84daeb00f09437356889b
+ * Precisa add propriedade saldo em usuarios
+ * 
+ * estava implementando a featuyre da transferência interna
+ */

@@ -9,4 +9,5 @@ export type Usuario = {
     nome: string,
     cpf: string,
     dataNascimento: Date,
+    saldo: number
 }
