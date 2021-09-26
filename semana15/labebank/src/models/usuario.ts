@@ -12,7 +12,7 @@ const usuario1: Usuario = {
 };
 const usuario2: Usuario = {
   cpf: "99999999900",
-  nome: "Usuario 1",
+  nome: "Usuario 2",
   dataNascimento: new Date("2015-04-25"),
   saldo: 0,
   extrato: [],
@@ -113,7 +113,7 @@ export const usuarioModels = {
     console.log(
       `[TRANSFERENCIA INTERNA] ${usuario.nome} - ${paraDDMMAAA(Date.now())}`
     );
-    return comprovanteDepositou;
+    return comprovanteRecebeu;
   },
 
   pagarConta: (

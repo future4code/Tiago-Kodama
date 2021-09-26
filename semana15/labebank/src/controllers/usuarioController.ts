@@ -87,10 +87,23 @@ export const transferenciaInterna = (req: Request, res: Response) => {
     res.statusCode = 400;
 
     const nome: string = req.body.nome;
-    const cpf: string = req.body.cpf;
+    const cpf: string = extrairNumerosCPf(req.body.cpf);
     const nomeDestinatario: string = req.body.nomeDestinatario;
-    const cpfDestinatario: string = req.body.cpfDestinatario;
+    const cpfDestinatario: string = extrairNumerosCPf(req.body.cpfDestinatario);
     const valorTransferir: number = req.body.valorTransferir;
+
+    if(!nome || !cpf){
+        res.statusCode = 422
+        throw new Error("Informações do usuário incorretas")
+    }
+    if(!nomeDestinatario || !cpfDestinatario){
+        res.statusCode = 422
+        throw new Error("Informações do destinatário incorretas")
+    }
+    if(isNaN(valorTransferir)){
+        res.statusCode = 422
+        throw new Error("Valor incorreto. Deve ser um número")
+    }
 
     const comprovante = usuarioModels.transferenciaInterna(
       nome,
@@ -112,17 +125,29 @@ export const pagarConta = (req: Request, res: Response) => {
 
     const hoje = new Date(Date.now());
 
+    const cpf: string = extrairNumerosCPf(req.body.cpf);
     const descricao: string = req.body.descricao;
     const valor: number = req.body.valor;
-    const cpf: string = req.body.cpf;
-    const data: Date = req.body.data ? req.body.data : hoje;
+    const data: Date = req.body.data ? new Date(req.body.data) : hoje;
 
-    const comprovante = usuarioModels.pagarConta(data, descricao, valor, cpf);
-
+    if(!cpf){
+        res.statusCode = 422
+        throw new Error("Informações do usuário incorretas")
+    }
+    if(!descricao){
+        res.statusCode = 422
+        throw new Error("Informações da descr incorretas")
+    }
+    if(isNaN(valor)){
+        res.statusCode = 422
+        throw new Error("Valor incorreto. Deve ser um número")
+    }
     if (data < hoje) {
       res.statusCode = 422;
       throw new Error("A data de pagamento não pode ser antes de hoje");
     }
+
+    const comprovante = usuarioModels.pagarConta(data, descricao, valor, cpf);
 
     res.status(200).send(comprovante);
   } catch (error: any) {
