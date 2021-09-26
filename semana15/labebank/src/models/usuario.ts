@@ -6,14 +6,14 @@ let usuarios: Array<Usuario> = [];
 const usuario1: Usuario = {
   cpf: "12345678900",
   nome: "Usuario 1",
-  dataNascimento: new Date("25-04-2015"),
+  dataNascimento: new Date(Date.now()),
   saldo: 0,
   extrato: [],
 };
 const usuario2: Usuario = {
   cpf: "99999999900",
   nome: "Usuario 1",
-  dataNascimento: new Date("25-04-2015"),
+  dataNascimento: new Date("2015-04-25"),
   saldo: 0,
   extrato: [],
 };
@@ -55,7 +55,6 @@ export const usuarioModels = {
     };
 
     usuario.extrato.push(novoMovimento);
-    usuario.saldo += valor;
 
     console.log(
       `[ADICIONAR SALDO] ${usuario.nome} - ${paraDDMMAAA(Date.now())}`
