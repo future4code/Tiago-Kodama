@@ -5,7 +5,7 @@
 Tabela de conteúdos
 =================
 <!--ts-->
-   * [Sobre](#Sobre)
+   * [Features](#features)
    * [Tabela de Conteudo](#tabela-de-conteudo)
    * [Instalação](#instalacao)
    * [Como usar](#como-usar)
@@ -15,7 +15,7 @@ Tabela de conteúdos
       * [Multiple files](#multiple-files)
       * [Combo](#combo)
    * [Tests](#testes)
-   * [Tecnologias](#tecnologias)
+   * [Tecnologias](#-tecnologias)
 <!--te-->
 
 ### Features
