@@ -19,6 +19,6 @@ router.post("/users/transferencia-interna", transferenciaInterna);
 router.put("/users/atualizar-saldo", atualizarSaldo);
 router.put("/users/adicionar-saldo", adicionarSaldo);
 
-router.get("/users/consultar-saldo/:cpf", consultarSaldo);
+router.get("/users/consultar-saldo/", consultarSaldo);
 
 export default router;

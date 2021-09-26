@@ -67,7 +67,7 @@ export const consultarSaldo = (req: Request, res: Response) => {
   try {
     res.statusCode = 400;
 
-    const cpf: string = extrairNumerosCPf(req.params.cpf as string);
+    const cpf: string = extrairNumerosCPf(req.query.cpf as string);
 
     if (!cpf) {
       res.statusCode = 422;
