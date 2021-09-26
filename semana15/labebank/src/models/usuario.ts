@@ -51,7 +51,7 @@ export const usuarioModels = {
       cpf: usuario.cpf,
       data: new Date(Date.now()),
       valor: valor,
-      descricao: "Depósitado pelo proprietário.",
+      descricao: "Depósito de dinheiro",
     };
 
     usuario.extrato.push(novoMovimento);
