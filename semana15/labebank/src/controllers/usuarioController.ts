@@ -105,3 +105,26 @@ export const transferenciaInterna = (req: Request, res: Response) => {
     res.send(error.message);
   }
 };
+
+export const pagarConta = (req:Request, res:Response) => {
+    try {
+        res.statusCode = 400
+
+        const descricao: string = req.body.descricao
+        const valor: number = req.body.valor
+        const cpf: string = req.body.cpf
+        const data: Date = req.body.data?req.body.data:new Date(Date.now())
+
+        const comprovante = usuarioModels.pagarConta(
+            data,
+            descricao,
+            valor,
+            cpf
+        )
+
+        res.status(200).send(comprovante)
+
+    } catch (error:any) {
+        res.send(error.message)
+    }
+}

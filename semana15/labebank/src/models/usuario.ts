@@ -63,9 +63,7 @@ export const usuarioModels = {
   },
 
   pegarSaldoPeloCPF: (cpf: string): number => {
-    const usuario: Usuario | undefined = usuarios.find(
-      (e) => e.cpf === cpf
-    );
+    const usuario: Usuario | undefined = usuarios.find((e) => e.cpf === cpf);
 
     if (!usuario) {
       throw new Error("Usuário não encontrado.");
@@ -120,5 +118,31 @@ export const usuarioModels = {
       `[TRANSFERENCIA INTERNA] ${usuario.nome} - ${paraDDMMAAA(Date.now())}`
     );
     return comprovanteDepositou;
+  },
+
+  pagarConta: (
+      data: Date,
+      descricao: string,
+      valor: number,
+      cpf: string
+  ): Movimento => {
+    const usuario = usuarios.find((e) => e.cpf === cpf);
+
+    if (!usuario || valor < 0) {
+      throw new Error("Informações inválidas");
+    }
+    if (usuario.saldo < valor) {
+      throw new Error("Saldo insuficiente");
+    }
+
+    const movimento:Movimento = {
+        cpf:usuario.cpf,
+        descricao: descricao,
+        valor: valor,
+        data: data
+    }
+
+    usuario.extrato.push(movimento)
+    return movimento
   },
 };
