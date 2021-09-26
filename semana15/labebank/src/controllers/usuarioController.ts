@@ -47,8 +47,8 @@ export const adicionarSaldo = (req: Request, res: Response) => {
   try {
     res.statusCode = 400;
 
-    const saldo: number = req.body.saldo;
-    const cpf: string = extrairNumerosCPf(req.body.cpf);
+    const saldo: number = Number(req.params.saldo);
+    const cpf: string = extrairNumerosCPf(req.params.cpf);
 
     if (!saldo || !cpf) {
       res.statusCode = 422;
@@ -67,8 +67,8 @@ export const consultarSaldo = (req: Request, res: Response) => {
   try {
     res.statusCode = 400;
 
-    const nome: string = req.body.nome;
-    const cpf: string = extrairNumerosCPf(req.body.cpf);
+    const nome: string = req.query.nome as string;
+    const cpf: string = extrairNumerosCPf(req.query.cpf as string);
 
     if (!nome || !cpf) {
       res.statusCode = 422;
