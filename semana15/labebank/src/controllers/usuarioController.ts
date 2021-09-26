@@ -18,7 +18,7 @@ export const criarConta = (req: Request, res: Response) => {
     res.statusCode = 400;
 
     const nome: string = req.body.nome;
-    const cpf: string = extrairNumerosCPf(req.body.cpf);
+    const cpf: string = req.body.cpf ? extrairNumerosCPf(req.body.cpf) : "";
     const dataNascimento: Date = new Date(req.body.dataNascimento);
     const saldo: number = 0;
     const extrato: Array<Movimento> = [];
@@ -48,7 +48,7 @@ export const adicionarSaldo = (req: Request, res: Response) => {
     res.statusCode = 400;
 
     const saldo: number = Number(req.body.saldo);
-    const cpf: string = extrairNumerosCPf(req.body.cpf);
+    const cpf: string = req.body.cpf ? extrairNumerosCPf(req.body.cpf) : "";
 
     if (!saldo || !cpf) {
       res.statusCode = 422;
@@ -66,8 +66,9 @@ export const adicionarSaldo = (req: Request, res: Response) => {
 export const consultarSaldo = (req: Request, res: Response) => {
   try {
     res.statusCode = 400;
+    const extraindoQuery: string | undefined = req.query.cpf as string;
 
-    const cpf: string = extrairNumerosCPf(req.query.cpf as string);
+    const cpf: string = extraindoQuery ? extrairNumerosCPf(extraindoQuery) : "";
 
     if (!cpf) {
       res.statusCode = 422;
@@ -87,22 +88,22 @@ export const transferenciaInterna = (req: Request, res: Response) => {
     res.statusCode = 400;
 
     const nome: string = req.body.nome;
-    const cpf: string = extrairNumerosCPf(req.body.cpf);
+    const cpf: string = req.body.cpf ? extrairNumerosCPf(req.body.cpf) : "";
     const nomeDestinatario: string = req.body.nomeDestinatario;
     const cpfDestinatario: string = extrairNumerosCPf(req.body.cpfDestinatario);
     const valorTransferir: number = req.body.valorTransferir;
 
-    if(!nome || !cpf){
-        res.statusCode = 422
-        throw new Error("Informações do usuário incorretas")
+    if (!nome || !cpf) {
+      res.statusCode = 422;
+      throw new Error("Informações do usuário incorretas");
     }
-    if(!nomeDestinatario || !cpfDestinatario){
-        res.statusCode = 422
-        throw new Error("Informações do destinatário incorretas")
+    if (!nomeDestinatario || !cpfDestinatario) {
+      res.statusCode = 422;
+      throw new Error("Informações do destinatário incorretas");
     }
-    if(isNaN(valorTransferir)){
-        res.statusCode = 422
-        throw new Error("Valor incorreto. Deve ser um número")
+    if (isNaN(valorTransferir)) {
+      res.statusCode = 422;
+      throw new Error("Valor incorreto. Deve ser um número");
     }
 
     const comprovante = usuarioModels.transferenciaInterna(
@@ -125,22 +126,22 @@ export const pagarConta = (req: Request, res: Response) => {
 
     const hoje = new Date(Date.now());
 
-    const cpf: string = extrairNumerosCPf(req.body.cpf);
+    const cpf: string = req.body.cpf ? extrairNumerosCPf(req.body.cpf) : "";
     const descricao: string = req.body.descricao;
     const valor: number = req.body.valor;
     const data: Date = req.body.data ? new Date(req.body.data) : hoje;
 
-    if(!cpf){
-        res.statusCode = 422
-        throw new Error("Informações do usuário incorretas")
+    if (!cpf) {
+      res.statusCode = 422;
+      throw new Error("Informações do usuário incorretas");
     }
-    if(!descricao){
-        res.statusCode = 422
-        throw new Error("Informações da descr incorretas")
+    if (!descricao) {
+      res.statusCode = 422;
+      throw new Error("Informações da descr incorretas");
     }
-    if(isNaN(valor)){
-        res.statusCode = 422
-        throw new Error("Valor incorreto. Deve ser um número")
+    if (isNaN(valor)) {
+      res.statusCode = 422;
+      throw new Error("Valor incorreto. Deve ser um número");
     }
     if (data < hoje) {
       res.statusCode = 422;
@@ -159,7 +160,7 @@ export const atualizarSaldo = (req: Request, res: Response) => {
   try {
     res.statusCode = 400;
 
-    const cpf: string = extrairNumerosCPf(req.body.cpf);
+    const cpf: string = req.body.cpf ? extrairNumerosCPf(req.body.cpf) : "";
 
     if (!cpf) {
       res.statusCode = 422;
