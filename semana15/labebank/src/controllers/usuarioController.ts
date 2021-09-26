@@ -106,45 +106,45 @@ export const transferenciaInterna = (req: Request, res: Response) => {
   }
 };
 
-export const pagarConta = (req:Request, res:Response) => {
-    try {
-        res.statusCode = 400
+export const pagarConta = (req: Request, res: Response) => {
+  try {
+    res.statusCode = 400;
 
-        const descricao: string = req.body.descricao
-        const valor: number = req.body.valor
-        const cpf: string = req.body.cpf
-        const data: Date = req.body.data?req.body.data:new Date(Date.now())
+    const hoje = new Date(Date.now());
 
-        const comprovante = usuarioModels.pagarConta(
-            data,
-            descricao,
-            valor,
-            cpf
-        )
+    const descricao: string = req.body.descricao;
+    const valor: number = req.body.valor;
+    const cpf: string = req.body.cpf;
+    const data: Date = req.body.data ? req.body.data : hoje;
 
-        res.status(200).send(comprovante)
+    const comprovante = usuarioModels.pagarConta(data, descricao, valor, cpf);
 
-    } catch (error:any) {
-        res.send(error.message)
+    if (data < hoje) {
+      res.statusCode = 422;
+      throw new Error("A data de pagamento não pode ser antes de hoje");
     }
-}
 
-export const atualizarSaldo = (req:Request, res:Response) => {
-    try {
-        res.statusCode = 400
+    res.status(200).send(comprovante);
+  } catch (error: any) {
+    res.send(error.message);
+  }
+};
 
-        const cpf:string = extrairNumerosCPf(req.body.cpf)
+export const atualizarSaldo = (req: Request, res: Response) => {
+  try {
+    res.statusCode = 400;
 
-        if(!cpf){
-            res.statusCode = 422
-            throw new Error("CPF não informado")
-        }
+    const cpf: string = extrairNumerosCPf(req.body.cpf);
 
-        usuarioModels.atualizarSaldo(cpf)
-
-        res.status(200).send('Saldo atualizado com sucesso')
-
-    } catch (error: any) {
-        res.send(error.message)
+    if (!cpf) {
+      res.statusCode = 422;
+      throw new Error("CPF não informado");
     }
-}
+
+    usuarioModels.atualizarSaldo(cpf);
+
+    res.status(200).send("Saldo atualizado com sucesso");
+  } catch (error: any) {
+    res.send(error.message);
+  }
+};
