@@ -94,9 +94,6 @@ export const usuarioModels = {
       throw new Error("Saldo insuficiente");
     }
 
-    usuario.saldo -= valorTransferir;
-    destinatario.saldo += valorTransferir;
-
     const comprovanteRecebeu: Movimento = {
       cpf: destinatario.cpf,
       data: new Date(Date.now()),
@@ -142,6 +139,7 @@ export const usuarioModels = {
         data: data
     }
 
+    console.log(`[PAGAR CONTA] ${usuario.nome} - ${paraDDMMAAA(Date.now())}`);
     usuario.extrato.push(movimento)
     return movimento
   },
@@ -162,5 +160,6 @@ export const usuarioModels = {
     })
 
     usuario.saldo = saldo
+    console.log(`[ATUALIZAR SALDO] ${usuario.nome} - ${paraDDMMAAA(Date.now())}`);
   }
 };
