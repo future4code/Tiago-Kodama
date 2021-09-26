@@ -3,23 +3,6 @@ import { ehMaior18, paraDDMMAAA } from "../tools/lidandoDatas";
 
 let usuarios: Array<Usuario> = [];
 
-const usuario1: Usuario = {
-  cpf: "12345678900",
-  nome: "Usuario 1",
-  dataNascimento: new Date(Date.now()),
-  saldo: 0,
-  extrato: [],
-};
-const usuario2: Usuario = {
-  cpf: "99999999900",
-  nome: "Usuario 2",
-  dataNascimento: new Date("2015-04-25"),
-  saldo: 0,
-  extrato: [],
-};
-usuarios.push(usuario1);
-usuarios.push(usuario2);
-
 export const usuarioModels = {
   verUsuarios: (): Array<Usuario> => {
     console.log(`[PEGAR USUARIOS] - ${paraDDMMAAA(Date.now())}`);
@@ -138,8 +121,8 @@ export const usuarioModels = {
       data: data,
     };
 
-    console.log(`[PAGAR CONTA] ${usuario.nome} - ${paraDDMMAAA(Date.now())}`);
     usuario.extrato.push(movimento);
+    console.log(`[PAGAR CONTA] ${usuario.nome} - ${paraDDMMAAA(Date.now())}`);
     return movimento;
   },
 
