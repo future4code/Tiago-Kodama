@@ -6,15 +6,16 @@ Tabela de conteúdos
 =================
 <!--ts-->
    * [Features](#features)
-   * [Tabela de Conteudo](#tabela-de-conteudo)
-   * [Instalação](#instalacao)
-   * [Como usar](#como-usar)
-      * [Pre Requisitos](#pre-requisitos)
-      * [Local files](#local-files)
-      * [Remote files](#remote-files)
-      * [Multiple files](#multiple-files)
-      * [Combo](#combo)
-   * [Tests](#testes)
+   * [Pré-requisitos](#pré-requisitos)
+   * [Instalação](#-rodando-o-back-end-servidor)
+   * [Endpoints](#endpoints)
+      * [POST - Criar usuário](#post-users)
+      * [POST - Transferência interna](#post-userstransferencia-interna)
+      * [POST - Pagar conta](#post-userspagar-conta)
+      * [PUT - Adicionar saldo](#put-usersadicionar-saldo)
+      * [PUT - Atualizar saldo](#put-usersatualizar-saldo)
+      * [GET - Pegar usuários](#get-users)
+      * [GET - Consultar saldo](#get-usersconsultar-saldocpf111111111-11)
    * [Tecnologias](#-tecnologias)
 <!--te-->
 
