@@ -118,10 +118,10 @@ export const usuarioModels = {
   },
 
   pagarConta: (
-      data: Date,
-      descricao: string,
-      valor: number,
-      cpf: string
+    data: Date,
+    descricao: string,
+    valor: number,
+    cpf: string
   ): Movimento => {
     const usuario = usuarios.find((e) => e.cpf === cpf);
 
@@ -132,34 +132,35 @@ export const usuarioModels = {
       throw new Error("Saldo insuficiente");
     }
 
-    const movimento:Movimento = {
-        cpf:usuario.cpf,
-        descricao: descricao,
-        valor: valor,
-        data: data
-    }
+    const movimento: Movimento = {
+      cpf: usuario.cpf,
+      descricao: descricao,
+      valor: valor,
+      data: data,
+    };
 
     console.log(`[PAGAR CONTA] ${usuario.nome} - ${paraDDMMAAA(Date.now())}`);
-    usuario.extrato.push(movimento)
-    return movimento
+    usuario.extrato.push(movimento);
+    return movimento;
   },
 
-  atualizarSaldo: (cpf:string):void => {
+  atualizarSaldo: (cpf: string): void => {
     const usuario = usuarios.find((e) => e.cpf === cpf);
 
     if (!usuario) {
       throw new Error("Informações inválidas");
     }
 
-    let saldo = 0
-    const hoje = new Date(Date.now())
+    let saldo = 0;
+    const hoje = new Date(Date.now());
 
-    usuario.extrato.forEach(e => {
-        if(hoje >= e.data)
-            saldo += e.valor
-    })
+    usuario.extrato.forEach((e) => {
+      if (hoje >= e.data) saldo += e.valor;
+    });
 
-    usuario.saldo = saldo
-    console.log(`[ATUALIZAR SALDO] ${usuario.nome} - ${paraDDMMAAA(Date.now())}`);
-  }
+    usuario.saldo = saldo;
+    console.log(
+      `[ATUALIZAR SALDO] ${usuario.nome} - ${paraDDMMAAA(Date.now())}`
+    );
+  },
 };
