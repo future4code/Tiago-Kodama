@@ -145,4 +145,22 @@ export const usuarioModels = {
     usuario.extrato.push(movimento)
     return movimento
   },
+
+  atualizarSaldo: (cpf:string):void => {
+    const usuario = usuarios.find((e) => e.cpf === cpf);
+
+    if (!usuario) {
+      throw new Error("Informações inválidas");
+    }
+
+    let saldo = 0
+    const hoje = new Date(Date.now())
+
+    usuario.extrato.forEach(e => {
+        if(hoje >= e.data)
+            saldo += e.valor
+    })
+
+    usuario.saldo = saldo
+  }
 };

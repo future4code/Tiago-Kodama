@@ -128,3 +128,23 @@ export const pagarConta = (req:Request, res:Response) => {
         res.send(error.message)
     }
 }
+
+export const atualizarSaldo = (req:Request, res:Response) => {
+    try {
+        res.statusCode = 400
+
+        const cpf:string = extrairNumerosCPf(req.body.cpf)
+
+        if(!cpf){
+            res.statusCode = 422
+            throw new Error("CPF não informado")
+        }
+
+        usuarioModels.atualizarSaldo(cpf)
+
+        res.status(200).send('Saldo atualizado com sucesso')
+
+    } catch (error: any) {
+        res.send(error.message)
+    }
+}

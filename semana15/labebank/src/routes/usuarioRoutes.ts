@@ -4,15 +4,21 @@ import {
     criarConta,
     adicionarSaldo,
     consultarSaldo,
-    transferenciaInterna
+    transferenciaInterna,
+    pagarConta,
+    atualizarSaldo
 } from "../controllers/usuarioController"
 
 const router = Router()
 
 router.get('/users', pegarUsuarios)
 router.post('/users', criarConta)
-router.get('/users/consultar-saldo/:cpf', consultarSaldo)
-router.put('/users/adicionar-saldo', adicionarSaldo)
+
+router.post('/users/pagar-conta', pagarConta)
 router.post('/users/transferencia-interna', transferenciaInterna)
+router.put('/users/atualizar-saldo', atualizarSaldo)
+router.put('/users/adicionar-saldo', adicionarSaldo)
+
+router.get('/users/consultar-saldo/:cpf', consultarSaldo)
 
 export default router;
