@@ -11,8 +11,8 @@ const router = Router()
 
 router.get('/users', pegarUsuarios)
 router.post('/users', criarConta)
-router.get('/users/consultar-saldo', consultarSaldo)
-router.get('/users/adicionar-saldo', adicionarSaldo)
+router.get('/users/consultar-saldo/:cpf', consultarSaldo)
+router.put('/users/adicionar-saldo', adicionarSaldo)
 router.post('/users/transferencia-interna', transferenciaInterna)
 
 export default router;

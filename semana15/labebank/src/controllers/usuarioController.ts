@@ -47,8 +47,8 @@ export const adicionarSaldo = (req: Request, res: Response) => {
   try {
     res.statusCode = 400;
 
-    const saldo: number = Number(req.params.saldo);
-    const cpf: string = extrairNumerosCPf(req.params.cpf);
+    const saldo: number = Number(req.body.saldo);
+    const cpf: string = extrairNumerosCPf(req.body.cpf);
 
     if (!saldo || !cpf) {
       res.statusCode = 422;
@@ -67,15 +67,14 @@ export const consultarSaldo = (req: Request, res: Response) => {
   try {
     res.statusCode = 400;
 
-    const nome: string = req.query.nome as string;
-    const cpf: string = extrairNumerosCPf(req.query.cpf as string);
+    const cpf: string = extrairNumerosCPf(req.params.cpf as string);
 
-    if (!nome || !cpf) {
+    if (!cpf) {
       res.statusCode = 422;
       throw new Error("Faltando informação");
     }
 
-    const saldo: number = usuarioModels.pegarSaldoPeloNomeECPF(nome, cpf);
+    const saldo: number = usuarioModels.pegarSaldoPeloCPF(cpf);
 
     res.status(200).send({ saldo });
   } catch (error: any) {

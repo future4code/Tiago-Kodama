@@ -62,9 +62,9 @@ export const usuarioModels = {
     );
   },
 
-  pegarSaldoPeloNomeECPF: (nome: string, cpf: string): number => {
+  pegarSaldoPeloCPF: (cpf: string): number => {
     const usuario: Usuario | undefined = usuarios.find(
-      (e) => e.cpf === cpf && e.nome === nome
+      (e) => e.cpf === cpf
     );
 
     if (!usuario) {
