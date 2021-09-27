@@ -33,23 +33,36 @@ VALUES(
 );
 ```
 **a)**
+
 **b)** Existe um outro elemento com o mesmo primary key
+
 **c)** A contagem das colunas não bate com os do resultado
+
 **d)** O campo name não possui valor padrão
+
 **e)** Valor incorreto para birth_date
+
 **f)**
 
 ### Exercício 3
+
 **a)** SELECT * FROM Actor;
+
 **b)** SELECT salary FROM Actor WHERE name="Tony Ramos";
+
 **c)** SELECT * FROM Actor WHERE gender="invalid";
 Não tem resultado
+
 ***d)*** nome deve ser trocado por name
 
 ### Exercício 4
+
 **a)** Buscar todas as informações de quem tem o nome que comece por A ou J e, além disso, deve ter um salário maior que 300 000,00.
+
 **b)** SELECT * FROM Actor WHERE name NOT LIKE "A%" AND salary > 350000;
+
 **c)** SELECT * FROM Actor WHERE name LIKE "%g%" OR name like "%G%";
+
 **d)** where (name like "%a%" or name like "%A%"
 or name like "%g%" or name like "%G%")
 and salary between 350000 and 900000;
