@@ -1,9 +1,11 @@
 import { Response, Request } from "express"
 import { Task } from "../models/task"
+import { User } from "../models/user"
 import {
     createTaskController,
     getTaskById
 } from "../repositories/repositoryTask"
+import { findUsersById } from "../repositories/repositoryUser"
 import { brFormatToDate } from "../tools/handleDate"
 
 export const createTask = async (req:Request, res:Response) => {
@@ -23,6 +25,13 @@ export const createTask = async (req:Request, res:Response) => {
         if(!title||!description||!creatorUserId){
             res.statusCode = 422
             throw new Error("Missing arguments")
+        }
+
+        const user: (User|undefined) = await findUsersById(creatorUserId)
+
+        if(!user){
+            res.statusCode = 404
+            throw new Error("This ID does not exist")
         }
 
         const task = await createTaskController(
