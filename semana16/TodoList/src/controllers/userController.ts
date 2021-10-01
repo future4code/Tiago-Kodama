@@ -3,9 +3,45 @@ import { User } from '../models/user';
 import {
     createUser,
     findUsersById,
+    findUsers,
     removeUser,
-    updateUser
+    updateUser,
+    searchUsers
 } from '../repositories/repositoryUser';
+
+export const searchUsersController = async (req:Request, res:Response) => {
+    try {
+        res.statusCode = 400
+
+        const query:(string) = req.query.query as (string)
+
+        if(!query){
+            res.statusCode = 422
+            throw new Error("Missing arguments")
+        }
+
+
+        const foundUser = await searchUsers(query)
+
+        res.status(200).send({users: foundUser})
+        
+    } catch (error: any) {
+        res.send(error.message)
+    }
+}
+
+export const getUsersController = async (req:Request, res:Response) => {
+    try {
+        res.statusCode = 400
+
+        const users = await findUsers()
+
+        res.status(200).send(users)
+
+    } catch (error: any) {
+        res.send(error.message)
+    }
+}
 
 export const createUserController = async (req: Request, res:Response) => {
     try {
