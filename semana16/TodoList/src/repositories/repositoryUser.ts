@@ -15,10 +15,8 @@ export const findUsers = async () => {
 
 export const findUsersById = async (id: string):(Promise<User | undefined>) => {
     const result = await connection("TodoListUser").where({id});
-
-    console.log('O RESULTADO ENCONTRADO PELO ID É', result)
     
-    if(!result){
+    if(!result.length){
         return undefined;
     }
 
@@ -68,7 +66,7 @@ export const updateUser = async (user: User): Promise<any> => {
             id: user.id,
             name: user.name,
             nickname: user.nickname,
-            email: user.email
+            email: user.email || undefined
         })
 }
 

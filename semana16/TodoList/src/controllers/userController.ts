@@ -44,8 +44,10 @@ export const getUserByIdController = async (req: Request, res:Response) => {
 
         if(!user){
             res.statusCode = 404
-            throw new Error('Id do not exist')
+            throw new Error('User not found')
         }
+
+        res.status(200).send(user)
 
     } catch (error:any) {
         res.send(error.message)
@@ -72,6 +74,8 @@ export const updateUserController = async (req: Request, res:Response) => {
         }
 
         await updateUser(user)
+
+        res.status(200).end()
 
     } catch (error:any) {
         res.send(error.message)
