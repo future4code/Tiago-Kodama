@@ -9,8 +9,8 @@ const app = express()
 app.use(express.json())
 app.use(cors())
 
-app.use(userRoutes)
-app.use(taskRoutes)
+app.use('/', userRoutes)
+app.use('/', taskRoutes)
 
 app.listen(3003, () => {
     console.log('Ouvindo na porta 3003')
