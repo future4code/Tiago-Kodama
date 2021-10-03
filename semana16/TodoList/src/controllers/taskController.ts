@@ -3,13 +3,13 @@ import { Task } from "../models/task"
 import { User } from "../models/user"
 import {
     createTaskController,
-    getTaskById
+    getTaskById,
+    updateTaskStausByTaskId
 } from "../repositories/repositoryTask"
 import {
     findTasksByCreatorId,
     createResponsible,
     findResponsiblesByTaskId,
-    findResponsiblesByUserId
 } from "../repositories/responsibleRepository"
 import { findUsersById } from "../repositories/repositoryUser"
 import { brFormatToDate } from "../tools/handleDate"
@@ -143,6 +143,32 @@ export const findAllResponsiblesById = async (req:Request, res:Response) => {
         const responsibles = await findResponsiblesByTaskId(taskId)
 
         res.status(200).send({users: responsibles})
+
+    } catch (error: any) {
+        res.send(error.message)
+    }
+}
+
+export const updateTaskStausByTaskIdController = async (req:Request, res:Response) => {
+    try {
+        res.statusCode = 400
+
+        const taskId: string = req.params.id as string
+        const status: string = req.body.status as string
+
+        if(!taskId || !status){
+            res.statusCode = 422
+            throw new Error("Missing arguments")
+        }
+
+        if(!["to_do,", "doing", "done"].includes(status)){
+            res.statusCode = 422
+            throw new Error("Status has to be to_do, doing or done")
+        }
+
+        updateTaskStausByTaskId(taskId, status)
+
+        res.status(200).end()
 
     } catch (error: any) {
         res.send(error.message)

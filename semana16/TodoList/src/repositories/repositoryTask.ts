@@ -1,6 +1,5 @@
 import { connection } from "../database/mysql";
 import { Task } from "../models/task";
-import { dateToBrFormat } from "../tools/handleDate";
 import { toStringFormatDDD } from "../tools/handleID";
 
 export const createTaskController = async (
@@ -52,3 +51,10 @@ export const getTaskById = async (id: string): Promise<Array<Task>> => {
   return tasks;
 };
 
+export const updateTaskStausByTaskId = async (taskId: string, status:string) => {
+  await connection.raw(`
+    update TodoListTask
+    set status = "${status}"
+    where id = "${taskId}";
+  `)
+}
