@@ -1,5 +1,6 @@
 import { connection } from "../database/mysql";
 import { Task } from "../models/task";
+import { dateToBrFormat } from "../tools/handleDate";
 import { toStringFormatDDD } from "../tools/handleID";
 
 export const createTaskController = async (
@@ -50,6 +51,30 @@ export const getTaskById = async (id: string): Promise<Array<Task>> => {
 
   return tasks;
 };
+
+export const findTasksByStatusController = async (status:string) => {
+  const result = await connection.raw(`
+    select
+    TodoListTask.id as "taskId",
+    title,
+    description,
+    limit_date as limitDate,
+    creator_user_id as creatorUserId,
+    nickname as creatorUserNickname
+    from TodoListTask
+    left join TodoListUser
+    on TodoListTask.id = TodoListUser.id
+    where TodoListTask.status = "${status}";
+  `)
+
+  const tasks = result[0]
+
+  tasks.forEach((task:any) => {
+    task.limitDate = dateToBrFormat(task.limitDate)
+  });
+
+  return tasks
+}
 
 export const updateTaskStausByTaskId = async (taskId: string, status:string) => {
   await connection.raw(`

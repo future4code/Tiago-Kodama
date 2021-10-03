@@ -4,7 +4,8 @@ import { User } from "../models/user"
 import {
     createTaskController,
     getTaskById,
-    updateTaskStausByTaskId
+    updateTaskStausByTaskId,
+    findTasksByStatusController
 } from "../repositories/repositoryTask"
 import {
     findTasksByCreatorId,
@@ -13,6 +14,28 @@ import {
 } from "../repositories/responsibleRepository"
 import { findUsersById } from "../repositories/repositoryUser"
 import { brFormatToDate } from "../tools/handleDate"
+
+export const middlewareGetTask = async (req:Request, res:Response) => {
+    try {
+        res.statusCode = 400
+
+        const informedQueries:Array<string> = Object.keys(req.query)
+
+        if(informedQueries.includes('creatorUserId')){
+            return findTaskByCreatorId(req, res)
+        }
+        else if(informedQueries.includes('status')){
+            return findTasksByStatus(req, res)
+        }
+        else {
+            res.statusCode = 422
+            throw new Error("Incorrect format")
+        }
+
+    } catch (error:any) {
+        res.send(error.message)
+    }
+}
 
 export const createTask = async (req:Request, res:Response) => {
     try {
@@ -99,6 +122,26 @@ export const findTaskById = async (req:Request, res:Response) => {
         res.status(200).send({...tasks[0], responsibleUsers: responsibles})
         
     } catch (error:any) {
+        res.send(error.message)
+    }
+}
+
+export const findTasksByStatus = async (req:Request, res:Response) => {
+    try {
+        res.statusCode = 400
+
+        const status:string = req.query.status as string
+
+        if(!status){
+            res.statusCode = 422
+            throw new Error("Missing arguments")
+        }
+
+        const tasks = await findTasksByStatusController(status)
+
+        res.status(200).send({tasks: tasks})
+
+    } catch (error: any) {
         res.send(error.message)
     }
 }
