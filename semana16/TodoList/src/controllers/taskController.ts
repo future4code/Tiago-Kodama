@@ -5,6 +5,9 @@ import {
     createTaskController,
     getTaskById
 } from "../repositories/repositoryTask"
+import {
+    findTasksByCreatorId
+} from "../repositories/responsibleRepository"
 import { findUsersById } from "../repositories/repositoryUser"
 import { brFormatToDate } from "../tools/handleDate"
 
@@ -60,6 +63,33 @@ export const findTaskById = async (req:Request, res:Response) => {
         }
 
         const tasks: Array<Task> = await getTaskById(id_creator)
+
+
+        if(!tasks.length){
+            res.statusCode = 404
+            throw new Error("There are not task")
+        }
+
+        res.status(200).send(tasks)
+        
+    } catch (error:any) {
+        res.send(error.message)
+    }
+}
+
+
+export const findTaskByCreatorId = async (req:Request, res:Response) => {
+    try {
+        res.statusCode = 400
+
+        const id_creator:string = req.query.creatorUserId as string
+
+        if(!id_creator){
+            res.statusCode = 422
+            throw new Error("Missing arguments")
+        }
+
+        const tasks: Array<Task> = await findTasksByCreatorId(id_creator)
 
 
         if(!tasks.length){
