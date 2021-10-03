@@ -136,3 +136,9 @@ export const findTasksByQuery = async (query: string) => {
 
   return tasks
 }
+
+export const removeTaskByTaskId = async (taskId:string) => {
+  await connection("TodoListTask")
+    .where("id", taskId)
+    .del()
+}

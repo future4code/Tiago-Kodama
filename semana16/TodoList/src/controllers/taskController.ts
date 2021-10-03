@@ -8,12 +8,14 @@ import {
   findTasksByStatusController,
   getDelayedTasks,
   findTasksByQuery,
+  removeTaskByTaskId
 } from "../repositories/repositoryTask";
 import {
   findTasksByCreatorId,
   createResponsible,
   findResponsiblesByTaskId,
   removeResponsible,
+  removeResponsibleByTaskId
 } from "../repositories/responsibleRepository";
 import { findUsersById } from "../repositories/repositoryUser";
 import { brFormatToDate } from "../tools/handleDate";
@@ -283,7 +285,7 @@ export const updateTaskStausByTaskIdsController = async (
 
     res.status(200).end();
   } catch (error: any) {
-    res.send(error.message);
+    res.send(error.message || error.sqlMessage);
   }
 };
 
@@ -306,3 +308,24 @@ export const removeTaskResponsible = async (req: Request, res: Response) => {
     res.send(error.message);
   }
 };
+
+export const removeTask = async (req: Request, res:Response) => {
+  try {
+    res.statusCode = 400
+
+    const taskId:string = req.params.id
+
+    if(!taskId){
+      res.statusCode = 422
+      throw new Error("Missing arguments")
+    }
+
+    await removeResponsibleByTaskId(taskId)
+    await removeTaskByTaskId(taskId)
+
+    res.status(200).end()
+
+  } catch (error:any) {
+    res.send(error.message || error.sqlMessage)
+  }
+}

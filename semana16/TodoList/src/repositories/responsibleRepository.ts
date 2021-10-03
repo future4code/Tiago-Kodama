@@ -82,3 +82,9 @@ export const removeResponsible = async (taskId: string, userId: string) => {
     .andWhere("responsible_user_id", userId)
     .del();
 };
+
+export const removeResponsibleByTaskId = async (taskId: string) => {
+  await connection("TodoListResponsibleUserTaskRelation")
+  .where("task_id", taskId)
+  .del();
+}
