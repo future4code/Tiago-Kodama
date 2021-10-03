@@ -1,5 +1,6 @@
 import { connection } from "../database/mysql";
 import { Task } from "../models/task";
+import { dateToBrFormat } from "../tools/handleDate";
 import { toStringFormatDDD } from "../tools/handleID";
 
 export const createTaskController = async (
@@ -43,7 +44,7 @@ export const getTaskById = async (id: string): Promise<Array<Task>> => {
         from TodoListTask
         join TodoListUser on
         TodoListTask.creator_user_id = TodoListUser.id
-        where TodoListUser.id = "${id}";
+        where TodoListTask.id = "${id}";
     `);
 
   const tasks: Array<Task> = result[0];

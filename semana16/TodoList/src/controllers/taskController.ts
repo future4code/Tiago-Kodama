@@ -8,7 +8,8 @@ import {
 import {
     findTasksByCreatorId,
     createResponsible,
-    findResponsiblesById
+    findResponsiblesByTaskId,
+    findResponsiblesByUserId
 } from "../repositories/responsibleRepository"
 import { findUsersById } from "../repositories/repositoryUser"
 import { brFormatToDate } from "../tools/handleDate"
@@ -78,22 +79,24 @@ export const findTaskById = async (req:Request, res:Response) => {
     try {
         res.statusCode = 400
 
-        const id_creator:string = req.params.id
+        const taskId:string = req.params.id
 
-        if(!id_creator){
+        if(!taskId){
             res.statusCode = 422
             throw new Error("Missing arguments")
         }
 
-        const tasks: Array<Task> = await getTaskById(id_creator)
-
-
+        const tasks: Array<Task> = await getTaskById(taskId)
+        
         if(!tasks.length){
             res.statusCode = 404
             throw new Error("There are not task")
         }
 
-        res.status(200).send(tasks)
+        const responsibles = await findResponsiblesByTaskId(taskId)
+
+        
+        res.status(200).send({...tasks[0], responsibleUsers: responsibles})
         
     } catch (error:any) {
         res.send(error.message)
@@ -137,7 +140,7 @@ export const findAllResponsiblesById = async (req:Request, res:Response) => {
             throw new Error("Missing arguments")
         }
 
-        const responsibles = await findResponsiblesById(taskId)
+        const responsibles = await findResponsiblesByTaskId(taskId)
 
         res.status(200).send({users: responsibles})
 

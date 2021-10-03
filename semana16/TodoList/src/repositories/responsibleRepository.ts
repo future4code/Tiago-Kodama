@@ -33,8 +33,8 @@ export const findTasksByCreatorId = async (creatorId: string) => {
     return result[0]
 }
 
-export const findResponsiblesById = async (taskId:string) => {
-    const responsibles = await connection.raw(`
+export const findResponsiblesByTaskId = async (taskId:string) => {
+    const result = await connection.raw(`
         select 
         TodoListUser.id as id,
         TodoListUser.nickname as nickname
@@ -46,7 +46,27 @@ export const findResponsiblesById = async (taskId:string) => {
         where TodoListTask.id = "${taskId}"
     `)
 
-    return responsibles[0]
+    const responsible = result[0]
+
+    return responsible
+}
+
+export const findResponsiblesByUserId = async (userId:string) => {
+    const result = await connection.raw(`
+        select 
+        TodoListUser.id as id,
+        TodoListUser.nickname as nickname
+        from TodoListResponsibleUserTaskRelation
+        right join TodoListTask
+        on TodoListTask.id = TodoListResponsibleUserTaskRelation.task_id
+        inner join TodoListUser
+        on TodoListUser.id = TodoListResponsibleUserTaskRelation.responsible_user_id
+        where TodoListUser.id = "${userId}"
+    `)
+
+    const responsible = result[0]
+
+    return responsible
 }
 
 export const createResponsible = async (taskId: string, userId: string) => {
