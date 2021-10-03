@@ -92,13 +92,13 @@ export const getDelayedTasks = async () => {
     and TodoListTask.status <> "done";
   `);
 
-  const tasks = result[0]
+  const tasks = result[0];
 
-  tasks.forEach((task:any) => {
-    task.limitDate = dateToBrFormat(task.limitDate)
+  tasks.forEach((task: any) => {
+    task.limitDate = dateToBrFormat(task.limitDate);
   });
 
-  return tasks
+  return tasks;
 };
 
 export const updateTaskStausByTaskId = async (

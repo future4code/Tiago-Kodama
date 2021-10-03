@@ -2,16 +2,16 @@ import { connection } from "../database/mysql";
 import { User } from "../models/user";
 import { toStringFormatDDD } from "../tools/handleID";
 
-export const searchUsers = async (query:string): Promise<Array<User>> => {
+export const searchUsers = async (query: string): Promise<Array<User>> => {
   const response = await connection.raw(`
     select id, nickname from TodoListUser
     where (name like '%${query}%')
     or (nickname like '%${query}%')
     or (email like '%${query}%');
-  `)
+  `);
 
-  return response[0]
-}
+  return response[0];
+};
 
 export const findUsers = async () => {
   return await connection("TodoListUser");
