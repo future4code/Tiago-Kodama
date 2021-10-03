@@ -3,7 +3,8 @@ import {
     createTask,
     findTaskById,
     findTaskByCreatorId,
-    createTaskResponsible
+    createTaskResponsible,
+    findAllResponsiblesById
 } from "../controllers/taskController";
 
 const router = Router()
@@ -11,6 +12,7 @@ const router = Router()
 router.get('/task', findTaskByCreatorId)
 router.post('/task', createTask)
 router.post('/task/responsible', createTaskResponsible)
+router.get('/task/:id/responsible', findAllResponsiblesById)
 router.get('/task/:id', findTaskById)
 
 export default router
