@@ -1,4 +1,5 @@
 # Todo List
+API para gerenciar os usuários, atividades e responsáveis.
 
 ## Mock de dados
 
@@ -28,3 +29,18 @@
     FOREIGN KEY (task_id) REFERENCES TodoListTask(id),
     FOREIGN KEY (responsible_user_id) REFERENCES TodoListUser(id)
 ```
+
+### Endpoints do usuário
+**get** 
+* "/user" buscar usuários
+* "/user/all" buscar todos os usuários
+* "/user/:id" buscar usuário pelo id
+
+**post**
+* "/user" criar usuário
+
+**put**
+* "/user/edit/:id" atualizar usuário
+
+**delete**
+* "/user/:id" remover usuário
