@@ -6,7 +6,8 @@ import {
     findAllResponsiblesById,
     updateTaskStausByTaskIdController,
     middlewareGetTask,
-    findAllDelayedTasks
+    findAllDelayedTasks,
+    removeTaskResponsible
 } from "../controllers/taskController";
 
 const router = Router()
@@ -20,6 +21,7 @@ router.get('/task/delayed', findAllDelayedTasks)
 
 router.put('/task/status/:id', updateTaskStausByTaskIdController)
 
+router.delete('/task/:taskId/responsible/:responsibleUserId', removeTaskResponsible)
 router.get('/task/:id/responsible', findAllResponsiblesById)
 router.get('/task/:id', findTaskById)
 

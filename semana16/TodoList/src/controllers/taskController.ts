@@ -12,6 +12,7 @@ import {
     findTasksByCreatorId,
     createResponsible,
     findResponsiblesByTaskId,
+    removeResponsible
 } from "../repositories/responsibleRepository"
 import { findUsersById } from "../repositories/repositoryUser"
 import { brFormatToDate } from "../tools/handleDate"
@@ -83,14 +84,20 @@ export const createTaskResponsible = async (req:Request, res:Response) => {
         res.statusCode = 400
 
         const taskId:string = req.body.task_id as string
-        const userId:string = req.body.responsible_user_id as string
+        const userIds:Array<string> = req.body.responsible_user_ids
 
-        if(!taskId || !userId){
+        if(!taskId || !userIds ){
             res.statusCode = 422
             throw new Error("Missing arguments")
         }
+        if(userIds.constructor!==Array || !userIds.length){
+            res.statusCode = 422
+            throw new Error('Incorrect format')
+        }
 
-        await createResponsible(taskId, userId)
+        userIds.forEach(async userId => {
+            await createResponsible(taskId, userId)
+        })
 
         res.status(201).end()
 
@@ -228,6 +235,27 @@ export const updateTaskStausByTaskIdController = async (req:Request, res:Respons
         res.status(200).end()
 
     } catch (error: any) {
+        res.send(error.message)
+    }
+}
+
+export const removeTaskResponsible = async (req: Request, res: Response) => {
+    try {
+        res.statusCode = 400
+
+        const taskId: string = req.params.taskId as string
+        const responsibleUserId: string = req.params.responsibleUserId as string
+
+        if(!taskId||!responsibleUserId){
+            res.statusCode = 422
+            throw new Error('Missing arguments')
+        }
+
+        await removeResponsible(taskId, responsibleUserId)
+
+        res.status(200).end()
+
+    } catch (error:any) {
         res.send(error.message)
     }
 }

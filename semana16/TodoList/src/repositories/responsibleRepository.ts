@@ -77,9 +77,9 @@ export const createResponsible = async (taskId: string, userId: string) => {
         })
 }
 
-export const removeResponsible = async (responsible: Responsible) => {
+export const removeResponsible = async (taskId: string, userId:string) => {
     await connection('TodoListResponsibleUserTaskRelation')
-        .where("task_id", responsible.taskId)
-        .andWhere("responsible_user_id", responsible.userId)
+        .where("task_id", taskId)
+        .andWhere("responsible_user_id", userId)
         .del()
 }
