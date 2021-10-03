@@ -13,3 +13,14 @@ export const brFormatToDate = (unformatedDate: string): Date | undefined => {
 
     return dateString;
 };
+
+
+export const dateToBrFormat = (dateString: string) => {
+  const date: Date = new Date(dateString)
+
+  const day: number = date.getDate()
+  const month: number = date.getMonth()
+  const year: number = date.getFullYear()
+
+  return `${day}/${month}/${year}`
+}
