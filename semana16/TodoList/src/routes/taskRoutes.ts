@@ -2,11 +2,11 @@ import { Router } from "express";
 import {
     createTask,
     findTaskById,
-    findTaskByCreatorId,
     createTaskResponsible,
     findAllResponsiblesById,
     updateTaskStausByTaskIdController,
-    middlewareGetTask
+    middlewareGetTask,
+    findAllDelayedTasks
 } from "../controllers/taskController";
 
 const router = Router()
@@ -15,6 +15,8 @@ router.get('/task', middlewareGetTask)
 router.post('/task', createTask)
 
 router.post('/task/responsible', createTaskResponsible)
+
+router.get('/task/delayed', findAllDelayedTasks)
 
 router.put('/task/status/:id', updateTaskStausByTaskIdController)
 

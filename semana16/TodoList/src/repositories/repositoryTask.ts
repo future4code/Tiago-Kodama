@@ -52,7 +52,7 @@ export const getTaskById = async (id: string): Promise<Array<Task>> => {
   return tasks;
 };
 
-export const findTasksByStatusController = async (status:string) => {
+export const findTasksByStatusController = async (status: string) => {
   const result = await connection.raw(`
     select
     TodoListTask.id as "taskId",
@@ -65,7 +65,32 @@ export const findTasksByStatusController = async (status:string) => {
     left join TodoListUser
     on TodoListTask.id = TodoListUser.id
     where TodoListTask.status = "${status}";
-  `)
+  `);
+
+  const tasks = result[0];
+
+  tasks.forEach((task: any) => {
+    task.limitDate = dateToBrFormat(task.limitDate);
+  });
+
+  return tasks;
+};
+
+export const getDelayedTasks = async () => {
+  const result = await connection.raw(`
+    select
+    TodoListTask.id as taskId,
+    title,
+    description,
+    limit_date as limitDate,
+    creator_user_id as creatorUserId,
+    nickname as creatorUserNickname
+    from TodoListTask
+    left join TodoListUser
+    on TodoListTask.creator_user_id = TodoListUser.id
+    where TodoListTask.limit_date < curdate()
+    and TodoListTask.status <> "done";
+  `);
 
   const tasks = result[0]
 
@@ -74,12 +99,15 @@ export const findTasksByStatusController = async (status:string) => {
   });
 
   return tasks
-}
+};
 
-export const updateTaskStausByTaskId = async (taskId: string, status:string) => {
+export const updateTaskStausByTaskId = async (
+  taskId: string,
+  status: string
+) => {
   await connection.raw(`
     update TodoListTask
     set status = "${status}"
     where id = "${taskId}";
-  `)
-}
+  `);
+};

@@ -5,7 +5,8 @@ import {
     createTaskController,
     getTaskById,
     updateTaskStausByTaskId,
-    findTasksByStatusController
+    findTasksByStatusController,
+    getDelayedTasks
 } from "../repositories/repositoryTask"
 import {
     findTasksByCreatorId,
@@ -186,6 +187,19 @@ export const findAllResponsiblesById = async (req:Request, res:Response) => {
         const responsibles = await findResponsiblesByTaskId(taskId)
 
         res.status(200).send({users: responsibles})
+
+    } catch (error: any) {
+        res.send(error.message)
+    }
+}
+
+export const findAllDelayedTasks = async (req:Request, res:Response) => {
+    try {
+        res.statusCode = 422
+
+        const tasks = await getDelayedTasks()
+
+        res.status(200).send({tasks: tasks})
 
     } catch (error: any) {
         res.send(error.message)
