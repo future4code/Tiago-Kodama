@@ -72,10 +72,17 @@ export const updateUser = async (user: User): Promise<any> => {
     });
 };
 
-export const removeUser = async (id: number): Promise<any> => {
-  await connection("TodoListUser")
-    .where({
-      id,
-    })
-    .del();
+export const removeUser = async (id: string): Promise<any> => {
+    await connection.raw(`
+    delete from TodoListResponsibleUserTaskRelation
+    where TodoListResponsibleUserTaskRelation.responsible_user_id = "${id}";
+    `);
+    await connection.raw(`
+    delete from TodoListTask
+    where TodoListTask.creator_user_id = "${id}";
+    `);
+    await connection.raw(`
+    delete from TodoListUser
+    where TodoListUser.id = "${id}";
+    `);
 };

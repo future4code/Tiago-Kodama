@@ -111,3 +111,23 @@ export const updateUserController = async (req: Request, res: Response) => {
     res.send(error.message);
   }
 };
+
+export const removeUserById = async (req:Request, res:Response) => {
+  try {
+    res.statusCode = 400
+
+    const userId:string = req.params.id as string
+
+    if(!userId){
+      res.statusCode = 422
+      throw new Error("Missing arguments")
+    }
+
+    await removeUser(userId)
+
+    res.status(200).end()
+
+  } catch (error:any) {
+    res.send(error.message || error.sqlMessage)
+  }
+}
