@@ -6,7 +6,8 @@ import {
     getTaskById
 } from "../repositories/repositoryTask"
 import {
-    findTasksByCreatorId
+    findTasksByCreatorId,
+    createResponsible
 } from "../repositories/responsibleRepository"
 import { findUsersById } from "../repositories/repositoryUser"
 import { brFormatToDate } from "../tools/handleDate"
@@ -51,6 +52,27 @@ export const createTask = async (req:Request, res:Response) => {
     }
 }
 
+export const createTaskResponsible = async (req:Request, res:Response) => {
+    try {
+        res.statusCode = 400
+
+        const taskId:string = req.body.task_id as string
+        const userId:string = req.body.responsible_user_id as string
+
+        if(!taskId || !userId){
+            res.statusCode = 422
+            throw new Error("Missing arguments")
+        }
+
+        await createResponsible(taskId, userId)
+
+        res.status(201).end()
+
+    } catch (error: any) {
+        res.send(error.message)
+    }
+}
+
 export const findTaskById = async (req:Request, res:Response) => {
     try {
         res.statusCode = 400
@@ -76,7 +98,6 @@ export const findTaskById = async (req:Request, res:Response) => {
         res.send(error.message)
     }
 }
-
 
 export const findTaskByCreatorId = async (req:Request, res:Response) => {
     try {

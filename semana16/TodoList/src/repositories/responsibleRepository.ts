@@ -36,8 +36,8 @@ export const findTasksByCreatorId = async (creatorId: string) => {
 export const createResponsible = async (taskId: string, userId: string) => {
     await connection('TodoListResponsibleUserTaskRelation')
         .insert({
-            taskId,
-            userId
+            "task_id": taskId,
+            "responsible_user_id": userId
         })
 }
 
