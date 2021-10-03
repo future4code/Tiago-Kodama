@@ -44,3 +44,22 @@ API para gerenciar os usuários, atividades e responsáveis.
 
 **delete**
 * "/user/:id" remover usuário
+
+### Endpoints das atividades
+**get**
+* "/task" buscar tarefa através de uma query
+* "/task/delayed" pegar as atividades atrasadas
+* "/task/:id/responsible" pegar responsáveis pela atividade pelo id da atividade
+* "/task/:id" pegar atividades pelo id
+
+**post**
+* "/task" criar atividade
+* "/task/responsible" atribuir responsável
+ 
+**put**
+* "/task/status/edit" atualizar o estatos de muitas atividade
+* "/task/status/:id" atualizar o estatos de uma atividade
+ 
+**delete**
+* "/task/:id" remover atividade
+* "/task/:taskId/responsible/:responsibleUserId" remover responsabilidade
