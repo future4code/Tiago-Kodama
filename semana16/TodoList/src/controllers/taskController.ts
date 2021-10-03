@@ -7,6 +7,7 @@ import {
   updateTaskStausByTaskId,
   findTasksByStatusController,
   getDelayedTasks,
+  findTasksByQuery,
 } from "../repositories/repositoryTask";
 import {
   findTasksByCreatorId,
@@ -27,6 +28,8 @@ export const middlewareGetTask = async (req: Request, res: Response) => {
       return findTaskByCreatorId(req, res);
     } else if (informedQueries.includes("status")) {
       return findTasksByStatus(req, res);
+    } else if (informedQueries.includes("query")) {
+      return findTasksByQueryController(req, res);
     } else {
       res.statusCode = 422;
       throw new Error("Incorrect format");
@@ -194,6 +197,28 @@ export const findAllDelayedTasks = async (req: Request, res: Response) => {
     res.statusCode = 422;
 
     const tasks = await getDelayedTasks();
+
+    res.status(200).send({ tasks: tasks });
+  } catch (error: any) {
+    res.send(error.message);
+  }
+};
+
+export const findTasksByQueryController = async (
+  req: Request,
+  res: Response
+) => {
+  try {
+    res.statusCode = 400;
+
+    const query: string = req.query.query as string;
+
+    if (!query) {
+      res.statusCode = 422;
+      throw new Error("Missing arguments");
+    }
+
+    const tasks = await findTasksByQuery(query);
 
     res.status(200).send({ tasks: tasks });
   } catch (error: any) {

@@ -111,3 +111,28 @@ export const updateTaskStausByTaskId = async (
     where id = "${taskId}";
   `);
 };
+
+export const findTasksByQuery = async (query: string) => {
+  const result = await connection.raw(`
+    select
+    TodoListTask.id as taskId,
+    title,
+    description,
+    limit_date as limitDate,
+    creator_user_id as creatorUserId,
+    nickname as creatorUserNickname
+    from TodoListTask
+    left join TodoListUser
+    on TodoListUser.id = TodoListTask.creator_user_id
+    where TodoListTask.description like "%${query}%"
+    or TodoListTask.title like "%${query}%";
+  `)
+
+  const tasks = result[0]
+
+  tasks.forEach((task:any) => {
+    task.limitDate = dateToBrFormat(task.limitDate)
+  })
+
+  return tasks
+}
