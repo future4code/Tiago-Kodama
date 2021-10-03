@@ -97,7 +97,7 @@ export const findTaskByCreatorId = async (req:Request, res:Response) => {
             throw new Error("There are not task")
         }
 
-        res.status(200).send(tasks)
+        res.status(200).send({tasks: tasks})
         
     } catch (error:any) {
         res.send(error.message)
