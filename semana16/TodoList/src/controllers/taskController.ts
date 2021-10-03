@@ -254,6 +254,39 @@ export const updateTaskStausByTaskIdController = async (
   }
 };
 
+export const updateTaskStausByTaskIdsController = async (
+  req: Request,
+  res: Response
+) => {
+  try {
+    res.statusCode = 400;
+
+    const taskIds: Array<string> = req.body.task_ids as Array<string>;
+    const status: string = req.body.status as string;
+
+    if (!taskIds || !status) {
+      res.statusCode = 422;
+      throw new Error("Missing arguments");
+    } else if (taskIds.constructor !== Array || !taskIds.length) {
+      res.statusCode = 422;
+      throw new Error("Incorrect format");
+    }
+
+    if (!["to_do", "doing", "done"].includes(status)) {
+      res.statusCode = 422;
+      throw new Error("Status has to be to_do, doing or done");
+    }
+
+    taskIds.forEach(async (taskId) => {
+      await updateTaskStausByTaskId(taskId, status);
+    });
+
+    res.status(200).end();
+  } catch (error: any) {
+    res.send(error.message);
+  }
+};
+
 export const removeTaskResponsible = async (req: Request, res: Response) => {
   try {
     res.statusCode = 400;

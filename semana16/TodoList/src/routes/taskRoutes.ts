@@ -8,6 +8,7 @@ import {
   middlewareGetTask,
   findAllDelayedTasks,
   removeTaskResponsible,
+  updateTaskStausByTaskIdsController
 } from "../controllers/taskController";
 
 const router = Router();
@@ -19,6 +20,8 @@ router.post("/task/responsible", createTaskResponsible);
 
 router.get("/task/delayed", findAllDelayedTasks);
 
+
+router.put("/task/status/edit", updateTaskStausByTaskIdsController)
 router.put("/task/status/:id", updateTaskStausByTaskIdController);
 
 router.delete(
