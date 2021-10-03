@@ -24,7 +24,7 @@ export const searchUsersController = async (req: Request, res: Response) => {
 
     res.status(200).send({ users: foundUser });
   } catch (error: any) {
-    res.send(error.message);
+    res.send(error.message || error.sqlMessage);
   }
 };
 
@@ -36,7 +36,7 @@ export const getUsersController = async (req: Request, res: Response) => {
 
     res.status(200).send(users);
   } catch (error: any) {
-    res.send(error.message);
+    res.send(error.message || error.sqlMessage);
   }
 };
 
@@ -57,7 +57,7 @@ export const createUserController = async (req: Request, res: Response) => {
 
     res.status(201).send(user);
   } catch (error: any) {
-    res.send(error.message);
+    res.send(error.message || error.sqlMessage);
   }
 };
 
@@ -81,7 +81,7 @@ export const getUserByIdController = async (req: Request, res: Response) => {
 
     res.status(200).send(user);
   } catch (error: any) {
-    res.send(error.message);
+    res.send(error.message || error.sqlMessage);
   }
 };
 
@@ -108,7 +108,7 @@ export const updateUserController = async (req: Request, res: Response) => {
 
     res.status(200).end();
   } catch (error: any) {
-    res.send(error.message);
+    res.send(error.message || error.sqlMessage);
   }
 };
 

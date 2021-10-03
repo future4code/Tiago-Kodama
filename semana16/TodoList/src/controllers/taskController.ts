@@ -37,7 +37,7 @@ export const middlewareGetTask = async (req: Request, res: Response) => {
       throw new Error("Incorrect format");
     }
   } catch (error: any) {
-    res.send(error.message);
+    res.send(error.message || error.sqlMessage);
   }
 };
 
@@ -76,7 +76,7 @@ export const createTask = async (req: Request, res: Response) => {
 
     res.status(201).send(task);
   } catch (error: any) {
-    res.send(error.message);
+    res.send(error.message || error.sqlMessage);
   }
 };
 
@@ -102,7 +102,7 @@ export const createTaskResponsible = async (req: Request, res: Response) => {
 
     res.status(201).end();
   } catch (error: any) {
-    res.send(error.message);
+    res.send(error.message || error.sqlMessage);
   }
 };
 
@@ -128,7 +128,7 @@ export const findTaskById = async (req: Request, res: Response) => {
 
     res.status(200).send({ ...tasks[0], responsibleUsers: responsibles });
   } catch (error: any) {
-    res.send(error.message);
+    res.send(error.message || error.sqlMessage);
   }
 };
 
@@ -147,7 +147,7 @@ export const findTasksByStatus = async (req: Request, res: Response) => {
 
     res.status(200).send({ tasks: tasks });
   } catch (error: any) {
-    res.send(error.message);
+    res.send(error.message || error.sqlMessage);
   }
 };
 
@@ -171,7 +171,7 @@ export const findTaskByCreatorId = async (req: Request, res: Response) => {
 
     res.status(200).send({ tasks: tasks });
   } catch (error: any) {
-    res.send(error.message);
+    res.send(error.message || error.sqlMessage);
   }
 };
 
@@ -190,7 +190,7 @@ export const findAllResponsiblesById = async (req: Request, res: Response) => {
 
     res.status(200).send({ users: responsibles });
   } catch (error: any) {
-    res.send(error.message);
+    res.send(error.message || error.sqlMessage);
   }
 };
 
@@ -202,7 +202,7 @@ export const findAllDelayedTasks = async (req: Request, res: Response) => {
 
     res.status(200).send({ tasks: tasks });
   } catch (error: any) {
-    res.send(error.message);
+    res.send(error.message || error.sqlMessage);
   }
 };
 
@@ -224,7 +224,7 @@ export const findTasksByQueryController = async (
 
     res.status(200).send({ tasks: tasks });
   } catch (error: any) {
-    res.send(error.message);
+    res.send(error.message || error.sqlMessage);
   }
 };
 
@@ -252,7 +252,7 @@ export const updateTaskStausByTaskIdController = async (
 
     res.status(200).end();
   } catch (error: any) {
-    res.send(error.message);
+    res.send(error.message || error.sqlMessage);
   }
 };
 
@@ -285,7 +285,7 @@ export const updateTaskStausByTaskIdsController = async (
 
     res.status(200).end();
   } catch (error: any) {
-    res.send(error.message || error.sqlMessage);
+    res.send(error.message || error.sqlMessage || error.sqlMessage);
   }
 };
 
@@ -305,7 +305,7 @@ export const removeTaskResponsible = async (req: Request, res: Response) => {
 
     res.status(200).end();
   } catch (error: any) {
-    res.send(error.message);
+    res.send(error.message || error.sqlMessage);
   }
 };
 
@@ -326,6 +326,6 @@ export const removeTask = async (req: Request, res:Response) => {
     res.status(200).end()
 
   } catch (error:any) {
-    res.send(error.message || error.sqlMessage)
+    res.send(error.message || error.sqlMessage || error.sqlMessage)
   }
 }

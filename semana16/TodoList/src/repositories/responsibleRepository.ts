@@ -1,5 +1,4 @@
 import { connection } from "../database/mysql";
-import { Responsible } from "../models/responsible";
 import { dateToBrFormat } from "../tools/handleDate";
 
 export const findAll = async () => {
