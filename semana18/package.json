@@ -6,7 +6,7 @@
   "scripts": {
     "start": "tsc && node ./build/app.js",
     "dev": "ts-node-dev ./src/app.ts",
-    "migrate": "echo 'Nada foi feito, ainda'"
+    "migrate": "tsc && node ./build/database/setupDatabase.js"
   },
   "author": "",
   "license": "ISC",

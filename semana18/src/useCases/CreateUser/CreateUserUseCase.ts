@@ -1,7 +1,7 @@
 import { User } from "../../entites/User";
 import { MyError } from "../../MyError";
 import { IUsersRepository } from "../../repositories/IUsersRepository";
-import { ICreateUserRequestDTO } from "./CreateUserDTO";
+import { ICreateUserRequestDTO } from "./ICreateUserDTO";
 
 export class CreateUserUseCase {
 

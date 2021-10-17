@@ -1,15 +1,13 @@
 import { idGenerator } from "../services/idGenerator"
 
 export class User {
-
-    public readonly id: string
-    
     constructor(
-        private name: string,
-        private email: string,
-        private age: number
-
+        public name: string,
+        public email: string,
+        public age: number,
+        public readonly id?: string
     ){
-        this.id = idGenerator()
+        if(!id)
+            this.id = idGenerator()
     }
 }
