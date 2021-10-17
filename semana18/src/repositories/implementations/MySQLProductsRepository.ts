@@ -5,4 +5,7 @@ export class MySQLProductsRepository implements IProductsRepository{
     async save(product: Product):Promise<void>{
         console.log('Salvando', product)
     }
+    async findAll():Promise<Array<Product>|null>{
+        return null
+    }
 }
