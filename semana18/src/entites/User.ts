@@ -1,6 +1,8 @@
+import { idGenerator } from "../services/idGenerator"
+
 export class User {
 
-    public readonly id?: string
+    public readonly id: string
     
     constructor(
         private name: string,
@@ -8,6 +10,6 @@ export class User {
         private age: number
 
     ){
-        // generate id
+        this.id = idGenerator()
     }
 }
