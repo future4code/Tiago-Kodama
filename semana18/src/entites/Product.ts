@@ -1,15 +1,16 @@
 import { idGenerator } from "../services/idGenerator";
 
 export class Product {
-    private readonly id:string;
-
+    
     constructor(
-        private name: string,
-        private description: string,
-        private price: number,
-        private origin?: string,
-        private destination?: string
+        public name: string,
+        public description: string,
+        public price: number,
+        public origin?: string,
+        public destination?: string,
+        public readonly id?:string
     ){
-        this.id = idGenerator()
+        if(!id)
+            this.id = idGenerator()
     }
 }
