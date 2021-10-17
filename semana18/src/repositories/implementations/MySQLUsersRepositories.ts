@@ -1,23 +1,24 @@
-import { UserDataBase } from "../../database/users/UsersDataBase";
+import { BaseDataBase } from "../../database/BaseDataBase";
 import { User } from "../../entites/User";
 import { IUsersRepository } from "../IUsersRepository";
 
 export class MySQLUsersRepositories implements IUsersRepository{
-    async findByEmail(email: string): Promise<User>{
-        const user = new User('', '', 0)
+    async findByEmail(email: string): Promise<User|null>{
+        const user = new User('email@email.com', 'tiago', 20)
 
-        return user
+        return null
     }
 
     async save(user: User): Promise<void>{
-        const userDataBase = new UserDataBase()
+
+        const dataBase = new BaseDataBase()
         
         try {
-            
+            console.log('Salvou', user)
         } catch (error) {
             
         } finally {
-            userDataBase.closeConnection()
+            dataBase.closeConnection()
         }
     }
 }

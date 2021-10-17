@@ -1,15 +1,27 @@
 import { Request, Response } from "express";
 import { MyError } from "../../MyError";
+import { ICreateUserRequestDTO } from "./CreateUserDTO";
 import { CreateUserUseCase } from "./CreateUserUseCase";
 
 export class CreateUserController {
   constructor(private createUserUseCase: CreateUserUseCase) {}
 
-  async handle(req: Request, res: Response): Promise<Response> {
+  async handle(req: Request, res: Response): Promise<void> {
     try {
-      return res.status(201).send();
+      const {name, email, age} = req.body
+
+      const data: ICreateUserRequestDTO = {
+        name,
+        email,
+        age
+      }
+
+      await this.createUserUseCase.execute(data)
+
+      res.status(201).end();
+
     } catch (error: MyError | any) {
-      return res.status(error.statusCode).send(error.message);
+      res.status(error.statusCode).send(error.message);
     }
   }
 }
