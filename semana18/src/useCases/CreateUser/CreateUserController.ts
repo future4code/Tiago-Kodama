@@ -10,6 +10,10 @@ export class CreateUserController {
     try {
       const {name, email, age} = req.body
 
+      if(!name || typeof name !== 'string') throw new MyError('Missing name', 402)
+      else if(!email) throw new MyError("Missing email", 402)
+      else if(!age || typeof age !== 'number') throw new MyError("Missing age", 402)
+
       const data: ICreateUserRequestDTO = {
         name,
         email,

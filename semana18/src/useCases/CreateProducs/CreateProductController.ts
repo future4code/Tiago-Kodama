@@ -17,6 +17,10 @@ export class CreateProductController {
                 price
             } = req.body
 
+            if(!name || typeof name !== 'string') throw new MyError('Missing name', 402)
+            else if(!description) throw new MyError("Missing description", 402)
+            else if(!price || typeof price !== 'number') throw new MyError("Missing price", 402)
+
             const product: ICreateProductsDTO = {
                 name,
                 description,
