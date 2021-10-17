@@ -21,4 +21,8 @@ export class MySQLUsersRepositories implements IUsersRepository{
             dataBase.closeConnection()
         }
     }
+
+    async getAllUsers(): Promise<Array<User>|null>{
+        return null
+    }
 }
