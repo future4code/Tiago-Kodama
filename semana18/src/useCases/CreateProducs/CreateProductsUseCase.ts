@@ -14,6 +14,6 @@ export class CreateProductsUseCase {
       data.destination
     );
 
-    this.productRepository.save(product);
+    await this.productRepository.save(product);
   }
 }

@@ -18,6 +18,6 @@ export class CreateUserUseCase {
 
         const user = new User(data.name, data.email, data.age)
 
-        this.usersRepository.save(user)
+        await this.usersRepository.save(user)
     }
 }

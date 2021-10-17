@@ -8,6 +8,6 @@ export class GetAllUsersUseCase {
     ){}
 
     async execute():Promise<Array<User>|null>{
-        return this.usersRepository.getAllUsers()
+        return await this.usersRepository.getAllUsers()
     }
 }
