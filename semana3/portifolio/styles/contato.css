@@ -1,0 +1,60 @@
+.card-contato{
+    width: 80%;
+    min-width: 55rem;
+    margin: 1.5rem;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+
+    padding: 10px 10px 20px 10px;
+    border: 1px solid #BFBFBF;
+    background-color: white;
+    box-shadow: 5px 5px 2.5px #aaaaaa;
+}
+
+
+
+.card-contato a > img {
+    width: 4rem;
+    height: 4rem;
+    margin: 1rem;
+}
+
+.card-contato form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    padding-top: 3rem;
+}
+
+.card-contato form > input,
+.card-contato form > button,
+.card-contato form > textarea{
+    margin: 2rem;
+    padding: 1rem;
+    width: 90%;
+    height: 2rem;
+    
+    border-radius: 5px;
+    border: 1px solid rgba(0, 0, 0, 0.384);
+}
+
+.card-contato form > textarea{
+    min-height: 10rem;
+    min-width: 10rem;
+    max-width: 50rem;
+}
+
+.card-contato form > button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background-color: rgb(99, 99, 219);
+    color: var(--light-tomato);
+    font-weight: 700;
+}
