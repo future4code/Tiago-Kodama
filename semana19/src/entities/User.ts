@@ -1,6 +1,8 @@
+import { idGenerator } from "../services/idGenerator"
+
 export class User{
     constructor(
-        private id: string,
+        private id: string = idGenerator(),
         private name: string,
         private email: string,
         private password: string
