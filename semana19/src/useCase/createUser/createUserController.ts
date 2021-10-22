@@ -10,7 +10,7 @@ export class createUserController {
         private createUserUseCase: CreateUserUseCase
     ){}
 
-    handle(req: Request, res: Response){
+    async handle(req: Request, res: Response):Promise<void>{
         try {
             const name: string = req.body.name
             const email: string = req.body.name
@@ -26,7 +26,7 @@ export class createUserController {
                 password
             }
     
-            const user: User = this.createUserUseCase.execute(iCreateUserDTO)
+            const user: User = await this.createUserUseCase.execute(iCreateUserDTO)
             
             res.status(201).send(user)
 
