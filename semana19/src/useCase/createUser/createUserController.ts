@@ -28,7 +28,8 @@ export class createUserController {
     
             const user: User = await this.createUserUseCase.execute(iCreateUserDTO)
             
-            res.status(201).send(user)
+            // change Date.now to jwb
+            res.status(201).send({access_token: Date.now()})
 
         } catch (error: any) {
             res.status(error.code || 400).send(error.message || 'Unexpected error')
