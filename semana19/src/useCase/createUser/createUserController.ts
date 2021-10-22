@@ -26,7 +26,7 @@ export class createUserController {
                 password
             }
     
-            const user: User = await this.createUserUseCase.execute(iCreateUserDTO)
+            await this.createUserUseCase.execute(iCreateUserDTO)
             
             // change Date.now to jwb
             res.status(201).send({access_token: Date.now()})

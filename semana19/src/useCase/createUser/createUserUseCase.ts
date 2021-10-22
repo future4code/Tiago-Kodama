@@ -9,11 +9,9 @@ export class CreateUserUseCase {
         private userRepository: IUserRepository
     ){}
 
-    async execute (iCreateUserDTO: ICreateUserDTO): Promise<User>{
+    async execute (iCreateUserDTO: ICreateUserDTO): Promise<void>{
         const user = await this.userRepository.findByEmail(iCreateUserDTO.email)
 
-        if(!user) throw new ServerError('This email has already used', 422)
-        
-        return user
+        if(user) throw new ServerError('This email has already used', 422)
     }
 }
