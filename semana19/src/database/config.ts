@@ -3,7 +3,7 @@ import dotenv from 'dotenv'
 
 dotenv.config()
 
-export const connection = {
+export const config = {
 	client: "mysql",
 	connection: {
     host: process.env.DB_HOST,
