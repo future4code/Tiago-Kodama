@@ -1,10 +1,10 @@
 import { Response, Request } from 'express'
 import { User } from '../../entities/User';
 import { ServerError } from '../../errors/ServerError';
-import { CreateUserUseCase } from './createUserUseCase';
+import { CreateUserUseCase } from './CreateUserUseCase';
 import { ICreateUserDTO } from './ICreateUserDTO';
 
-export class createUserController {
+export class CreateUserController {
 
     constructor(
         private createUserUseCase: CreateUserUseCase
@@ -13,8 +13,8 @@ export class createUserController {
     async handle(req: Request, res: Response):Promise<void>{
         try {
             const name: string = req.body.name
-            const email: string = req.body.name
-            const password: string = req.body.name
+            const email: string = req.body.email
+            const password: string = req.body.password
     
             if(!name || !email || !password) throw new ServerError("Missing arguments", 422)
             else if( !email.includes('@') ) throw new ServerError("Email format is incorrecting", 422)
@@ -26,10 +26,10 @@ export class createUserController {
                 password
             }
     
-            await this.createUserUseCase.execute(iCreateUserDTO)
+            const user: User = await this.createUserUseCase.execute(iCreateUserDTO)
             
             // change Date.now to jwb
-            res.status(201).send({access_token: Date.now()})
+            res.status(201).send(user)
 
         } catch (error: any) {
             res.status(error.code || 400).send(error.message || 'Unexpected error')

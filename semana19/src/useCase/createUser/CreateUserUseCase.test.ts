@@ -1,6 +1,6 @@
 import { User } from "../../entities/User"
 import { IUserRepository } from "../../repositories/IUserRepository"
-import { CreateUserUseCase } from "./createUserUseCase"
+import { CreateUserUseCase } from "./CreateUserUseCase"
 
 class UserRepository implements IUserRepository {
 
