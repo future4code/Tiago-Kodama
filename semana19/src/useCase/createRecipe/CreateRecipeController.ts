@@ -2,7 +2,7 @@ import { Request, Response } from "express";
 import { ServerError } from "../../errors/ServerError";
 import { CreateRecipeUseCase } from "./CreateRecipeUseCase";
 import { ICreateRecipeDTO } from "./ICreateRecipeDTO";
-
+import { getTokenData } from "../../services/authenticator"
 export class CreateRecipeController {
     constructor(
         private createRecipeUseCase: CreateRecipeUseCase
@@ -12,10 +12,18 @@ export class CreateRecipeController {
         try {
             const title: string = req.body.title
             const description: string = req.body.description
-            const idUser: string = 'db96b931-1002-43c4-872a-ac9a5a764899'
-
-            if(!title || !description || !idUser)
+            const token: string = req.headers.authorization as string
+            
+            if(!title || !description || !token)
                 throw new ServerError('Missing arguments', 422)
+
+            const tokenData = getTokenData(token)
+
+            if(!tokenData) throw new ServerError('Incorrect token', 401)
+
+            const idUser: string = tokenData.id
+
+            if(!idUser) throw new ServerError('Incorrect token', 401)
 
             const createRecipeDTO: ICreateRecipeDTO = {
                 title, 
