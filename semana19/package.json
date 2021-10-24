@@ -7,8 +7,7 @@
     "start": "tsc && node ./build/app.js",
     "dev": "ts-node-dev ./src/app.ts",
     "test": "npx jest",
-    "migrate": "ts-node-dev ./src/database/setupDataBase.ts",
-    "seed": "ts-node-dev ./src/database/seedDataBase.ts"
+    "migrate": "ts-node-dev ./src/database/setupDataBase.ts"
   },
   "author": "tiago kodama",
   "license": "ISC",
