@@ -12,9 +12,13 @@ class UserRepository implements IUserRepository {
     
     async findByEmail(email: string): Promise<User|null>{
 
-        if(email === this.user?.getEmail())
+        if(email === this.user?.email)
             return this.user
 
+        return null
+    }
+
+    async findById(id: string): Promise<User|null>{
         return null
     }
     
@@ -38,9 +42,9 @@ describe('Create user useCase', () => {
             const createUserUseCase = new CreateUserUseCase(userRepository)
     
             await createUserUseCase.execute({
-                name: oldUser.getName(),
-                email: oldUser.getEmail(),
-                password: oldUser.getPassword()
+                name: oldUser.name,
+                email: oldUser.email,
+                password: oldUser.password
             })
             
         } catch (error: any) {
@@ -58,9 +62,9 @@ describe('Create user useCase', () => {
             const createUserUseCase = new CreateUserUseCase(userRepository)
     
             await createUserUseCase.execute({
-                name: newUser.getName(),
-                email: newUser.getEmail(),
-                password: newUser.getPassword()
+                name: newUser.name,
+                email: newUser.email,
+                password: newUser.password
             })
             
         } catch (error: any) {

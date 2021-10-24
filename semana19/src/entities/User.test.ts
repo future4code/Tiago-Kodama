@@ -8,19 +8,19 @@ describe('Testing Entitie User with id', () => {
     const user = new User(name, email, password, id)
     
     test('id', () => {
-        expect(user.getId()).toBe(id)
+        expect(user.id).toBe(id)
     })
 
     test('name', () => {
-        expect(user.getName()).toBe(name)
+        expect(user.name).toBe(name)
     })
 
     test('email', () => {
-        expect(user.getEmail()).toBe(email)
+        expect(user.email).toBe(email)
     })
 
     test('password', () => {
-        expect(user.getPassword()).toBe(password)
+        expect(user.password).toBe(password)
     })
 })
 
@@ -32,18 +32,18 @@ describe('Testing Entitie User without id', () => {
     const user = new User(name, email, password)
     
     test('id', () => {
-        expect(typeof user.getId()).toBe('string')
+        expect(typeof user.id).toBe('string')
     })
 
     test('name', () => {
-        expect(user.getName()).toBe(name)
+        expect(user.name).toBe(name)
     })
 
     test('email', () => {
-        expect(user.getEmail()).toBe(email)
+        expect(user.email).toBe(email)
     })
 
     test('password', () => {
-        expect(user.getPassword()).toBe(password)
+        expect(user.password).toBe(password)
     })
 })

@@ -67,7 +67,7 @@ export class UserDataBase extends BaseDataBase {
                 Name,
                 Email,
                 Password,
-                Id: user.getId()
+                Id: user.id
             })
 
             return user

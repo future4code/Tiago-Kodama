@@ -12,11 +12,15 @@ export class UserRepository implements IUserRepository {
         return await this.userDataBase.getUserByEmail(email)
     }
 
+    async findById (id: string): Promise<User|null> {
+        return await this.userDataBase.getUserById(id)
+    }
+
     async save(user: User): Promise<void>{
         await this.userDataBase.createUser(
-            user.getName(),
-            user.getEmail(),
-            user.getPassword()
+            user.name,
+            user.email,
+            user.password
         )
     }
 }
