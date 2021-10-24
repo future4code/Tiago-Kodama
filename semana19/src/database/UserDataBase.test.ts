@@ -27,7 +27,7 @@ describe('User DataBase', () => {
 
         if(!userByEmail) return 
 
-        const userById = await userDataBase.getUserById(userByEmail.getId())
+        const userById = await userDataBase.getUserById(userByEmail.id)
 
         expect(userByEmail).toEqual(userById)
     })

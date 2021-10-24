@@ -1,3 +1,4 @@
+import { idGenerator } from "../services/idGenerator";
 import { BaseDataBase } from "./BaseDataBase";
 
 export class Seed extends BaseDataBase {
@@ -17,37 +18,43 @@ export class Seed extends BaseDataBase {
     }
 
     async up (){
+        const user1 = idGenerator()
+        const user2 = idGenerator()
+        const recipe1 = idGenerator()
+        const recipe2 = idGenerator()
+
+
         await BaseDataBase.connection('User').insert({
-            Id: '001',
+            Id: user1,
             Name: 'Tiago',
-            Email: 'tiago@email.com',
+            Email: `tiago${Math.floor(Math.random()*100)}@email.com`,
             Password: '123456789'
         })
 
         await BaseDataBase.connection('User').insert({
-            Id: '002',
+            Id: user2,
             Name: 'Gustavo',
-            Email: 'gustavo@email.com',
+            Email: `gustavo${Math.floor(Math.random()*100)}@email.com`,
             Password: '123456789'
         })
 
         await BaseDataBase.connection('Recipe').insert({
-            Id: '001',
+            Id: recipe1,
             Title: 'Bolo de coco',
             Description: 'Compre um bolo que é mais fácil',
-            Id_user: '001'
+            Id_user: user1
         })
 
         await BaseDataBase.connection('Recipe').insert({
-            Id: '002',
+            Id: recipe2,
             Title: 'Bolo de cenoura',
             Description: 'Compre um bolo que é mais fácil',
-            Id_user: '002'
+            Id_user: user2
         })
 
         await BaseDataBase.connection('Follow').insert({
-            Id_following: '001',
-            Id_User: '002'
+            Id_following: user1,
+            Id_User: user2
         })
     }
 

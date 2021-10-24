@@ -4,7 +4,7 @@ describe('Recipe DataBase', () => {
     const recipeDataBase = new RecipeDataBase()
     const title = 'Teste'
     const description = `Description teste${Math.floor(Math.random()*100)}`
-    const idUser = 'db96b931-1002-43c4-872a-ac9a5a764899'
+    const idUser = '43c6fa2f-296d-4e6d-96f8-2468f2ff3d9a'
 
     test('Get user by Id', async () => {
         const recipe = await recipeDataBase.getRecipesByUserId(idUser)
