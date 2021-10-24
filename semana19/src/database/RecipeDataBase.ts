@@ -13,7 +13,7 @@ export class RecipeDataBase extends BaseDataBase {
                 CreatedAt as createdAt,
                 Id_user as idUser
                 FROM Recipe
-                WHERE Id_user = '${id}';
+                WHERE Id_user = "${id}";
             `)
                 
             const recipe = res[0] as Array<Recipe>
