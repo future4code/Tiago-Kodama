@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import { ServerError } from "../../errors/ServerError";
+import { getTokenData } from "../../services/authenticator";
 import { GetUserInfoUseCase } from "./GetUserInfoUseCase";
 
 export class GetUserInfoController {
@@ -10,6 +11,14 @@ export class GetUserInfoController {
     async handle(req: Request, res: Response){
         try {
             const id_user = req.params.id
+            const token = req.headers.authorization
+
+            if(!token) throw new ServerError('Missing token', 422)
+
+            const tokenData = getTokenData(token)
+
+            if(!tokenData) throw new ServerError('Incorrect token', 402)
+            else if(tokenData.id!==id_user) throw new ServerError('You can not access this page', 403)
 
             const user = await this.getUserUseCase.execute(id_user)
 
