@@ -2,6 +2,7 @@ import { Response, Request } from "express";
 import { User } from "../../entities/User";
 import { ServerError } from "../../errors/ServerError";
 import { generateToken } from "../../services/authenticator";
+import { generateHash } from "../../services/hashManager";
 import { IAuthenticationDTO } from "../../services/IAuthenticationDTO";
 import { CreateUserUseCase } from "./CreateUserUseCase";
 import { ICreateUserDTO } from "./ICreateUserDTO";
@@ -25,7 +26,7 @@ export class CreateUserController {
       const iCreateUserDTO: ICreateUserDTO = {
         name,
         email,
-        password,
+        password: await generateHash(password),
       };
 
       const user: User = await this.createUserUseCase.execute(iCreateUserDTO);
