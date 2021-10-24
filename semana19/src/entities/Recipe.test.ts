@@ -12,22 +12,22 @@ describe(`Recipe entitie`, () => {
     )
 
     test('exist id', () => {
-        expect(typeof recipe.getId()).toBe('string')
+        expect(typeof recipe.id).toBe('string')
     })
 
     test('unique id', () => {
-        expect(recipe.getId()).not.toBe(new Recipe('','',''))
+        expect(recipe.id).not.toBe(new Recipe('','',''))
     })
 
     test('title', () => {
-        expect(recipe.getTitle()).toBe(title)
+        expect(recipe.title).toBe(title)
     })
 
     test('description', () => {
-        expect(recipe.getDescription()).toBe(descripton)
+        expect(recipe.description).toBe(descripton)
     })
 
     test('user id', () => {
-        expect(recipe.getIdUser()).toBe(idUser)
+        expect(recipe.idUser).toBe(idUser)
     })
 })
