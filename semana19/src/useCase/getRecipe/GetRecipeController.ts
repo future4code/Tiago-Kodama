@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import { Recipe } from "../../entities/Recipe";
 import { ServerError } from "../../errors/ServerError";
+import { getTokenData } from "../../services/authenticator";
 import { GetRecipeUseCase } from "./GetRecipeUseCase";
 
 export class GetRecipeController {
@@ -12,9 +13,15 @@ export class GetRecipeController {
         try {
             const id: string = req.params.id
 
-            const arrayRecipes:(Array<Recipe>|null) = await this.getRecipeUseCase.execute(id)
+            const token: string|undefined = req.headers.authorization
 
-            console.log(arrayRecipes)
+            if(!token) throw new ServerError('Missing token', 402)
+
+            const tokenData = getTokenData(token)
+
+            if(!tokenData) throw new ServerError('Incorrect token', 402)
+
+            const arrayRecipes:(Array<Recipe>|null) = await this.getRecipeUseCase.execute(id)
 
             if(!arrayRecipes)
                 throw new ServerError('Recipe does not exists', 404)
