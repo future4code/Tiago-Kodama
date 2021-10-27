@@ -1,5 +1,8 @@
 # LABOOK
 
+![LaBook](https://user-images.githubusercontent.com/48417757/138979352-56c4d1c4-e5b8-4719-b262-0a72187158c1.png)
+
+
 ## Primeiros Passos
 
 * Clonar este repositório
