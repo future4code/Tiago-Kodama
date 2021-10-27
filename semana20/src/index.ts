@@ -215,9 +215,3 @@ app.get('/posts/:id', async (req: Request, res: Response) => {
       res.send({ message })
    }
 })
-
-/**************************** SERVER INIT ******************************/
-
-app.listen(3003, () => {
-   console.log("Server running on port 3003")
-})

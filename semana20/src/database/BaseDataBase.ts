@@ -1,5 +1,7 @@
 import knex, { Knex } from "knex";
+import { config } from "dotenv/types";
 
+config()
 export class BaseDataBase {
     protected static connection: Knex = knex({
         client: "mysql",

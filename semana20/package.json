@@ -4,8 +4,8 @@
    "description": "",
    "main": "index.js",
    "scripts": {
-      "migrations": "tsc && node ./build/migrations.js",
-      "start": "npm run build && node --inspect ./build/src/index.js",
+      "migrations": "tsc && node ./build/database/migrations.js",
+      "start": "npm run build && node --inspect ./build/src/app.js",
       "dev": "clear && ts-node-dev ./src/index.ts",
       "build": "clear && echo \"Transpiling files...\" && tsc && echo \"Done!\" ",
       "test": "jest"
