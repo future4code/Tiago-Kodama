@@ -58,44 +58,9 @@ type post = {
 
 /**************************** SERVICES ******************************/
 
-const generateId = (): string => v4()
 
-function generateToken(
-   payload: authenticationData
-): string {
-   return jwt.sign(
-      payload,
-      process.env.JWT_KEY as string,
-      {
-         expiresIn: process.env.JWT_EXPIRES_IN
-      }
-   )
-}
 
-function getTokenData(
-   token: string
-): authenticationData {
-   const result: any = jwt.verify(
-      token,
-      process.env.JWT_KEY as string
-   )
 
-   return { id: result.id, }
-}
-
-const hash = async (
-   plainText: string
-): Promise<string> => {
-   const rounds = Number(process.env.BCRYPT_COST);
-   const salt = await bcrypt.genSalt(rounds);
-   return bcrypt.hash(plainText, salt)
-}
-
-const compare = async (
-   plainText: string, cypherText: string
-): Promise<boolean> => {
-   return bcrypt.compare(plainText, cypherText)
-}
 
 /**************************** ENDPOINTS ******************************/
 
