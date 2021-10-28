@@ -8,7 +8,7 @@
       "start": "npm run build && node --inspect ./build/src/app.js",
       "dev": "clear && ts-node-dev ./src/index.ts",
       "build": "clear && echo \"Transpiling files...\" && tsc && echo \"Done!\" ",
-      "test": "jest"
+      "test": "npx jest"
    },
    "keywords": [],
    "author": "",
@@ -27,11 +27,14 @@
       "@types/bcryptjs": "^2.4.2",
       "@types/cors": "^2.8.7",
       "@types/express": "^4.17.8",
+      "@types/jest": "^27.0.2",
       "@types/jsonwebtoken": "^8.5.0",
       "@types/knex": "^0.16.1",
       "@types/node": "^14.11.2",
       "@types/uuid": "^8.3.0",
+      "jest": "^27.3.1",
+      "ts-jest": "^27.0.7",
       "ts-node-dev": "^1.0.0-pre.63",
-      "typescript": "^4.0.3"
+      "typescript": "^4.4.4"
    }
 }
