@@ -1,4 +1,12 @@
-function generateToken(
+import jwt from 'jsonwebtoken'
+import { config } from 'dotenv'
+
+config()
+export interface authenticationData {
+   id: string
+}
+
+export function generateToken(
     payload: authenticationData
  ): string {
     return jwt.sign(
@@ -10,7 +18,7 @@ function generateToken(
     )
  }
  
- function getTokenData(
+export function getTokenData(
     token: string
  ): authenticationData {
     const result: any = jwt.verify(
