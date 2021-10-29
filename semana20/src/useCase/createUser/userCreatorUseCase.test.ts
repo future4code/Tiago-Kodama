@@ -1,5 +1,5 @@
 import { UserRepositoryTestError, UserRepositoryTestOk } from "../../repository/IUserRepository.test";
-import { CreateUserUseCase } from './CreateUserUseCase'
+import { UserCreatorUseCase } from './UserCreatorUseCase'
 
 describe('Create user usecase', () => {
     test('sucess', async () => {
@@ -7,9 +7,9 @@ describe('Create user usecase', () => {
 
         try {
             const userRepository = new UserRepositoryTestOk()
-            const createUserUseCase = new CreateUserUseCase(userRepository)
+            const userCreatorUseCase = new UserCreatorUseCase(userRepository)
 
-            await createUserUseCase.execute('Name', 'email@email.com', 'password')
+            await userCreatorUseCase.execute('Name', 'email@email.com', 'password')
             
         } catch (error) {
             isOk = false
@@ -23,9 +23,9 @@ describe('Create user usecase', () => {
 
         try {
             const userRepository = new UserRepositoryTestError()
-            const createUserUseCase = new CreateUserUseCase(userRepository)
+            const userCreatorUseCase = new UserCreatorUseCase(userRepository)
             
-            await createUserUseCase.execute('Name', 'email@email.com', 'password')
+            await userCreatorUseCase.execute('Name', 'email@email.com', 'password')
             
         } catch (error) {
             isOk = false

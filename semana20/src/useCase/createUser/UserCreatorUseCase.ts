@@ -4,7 +4,7 @@ import { generateId } from "../../service/idGenerator"
 import { hash } from '../../service/hashManager'
 import { authenticationData, generateToken } from '../../service/tokenHandler'
 
-export class CreateUserUseCase {
+export class UserCreatorUseCase {
 
     constructor(
         private userRepository: IUserRepository
