@@ -2,7 +2,7 @@ import { User } from "../../entitie/User"
 import { IUserRepository } from "../../repository/IUserRepository"
 import { generateId } from "../../service/idGenerator"
 import { HashManager } from '../../service/HashManager'
-import { authenticationData, generateToken } from '../../service/tokenHandler'
+import { TokenHandler, authenticationData } from '../../service/TokenHandler'
 
 export class UserCreatorUseCase {
 
@@ -28,6 +28,6 @@ export class UserCreatorUseCase {
 
         const payload: authenticationData = { id }
 
-        return generateToken( payload )
+        return TokenHandler.generateToken( payload )
     }
 }
