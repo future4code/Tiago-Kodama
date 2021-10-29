@@ -1,7 +1,7 @@
 import { User } from "../../entitie/User"
 import { IUserRepository } from "../../repository/IUserRepository"
 import { generateId } from "../../service/idGenerator"
-import { hash } from '../../service/hashManager'
+import { HashManager } from '../../service/HashManager'
 import { authenticationData, generateToken } from '../../service/tokenHandler'
 
 export class UserCreatorUseCase {
@@ -21,7 +21,7 @@ export class UserCreatorUseCase {
             id,
             name,
             email,
-            await hash(password)
+            await HashManager.hash(password)
         )
 
         await this.userRepository.save(user)
