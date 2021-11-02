@@ -1,0 +1,11 @@
+{
+  "name": "semana21",
+  "version": "1.0.0",
+  "description": "Pokemon",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo testando"
+  },
+  "author": "",
+  "license": "ISC"
+}
