@@ -31,6 +31,7 @@ describe('Get all pokemons', () => {
 
         } finally {
             expect(length).not.toBe(0)
+            pokemonRepository.close()
         }
     })
 })
