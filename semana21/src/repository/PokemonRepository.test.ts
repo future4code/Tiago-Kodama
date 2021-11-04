@@ -10,8 +10,6 @@ describe('Pokemon Repository', () => {
     test('Find by id', async () => {
         const pokemonRepository = new PokemonRepository()
         const pokemons = await pokemonRepository.findById('031985aa-21e5-45d9-ae01-f35386998ffa')
-
-        console.log(pokemons)
         expect(pokemons).not.toBe(null)
     })
     
