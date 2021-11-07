@@ -28,4 +28,23 @@ install xlsx and fs
 
 `
 
+### - Instructions
+
+#### to install
+```
+    npm install
+```
+#### to test
+```
+    npm run test
+```
+#### to dev
+```
+    npm run dev
+```
+#### to start
+```
+    npm run start
+```
+
 [Endpoints](https://documenter.getpostman.com/view/14922046/UVC3kTQV)
