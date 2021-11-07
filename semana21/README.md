@@ -1,4 +1,16 @@
-How to convert XLSX to JSON
+# Case pokemon
+
+### Pokemon Api - inserting into database and searching pokemons
+
+### Features
+
+- [x] Get pokemons
+- [x] Get pokemons by id
+- [x] Get pokemons by params
+- [x] Get pokemons by page
+
+
+### How I converted XLSX to JSON
 
 install xlsx and fs
 
@@ -16,4 +28,4 @@ install xlsx and fs
 
 `
 
-(Documentation)[https://documenter.getpostman.com/view/14922046/UVC3kTQV]
+[Endpoints](https://documenter.getpostman.com/view/14922046/UVC3kTQV)
