@@ -11,8 +11,7 @@ export class PokemonRepository
       return await BaseDataBase.connection("Pokemon")
         .innerJoin('TypePokemon', 'Pokemon.Id', 'TypePokemon.Id_Pokemon')
     } catch (error: any) {
-      console.log(error.sqlMessage || error.message || "Database failed");
-      return null;
+      throw new Error(error.sqlMessage || error.message || "Database failed");
     }
   }
 
@@ -30,8 +29,7 @@ export class PokemonRepository
       return pokemon
 
     } catch (error: any) {
-      console.log(error.sqlMessage || error.message || "Database failed");
-      return null;
+      throw new Error("Incorrect id");
     }
   }
 
@@ -44,8 +42,7 @@ export class PokemonRepository
         .limit(limit)
         .offset(offset);
     } catch (error: any) {
-      console.log(error.sqlMessage || error.message || "Database failed");
-      return null;
+      throw new Error(error.sqlMessage || error.message || "Database failed");
     }
   }
 
@@ -60,8 +57,7 @@ export class PokemonRepository
       );
       return pokemons;
     } catch (error: any) {
-      console.log(error.sqlMessage || error.message || "Database failed");
-      return null;
+      throw new Error(error.sqlMessage || error.message || "Database failed");
     }
   }
 }
