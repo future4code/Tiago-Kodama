@@ -34,6 +34,11 @@ install xlsx and fs
 ```
     npm install
 ```
+#### to setup database
+```
+   npm run migrate
+   npm run seed
+```
 #### to test
 ```
     npm run test
@@ -46,5 +51,6 @@ install xlsx and fs
 ```
     npm run start
 ```
+
 
 [Endpoints](https://documenter.getpostman.com/view/14922046/UVC3kTQV)
