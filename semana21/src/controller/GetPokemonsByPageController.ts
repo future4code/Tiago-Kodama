@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import { GetPokemonsByPage } from "../business/GetPokemonsByPage";
 
-export class GetPokemonsByParamsController{
+export class GetPokemonsByPageController{
     constructor(
         private getPokemonsByPage: GetPokemonsByPage
     ){}
@@ -10,7 +10,8 @@ export class GetPokemonsByParamsController{
         res.statusCode = 400
 
         try {
-            const { offset, limit } = req.query
+            const offset = Number(req.query.offset)
+            const limit = Number(req.query.limit)
     
             if(!offset || !limit){
                 res.statusCode = 422
