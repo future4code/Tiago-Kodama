@@ -6,7 +6,7 @@ export class GetPokemonsByParams {
         private pokemonRepository: IPokemonRepository
     ){}
 
-    async execute(param: string, value: string):Promise<Array<Pokemon>|null>{
+    async execute(param: string, value: number):Promise<Array<Pokemon>|null>{
         return await this.pokemonRepository.findByParam(param, value)
     }
 }

@@ -11,18 +11,18 @@ export class GetPokemonsByParamsController{
 
         try {
             const params = req.query
-            
+
             if(!Object.keys(params) || !Object.keys(params).length){
                 res.statusCode = 400
                 throw new Error("Please, inform param and value")
             }
 
             const param = Object.keys(params)[0]
-            const value = Object.values(params)[0]
+            const value = Number(Object.values(params)[0])
 
-            if(typeof value !== 'string'){
+            if(typeof value !== 'number'){
                 res.statusCode = 422
-                throw new Error('Value has to be string')
+                throw new Error('Value has to be number')
             }
 
             const pokemons = await this.getPokemonsByParams.execute(param, value)

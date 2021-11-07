@@ -51,7 +51,7 @@ export class PokemonRepository
 
   async findByParam(
     param: string,
-    value: string
+    value: number
   ): Promise<Array<Pokemon> | null> {
     try {
       const pokemons = await BaseDataBase.connection("Pokemon").where(
